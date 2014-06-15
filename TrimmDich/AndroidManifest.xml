@@ -22,6 +22,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="de.lmu.msp.trimmdich.SetupActivity"></activity>
+        <activity android:name="de.lmu.msp.trimmdich.CompassActivity"></activity>
+        <activity android:name="de.lmu.msp.trimmdich.ExerciseActivity"></activity>
+        <activity android:name="de.lmu.msp.trimmdich.ExerciseReviewActivity"></activity>
+        <activity android:name="de.lmu.msp.trimmdich.MapResultActivity"></activity>
+        <activity android:name="de.lmu.msp.trimmdich.RunPreviewActivity"></activity>
+        <activity android:name="de.lmu.msp.trimmdich.StatisticsActivity"></activity>
     </application>
 
 </manifest>

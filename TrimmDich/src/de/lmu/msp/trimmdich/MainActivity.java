@@ -3,6 +3,7 @@ package de.lmu.msp.trimmdich;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -37,6 +38,11 @@ public class MainActivity extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	public void startNewRun(View view) {
+		Intent newIntent = new Intent(this, SetupActivity.class);
+		startActivity(newIntent);
 	}
 
 }
