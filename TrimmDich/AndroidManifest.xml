@@ -22,7 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:nde.lmu.msp.trimmdich.main.SetupActivityivity"></activity>
+        <activity android:name="de.lmu.msp.trimmdich.main.SetupActivity"></activity>
         <activity android:name="de.lmu.msp.trimmdich.run.CompassActivity"></activity>
         <activity android:name="de.lmu.msp.trimmdich.run.ExerciseActivity"></activity>
         <activity android:name="de.lmu.msp.trimmdich.exercise.ExerciseReviewActivity"></activity>
