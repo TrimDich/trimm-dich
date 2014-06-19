@@ -24,7 +24,7 @@
         </activity>
         <activity android:name="de.lmu.msp.trimmdich.main.SetupActivity"></activity>
         <activity android:name="de.lmu.msp.trimmdich.run.CompassActivity"></activity>
-        <activity android:name="de.lmu.msp.trimmdich.run.ExerciseActivity"></activity>
+        <activity android:name="de.lmu.msp.trimmdich.exercise.ExerciseActivity"></activity>
         <activity android:name="de.lmu.msp.trimmdich.exercise.ExerciseReviewActivity"></activity>
         <activity android:name="de.lmu.msp.trimmdich.summary.MapResultActivity"></activity>
         <activity android:name="de.lmu.msp.trimmdich.run.RunPreviewActivity"></activity>
