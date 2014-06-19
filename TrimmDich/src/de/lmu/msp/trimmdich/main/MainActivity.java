@@ -1,5 +1,9 @@
-package de.lmu.msp.trimmdich;
+package de.lmu.msp.trimmdich.main;
 
+import de.lmu.msp.trimmdich.R;
+import de.lmu.msp.trimmdich.R.id;
+import de.lmu.msp.trimmdich.R.layout;
+import de.lmu.msp.trimmdich.R.menu;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;

@@ -1,12 +1,12 @@
-package de.lmu.msp.trimmdich;
+package de.lmu.msp.trimmdich.summary;
 
 import android.app.Activity;
 import android.os.Bundle;
 
-public class StatisticsActivity extends Activity {
+public class MapResultActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//setContentView(R.layout.activity_main);
+//		setContentView(R.layout.activity_);
 	}
 }

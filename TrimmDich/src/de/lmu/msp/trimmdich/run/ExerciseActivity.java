@@ -1,5 +1,8 @@
-package de.lmu.msp.trimmdich;
+package de.lmu.msp.trimmdich.run;
 
+import de.lmu.msp.trimmdich.R;
+import de.lmu.msp.trimmdich.R.layout;
+import de.lmu.msp.trimmdich.exercise.ExerciseReviewActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;

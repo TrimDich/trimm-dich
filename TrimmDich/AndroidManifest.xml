@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="de.lmu.msp.trimmdich.MainActivity"
+            android:name="de.lmu.msp.trimmdich.main.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,13 +22,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="de.lmu.msp.trimmdich.SetupActivity"></activity>
-        <activity android:name="de.lmu.msp.trimmdich.CompassActivity"></activity>
-        <activity android:name="de.lmu.msp.trimmdich.ExerciseActivity"></activity>
-        <activity android:name="de.lmu.msp.trimmdich.ExerciseReviewActivity"></activity>
-        <activity android:name="de.lmu.msp.trimmdich.MapResultActivity"></activity>
-        <activity android:name="de.lmu.msp.trimmdich.RunPreviewActivity"></activity>
-        <activity android:name="de.lmu.msp.trimmdich.StatisticsActivity"></activity>
+        <activity android:nde.lmu.msp.trimmdich.main.SetupActivityivity"></activity>
+        <activity android:name="de.lmu.msp.trimmdich.run.CompassActivity"></activity>
+        <activity android:name="de.lmu.msp.trimmdich.run.ExerciseActivity"></activity>
+        <activity android:name="de.lmu.msp.trimmdich.exercise.ExerciseReviewActivity"></activity>
+        <activity android:name="de.lmu.msp.trimmdich.summary.MapResultActivity"></activity>
+        <activity android:name="de.lmu.msp.trimmdich.run.RunPreviewActivity"></activity>
+        <activity android:name="de.lmu.msp.trimmdich.summary.StatisticsActivity"></activity>
     </application>
 
 </manifest>
