@@ -1,4 +1,4 @@
-package de.lmu.msp.com;
+package de.lmu.msp.trimmdich.com;
 
 /**
  * Objekte dieser Klasse repräsentieren einen bestimmten Lauf mit den Parametern

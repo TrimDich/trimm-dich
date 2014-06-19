@@ -1,4 +1,4 @@
-package de.lmu.msp.com;
+package de.lmu.msp.trimmdich.com;
 
 import android.content.Context;
 
