@@ -6,6 +6,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 import de.lmu.msp.trimmdich.R;
 import de.lmu.msp.trimmdich.R.layout;
@@ -38,15 +39,20 @@ public class RunPreviewActivity extends Activity {
 		route = RouteGenerator.generateRoute(routeProperties);
 		
 		// add route to map
+		PolylineOptions line = new PolylineOptions();
+		
 		for (Location location : route.locations) {
+			line.add(location.location);
 			map.addMarker(new MarkerOptions().position(location.location).title("location"));
 		}
+		map.addPolyline(line);
 		
 			
 	}
 
 	public void startRun(View view) {
 		Intent newIntent = new Intent(this, CompassActivity.class);
+		// TODO pass active route to next screen
 		startActivity(newIntent);
 	}
 }
