@@ -75,8 +75,8 @@ public class RunPreviewActivity extends Activity implements LocationListener {
 
 	@Override
 	public void onLocationChanged(android.location.Location location) {
-		android.location.Location lastLocation = workoutTracker.locationClient().getLastLocation();
-		LatLng lastLatLng = new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude());
+//		android.location.Location lastLocation = workoutTracker.locationClient().getLastLocation();
+		LatLng lastLatLng = new LatLng(location.getLatitude(), location.getLongitude());
 		CameraUpdate update =  CameraUpdateFactory.newLatLngZoom(lastLatLng, 13);
 		map.animateCamera(update);
 	}
