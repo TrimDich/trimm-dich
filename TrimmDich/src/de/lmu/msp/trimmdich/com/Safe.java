@@ -1,6 +1,7 @@
 package de.lmu.msp.trimmdich.com;
 
 import android.content.Context;
+import android.location.LocationManager;
 
 /**
  * Das Übergeben und Speichern von Daten zwischen den Acitivties kann öfters etwas umständlich sein. Diese Klasse vereinfacht das ganze.
@@ -10,6 +11,8 @@ import android.content.Context;
  */
 public class Safe {
 	//Vars
+	LocationManager locationManager;
+	
 	//Getter
 	//Setter
 	
