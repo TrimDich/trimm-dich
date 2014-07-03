@@ -1,9 +1,12 @@
 package de.lmu.msp.trimmdich.data;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
 
@@ -11,8 +14,16 @@ import de.lmu.msp.trimmdich.data.Exercise.EXERCISE_TYPE;
 import static java.util.Arrays.asList;
 
 public class RouteGenerator {
+	
+	
 
 	public static ArrayList<Location> locationsAround(LatLng location, float radiusInKm) {
+		
+		
+		return null;
+	}
+	
+	public static List<Location> getAllLocations() {	
 		ArrayList<Location> allLocations = new ArrayList<Location>();
 		
 		// Some Dummy Locations
@@ -35,17 +46,45 @@ public class RouteGenerator {
 		allLocations.add(new Location( new LatLng(48.174629,11.571865), asList(EXERCISE_TYPE.DIPS, EXERCISE_TYPE.PULL_UP)));
 		allLocations.add(new Location( new LatLng(48.175201,11.567359), asList(EXERCISE_TYPE.DIPS, EXERCISE_TYPE.PULL_UP)));
 		
-		// TODO, filter locations based on distance
-		
 		return allLocations;
 	}
 	
 	public static Route generateRoute(RouteProperties routeProperties) {
+		List<Location> selectedLocations = new ArrayList<Location>();
+		List<Location> availableLocations = getAllLocations();
+		Location lastAddedLocation;
 		Route newRoute = new Route();
+		double routeLengthInKm = 0;
+		
+		// Set start and end points
+		selectedLocations.add(new Location(routeProperties.startPosition, null));
+		selectedLocations.add(new Location(routeProperties.startPosition, null));
+		lastAddedLocation = selectedLocations.get(0);
+		
+		while (routeLengthInKm < routeProperties.desiredLengthInKm) {
+			// get available locations
+			availableLocations = Helpers.filterLocationsByDistance(
+					availableLocations, 
+					lastAddedLocation.location, 
+					(routeProperties.desiredLengthInKm - routeLengthInKm) / 2);
+			
+			if(availableLocations.size() == 0) {
+				break;
+			}
+			
+			// pop a random one
+			int itemToRemove = (int)(Math.random()*availableLocations.size()); 
+			lastAddedLocation = availableLocations.remove(itemToRemove);
+			selectedLocations.add(selectedLocations.size() / 2, lastAddedLocation);
+			routeLengthInKm = Helpers.lengthOfRoute(selectedLocations);
+			Log.d("RouteGenerator", "Adding route node: " + lastAddedLocation);
+			Log.d("RouteGenerator", "New route length: " + routeLengthInKm);
+			
+		}
 		
 		// Get locations within half the distance of desired distance
-		ArrayList<Location> availableLocations = RouteGenerator.locationsAround(routeProperties.startPosition, 123);
-		newRoute.locations = availableLocations;
+//		ArrayList<Location> availableLocations = RouteGenerator.locationsAround(routeProperties.startPosition, routeProperties.desiredLengthInKm);
+		newRoute.locations = selectedLocations;
 		
 		// Distribute the exercises across the location nodes
 		// TODO
@@ -56,12 +95,12 @@ public class RouteGenerator {
 	
 	public static class RouteProperties {
 		public LatLng startPosition;
-		public float desiredLengthInKm = 0;
+		public double desiredLengthInKm = 0;
 		public int desiredExercises = 0;
 		public RouteProperties() { }
 		public RouteProperties(Intent intent) { 
 			startPosition = new LatLng(intent.getDoubleExtra("startPositionLat", 0), intent.getDoubleExtra("startPositionLon", 0));
-			desiredLengthInKm = intent.getFloatExtra("desiredLengthInKm", 2);
+			desiredLengthInKm = intent.getFloatExtra("desiredLengthInKm", 5);
 			desiredExercises = intent.getIntExtra("desiredExercises", 5);
 		}
 		public void saveToIntent(Intent intent) {

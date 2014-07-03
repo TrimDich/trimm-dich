@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <string name="app_name">TrimmDich</string>
+    <string name="app_name">Trimm Dich</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="statistics_run_speed">Geschwindigkeit</string>
@@ -9,5 +9,16 @@
     <string name="statistics_run_distance">Distanz</string>
     <string name="statistics_headline">Dein Workout in Zahlen</string>
     <string name="statistics_back_button">Zurück zum Hauptmenü</string>
-
+    
+    <!-- Compass Activity -->
+    <string name="duration_txt">Dauer</string>
+    <string name="distance_txt">Distanz (km)</string>
+    <string name="speed_txt">Speed (km/h)</string>
+    <string name="speed_initial_txt">0,0</string>
+    <string name="direction_to_exercise_txt">Richtung zur nächsten Übung</string>
+    <string name="direction_img_content_description">Richtungspfeil</string>
+	<string name="arrive_at_exercise_btn">An Übung angekommen</string>
+	
+	<!-- Main Activity  -->
+	<string name="start_training">Starte Training</string>
 </resources>

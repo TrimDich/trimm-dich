@@ -4,6 +4,8 @@ import de.lmu.msp.trimmdich.R;
 import de.lmu.msp.trimmdich.R.id;
 import de.lmu.msp.trimmdich.R.layout;
 import de.lmu.msp.trimmdich.R.menu;
+import de.lmu.msp.trimmdich.run.RunPreviewActivity;
+import de.lmu.msp.trimmdich.summary.StatisticsActivity;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
@@ -21,7 +23,9 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		//setContentView(R.layout.activity_main);
+		Intent newIntent = new Intent(this, StatisticsActivity.class);
+		startActivity(newIntent);
 	}
 
 	@Override
