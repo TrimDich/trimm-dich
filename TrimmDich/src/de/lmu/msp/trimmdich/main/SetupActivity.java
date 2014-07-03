@@ -38,10 +38,10 @@ public class SetupActivity extends Activity implements LocationListener {
 	
 	public void generateRun(View view) {
 		
-		Intent newIntent = new Intent(this, RunPreviewActivity.class);
+		//Intent newIntent = new Intent(this, RunPreviewActivity.class);
 		//Jut for testing
-		//Intent newIntent = new Intent(this, CompassActivity.class);
-		routeProperties.saveToIntent(newIntent);
+		Intent newIntent = new Intent(this, CompassActivity.class);
+//		routeProperties.saveToIntent(newIntent);
 		startActivity(newIntent);
 	}
 

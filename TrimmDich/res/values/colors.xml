@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="border_color">#ccc</color>
+    <color name="subtitle_text_color">#666</color>
+    <color name="actionbar_text">#fff</color>
+    <!-- 
+    <color name="actionbar_text">#222</color>
+     -->
+
+</resources>
