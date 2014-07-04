@@ -85,6 +85,7 @@ public class RouteGenerator {
 		// Get locations within half the distance of desired distance
 //		ArrayList<Location> availableLocations = RouteGenerator.locationsAround(routeProperties.startPosition, routeProperties.desiredLengthInKm);
 		newRoute.locations = selectedLocations;
+		newRoute.dataPoints = new ArrayList<Route.RouteDataPoint>();
 		
 		// Distribute the exercises across the location nodes
 		// TODO
