@@ -6,7 +6,6 @@ import java.util.Locale;
 
 import de.lmu.msp.trimmdich.R;
 import de.lmu.msp.trimmdich.R.layout;
-import de.lmu.msp.trimmdich.com.Safe;
 import de.lmu.msp.trimmdich.main.SetupActivity;
 
 import android.app.Activity;
@@ -22,14 +21,12 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 import de.lmu.msp.trimmdich.R;
-import de.lmu.msp.trimmdich.com.Safe;
 
 public class ExerciseActivity extends Activity implements SensorEventListener,
 		OnInitListener {
 	public static final String TAG = "TD-Exercise";
 	private static double BIAS = 10.;
 
-	private Safe safe;
 	private SensorManager sensorManager;
 	private FileOutputStream fos;
 	private TextToSpeech tts;
@@ -40,7 +37,6 @@ public class ExerciseActivity extends Activity implements SensorEventListener,
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		safe = Safe.getInstance();
 		sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
 		setContentView(R.layout.activity_exercise);
 		countView = (TextView) findViewById(R.id.exercise_countView);
