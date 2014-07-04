@@ -4,7 +4,8 @@ import java.io.IOException;
 import java.util.Locale;
 
 import de.lmu.msp.trimmdich.R;
-
+import de.lmu.msp.trimmdich.data.Exercise;
+import de.lmu.msp.trimmdich.data.Exercise.EXERCISE_TYPE;
 import android.app.Activity;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -27,52 +28,39 @@ public class ExerciseActivity extends Activity implements SensorEventListener,
 
 	private SquatCounter squatCounter;
 	private TextView countView;
+	private Exercise currentExercise;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
 		setContentView(R.layout.activity_exercise);
-		countView = (TextView) findViewById(R.id.exercise_countView);
 		setTitle(R.string.exercise_title);
+		sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+		countView = (TextView) findViewById(R.id.exercise_countView);
+		
 	}
 
 	@Override
 	protected void onStart() {
 		super.onStart();
+		
 		tts = new TextToSpeech(this, this);
-		onStartBtPressed(null);
+		currentExercise = new Exercise(EXERCISE_TYPE.PULL_UP, 5); //TODO: von WorkoutTracker holen
+		((TextView) findViewById(R.id.exercise_repetition_goal)).setText(getResources().getString(R.string.exercise_repetition_goal, currentExercise.getRepetitionsGoal()));
+	
+		squatCounter = new SquatCounter(currentExercise);
+		sensorManager.registerListener(this,sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),SensorManager.SENSOR_DELAY_NORMAL);
 	}
 
 	@Override
 	protected void onStop() {
 		super.onStop();
 		sensorManager.unregisterListener(this);
-		onStopBtPressed(null);
 		if (tts != null) {
 			tts.stop();
 			tts.shutdown();
 		}
-	}
-
-	public void finishExercise(View view) {
-		// Intent newIntent = new Intent(this, ExerciseReviewActivity.class);
-		// startActivity(newIntent);
-	}
-
-	public void onStartBtPressed(View view) {
-		Log.w(TAG, "onStartBtPress");
-		squadCount = 0;
-		squatCounter = new SquatCounter();
-		sensorManager.registerListener(this,
-				sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
-				SensorManager.SENSOR_DELAY_NORMAL);
-		Toast.makeText(this, "START", Toast.LENGTH_SHORT).show();
-	}
-
-	public void onStopBtPressed(View view) {
-		Log.w(TAG, "onStopBtPress");
-		sensorManager.unregisterListener(this);
+		//TODO: Das Logging komplet entfernen
 		try {
 			squatCounter.fos.close();
 		} catch (IOException e) {
@@ -80,29 +68,21 @@ public class ExerciseActivity extends Activity implements SensorEventListener,
 			e.printStackTrace();
 		}
 		squatCounter = null;
-		firstTime = 0;
-		// try {
-		// fos.close();
-		// } catch (IOException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
-		Toast.makeText(this, "STOP", Toast.LENGTH_SHORT).show();
+	}
+	
+	@Override
+	protected void onDestroy() {
+		sensorManager = null;
+		tts = null;
+		super.onDestroy();
 	}
 
 	@Override
-	public void onAccuracyChanged(Sensor sensor, int accuracy) {
-		// Toast.makeText(this, sensor+": "+accuracy,
-		// Toast.LENGTH_SHORT).show();
-	}
+	public void onAccuracyChanged(Sensor sensor, int accuracy) {}
 
+	
+	
 	long firstTime = 0;
-
-	float[] gyroVal = { 0, 0, 0 };
-	GolayFilter goleyFilter;
-	GolayFilter goleyFilterVektor;
-
-	private int squadCount = 0;
 
 	@Override
 	public void onSensorChanged(SensorEvent event) {
@@ -112,17 +92,14 @@ public class ExerciseActivity extends Activity implements SensorEventListener,
 				event.values[2], event.timestamp,
 				(double) ((event.timestamp - firstTime) / 1000000000.));
 		if (squatCounter.checkForSquat()) {
-			squadCount++;
-			// Toast.makeText(this, "Squat: "+squadCount,
-			// Toast.LENGTH_SHORT).show();
-			countView.setText("" + squadCount);
-			if (squadCount == 1)
+			countView.setText("" + squatCounter.getExercise().getRepetitionsActual());
+			if (squatCounter.getExercise().getRepetitionsActual() == 1)
 				tts.speak("Eine Kniebeuge", TextToSpeech.QUEUE_FLUSH, null);
 			else
-				tts.speak(squadCount + " Kniebeugen", TextToSpeech.QUEUE_FLUSH,
+				tts.speak(squatCounter.getExercise().getRepetitionsActual() + " Kniebeugen", TextToSpeech.QUEUE_FLUSH,
 						null);
 
-			if (squadCount == 5)
+			if (squatCounter.getExercise().getRepetitionsActual() == 5)
 				tts.speak(getString(R.string.exercise_end),
 						TextToSpeech.QUEUE_FLUSH, null);
 		}
@@ -131,17 +108,13 @@ public class ExerciseActivity extends Activity implements SensorEventListener,
 	@Override
 	public void onInit(int status) {
 		if (status == TextToSpeech.SUCCESS) {
-
 			int result = tts.setLanguage(Locale.GERMAN);
-
 			if (result == TextToSpeech.LANG_MISSING_DATA
 					|| result == TextToSpeech.LANG_NOT_SUPPORTED) {
 				Log.e("TTS", "This Language is not supported");
 			}
-
 			tts.speak(getString(R.string.exercise_start),
 					TextToSpeech.QUEUE_FLUSH, null);
-
 		} else {
 			Log.e("TTS", "Initilization Failed!");
 		}
