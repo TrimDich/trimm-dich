@@ -16,7 +16,6 @@ import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
-import de.lmu.msp.trimmdich.com.Safe;
 
 
 /* 
@@ -35,9 +34,11 @@ GooglePlayServicesClient.OnConnectionFailedListener, LocationListener {
 	// Tracks location
 	
 	// Global constants
-	
+	//Singelton
+	private WorkoutTracker(){}
+	private static class Holder {	private static final WorkoutTracker DAD = new WorkoutTracker();	}
+	public static WorkoutTracker getInstance(){	return Holder.DAD;	}
 	// Static
-	private static WorkoutTracker me = null;
 	private final static int
             CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000; // Define a request code to send to Google Play services. This code is returned in Activity.onActivityResult
 	// Request code to use when launching the resolution activity
@@ -53,13 +54,6 @@ GooglePlayServicesClient.OnConnectionFailedListener, LocationListener {
 	LocationClient locationClient;
 	// Bool to track whether the app is already resolving an error
     private boolean mResolvingError = false;
-	
-    private WorkoutTracker(){}
-	public static WorkoutTracker getInstance(){
-		if(me == null)
-			me = new WorkoutTracker();
-		return me;
-	}
 	
 	public LocationClient locationClient() {
 		return locationClient;
