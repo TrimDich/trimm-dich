@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/directionTextView"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/exercise_bt_next"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="8dp"
-        android:text="@string/exercise_title"
-        android:textColor="@color/subtitle_text_color"
-        android:textSize="40sp" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:longClickable="true"
+        android:onClick="onBtNextClick"
+        android:text="@string/exercise_bt_next" />
 
     <ImageView
         android:id="@+id/exercise_pic"
-        android:layout_width="128dp"
-        android:layout_height="128dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
         android:contentDescription="@string/exercise_img_content_description"
         android:src="@drawable/pull_up" />
 
@@ -25,17 +29,23 @@
         android:id="@+id/exercise_countView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/exercise_pic"
+        android:layout_centerHorizontal="true"
         android:paddingTop="8dp"
         android:text="@string/exercise_zero"
         android:textColor="@color/subtitle_text_color"
-        android:textSize="130sp" />
+        android:textSize="150sp" />
 
-    <Button
-        android:id="@+id/exercise_bt_next"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/exercise_exercise_name"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:longClickable="true"
-        android:onClick="onBtNextClick"
-        android:text="@string/exercise_bt_next" />
+        android:layout_below="@+id/exercise_countView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp"
+        android:paddingTop="8dp"
+        android:text="@string/exercise_pushup"
+        android:textColor="@color/subtitle_text_color"
+        android:textSize="20sp" />
 
-</LinearLayout>
+</RelativeLayout>
