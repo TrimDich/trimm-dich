@@ -4,6 +4,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Locale;
 
+import de.lmu.msp.trimmdich.R;
+import de.lmu.msp.trimmdich.R.layout;
+import de.lmu.msp.trimmdich.com.Safe;
+import de.lmu.msp.trimmdich.main.SetupActivity;
+
 import android.app.Activity;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -133,9 +138,25 @@ public class ExerciseActivity extends Activity implements SensorEventListener,
 	}
 
 	long firstTime = 0;
+
 	float[] gyroVal = { 0, 0, 0 };
 	GolayFilter goleyFilter;
 	GolayFilter goleyFilterVektor;
+
+	// float[] gyroVal = {0,0,0};
+	// AlphaFilter alphaFilter;
+	// GolayFilter goleyFilter;
+	// GolayFilter goleyFilterVektor;
+	// KalmanFilter kalmanFilter;
+	// Mittelung21Grad mittel21;
+	// Mittelung3Grad mittel3;
+	// Mittelung5Grad mittel5;
+	// Mittelung5Grad mittel5Vektor;
+	// Zentralwert11 zentral11;
+	// Zentralwert11 zentral11Vektor;
+	// Zentralwert21 zentral21;
+	// Zentralwert3 zentral3;
+	// Zentralwert5 zentral5;
 
 	private int squadCount = 0;
 
