@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import android.os.Environment;
 import android.util.Log;
+import de.lmu.msp.trimmdich.exercise.GolayFilter;
 
 public class SquatCounter{
 	public static final String TAG = "SquatCounter";
@@ -74,7 +75,7 @@ public class SquatCounter{
 				bufferVal.getLatestElement()+";"+
 				(faktor*(Double)bufferVal.getLatestElement())+";"+
 				((Boolean)bufferSlope.getLatestElement()?"1":"-1")+";"+
-				((boolean)checkForSquat()?"1":"-1")+";"
+				((Boolean)checkForSquat()?"1":"-1")+";"
 				+"\n";
 		string = string.replace('.', ',');
 	    byte[] data = string.getBytes();
