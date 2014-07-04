@@ -21,4 +21,14 @@
 	
 	<!-- Main Activity  -->
 	<string name="start_training">Starte Training</string>
+	
+	<!-- Exercise Activity  -->
+	<string name="exercise_pushup">Kniebeugen</string>
+	<string name="exercise_title">Übungen</string>
+	<string name="exercise_zero">0</string>
+	<string name="exercise_img_content_description">Strichmännchen</string>
+	<string name="exercise_start">Beginne Kniebeugen zu machen</string>
+	<string name="exercise_pause">Keine Pause einlegen!</string>
+	<string name="exercise_end">Fertig. Das nächste mal etwas schneller vielleicht!</string>
+	<string name="exercise_bt_next">Übungen überspringen</string>
 </resources>
