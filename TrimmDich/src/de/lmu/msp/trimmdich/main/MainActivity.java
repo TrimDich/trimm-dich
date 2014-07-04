@@ -1,9 +1,12 @@
 package de.lmu.msp.trimmdich.main;
 
+import com.google.android.gms.maps.model.LatLng;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.location.Location;
+import android.location.LocationListener;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,11 +15,18 @@ import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import de.lmu.msp.trimmdich.R;
+import de.lmu.msp.trimmdich.data.WorkoutTracker;
+import de.lmu.msp.trimmdich.data.RouteGenerator.RouteProperties;
 import de.lmu.msp.trimmdich.dialog.NumberPickerFragement;
 import de.lmu.msp.trimmdich.exercise.ExerciseActivity;
+import de.lmu.msp.trimmdich.run.CompassActivity;
+import de.lmu.msp.trimmdich.run.RunPreviewActivity;
 import de.lmu.msp.trimmdich.util.Constants;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements LocationListener {
+
+	private RouteProperties routeProperties = new RouteProperties();
+	private WorkoutTracker workoutTracker;
 
 	private SharedPreferences mSPrefs;
 
@@ -30,7 +40,6 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 
 		setContentView(R.layout.activity_main);
 
@@ -47,19 +56,34 @@ public class MainActivity extends Activity {
 		mExerciseCountLinearLayout.setTag(Constants.EXERCISE_COUNT_PICKER_TYPE);
 		mExerciseCountLinearLayout.setOnClickListener(mOnLinearLayoutClick);
 
+		mSPrefs = getSharedPreferences(Constants.PREFS_NAME, 0);
 
-		//setContentView(R.layout.activity_main);
-//		Intent newIntent = new Intent(this, StatisticsActivity.class);
-//		startActivity(newIntent);
+		mDistanceTextView.setText(""
+				+ mSPrefs.getInt(Constants.DISTANCE_SPREF, 1));
+		mExerciseCountTextView.setText(""
+				+ mSPrefs.getInt(Constants.EXERCISE_COUNT_SPREF, 1));
 
+		routeProperties.desiredExercises = mSPrefs.getInt(
+				Constants.DISTANCE_SPREF, 1);
+		routeProperties.desiredLengthInKm = mSPrefs.getInt(
+				Constants.EXERCISE_COUNT_SPREF, 1);
+		routeProperties.startPosition = new LatLng(48.1735192, 11.5920656);
 
-		//setContentView(R.layout.activity_main);
+		// setContentView(R.layout.activity_main);
+		// Intent newIntent = new Intent(this, StatisticsActivity.class);
+		// startActivity(newIntent);
+
+		// setContentView(R.layout.activity_main);
 
 	}
-	
+
 	@Override
 	protected void onResume() {
 		super.onResume();
+
+		workoutTracker = WorkoutTracker.getInstance();
+		workoutTracker.setCurrentActivity(this);
+
 		updateTextViews();
 	}
 
@@ -72,7 +96,6 @@ public class MainActivity extends Activity {
 			f.show(getFragmentManager(), "dialog");
 		}
 	};
-	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -95,8 +118,8 @@ public class MainActivity extends Activity {
 	}
 
 	public void startNewRun(View view) {
-		//Intent newIntent = new Intent(this, SetupActivity.class);
-		Intent newIntent = new Intent(this, ExerciseActivity.class);
+		Intent newIntent = new Intent(this, RunPreviewActivity.class);
+		routeProperties.saveToIntent(newIntent);
 		startActivity(newIntent);
 	}
 
@@ -111,6 +134,39 @@ public class MainActivity extends Activity {
 				+ mSPrefs.getInt(Constants.DISTANCE_SPREF, 1));
 		mExerciseCountTextView.setText(""
 				+ mSPrefs.getInt(Constants.EXERCISE_COUNT_SPREF, 1));
+
+		routeProperties.desiredExercises = mSPrefs.getInt(
+				Constants.DISTANCE_SPREF, 1);
+		routeProperties.desiredLengthInKm = mSPrefs.getInt(
+				Constants.EXERCISE_COUNT_SPREF, 1);
+
+	}
+
+	@Override
+	public void onLocationChanged(Location location) {
+
+		LatLng position = new LatLng(location.getLatitude(),
+				location.getLongitude());
+		routeProperties.startPosition = position;
+
+	}
+
+	@Override
+	public void onProviderDisabled(String provider) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void onProviderEnabled(String provider) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void onStatusChanged(String provider, int status, Bundle extras) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

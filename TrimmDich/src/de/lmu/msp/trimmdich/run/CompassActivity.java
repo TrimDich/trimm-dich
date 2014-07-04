@@ -33,11 +33,14 @@ import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.TextView;
 import de.lmu.msp.trimmdich.R;
+import de.lmu.msp.trimmdich.data.WorkoutTracker;
 import de.lmu.msp.trimmdich.exercise.ExerciseActivity;
 
 public class CompassActivity extends Activity implements LocationListener,
 		SensorEventListener {
 
+	private WorkoutTracker mWorkoutTracker;
+	
 	private LocationManager mLocationManager;
 	private SensorManager mSensorManager;
 	private String mProvider;
@@ -103,7 +106,10 @@ public class CompassActivity extends Activity implements LocationListener,
 	@Override
 	protected void onResume() {
 		super.onResume();
-		mLocationManager.requestLocationUpdates(mProvider, 1000, 5, this);
+		//mLocationManager.requestLocationUpdates(mProvider, 1000, 5, this);
+		mWorkoutTracker = WorkoutTracker.getInstance();
+		mWorkoutTracker.setCurrentActivity(this);
+		
 		mSensorManager.registerListener(this,
 				mSensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION),
 				SensorManager.SENSOR_DELAY_GAME);
