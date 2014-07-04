@@ -1,29 +1,19 @@
 package de.lmu.msp.trimmdich.main;
 
 
-import de.lmu.msp.trimmdich.R;
-import de.lmu.msp.trimmdich.R.id;
-import de.lmu.msp.trimmdich.R.layout;
-import de.lmu.msp.trimmdich.R.menu;
-import de.lmu.msp.trimmdich.run.RunPreviewActivity;
-import de.lmu.msp.trimmdich.summary.StatisticsActivity;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
-import android.widget.NumberPicker;
 import android.widget.TextView;
 import de.lmu.msp.trimmdich.R;
 import de.lmu.msp.trimmdich.dialog.NumberPickerFragement;
+import de.lmu.msp.trimmdich.exercise.ExerciseActivity;
 import de.lmu.msp.trimmdich.util.Constants;
 
 public class MainActivity extends Activity {
@@ -40,6 +30,7 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
 
 		setContentView(R.layout.activity_main);
 
@@ -60,6 +51,9 @@ public class MainActivity extends Activity {
 		//setContentView(R.layout.activity_main);
 //		Intent newIntent = new Intent(this, StatisticsActivity.class);
 //		startActivity(newIntent);
+
+
+		//setContentView(R.layout.activity_main);
 
 	}
 	
@@ -101,7 +95,8 @@ public class MainActivity extends Activity {
 	}
 
 	public void startNewRun(View view) {
-		Intent newIntent = new Intent(this, SetupActivity.class);
+		//Intent newIntent = new Intent(this, SetupActivity.class);
+		Intent newIntent = new Intent(this, ExerciseActivity.class);
 		startActivity(newIntent);
 	}
 

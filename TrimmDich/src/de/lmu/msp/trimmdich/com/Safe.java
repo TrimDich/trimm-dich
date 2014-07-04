@@ -25,12 +25,7 @@ public class Safe {
 		//TODO: write retrieve-code
 	}
 	//Singelton
-	private static Safe me = null;
 	private Safe(){}
-	
-	public static Safe getInstance(){
-		if(me == null)
-			me = new Safe();
-		return me;
-	}
+	private static class Holder {	private static final Safe DAD = new Safe();	}
+	public static Safe getInstance(){	return Holder.DAD;	}
 }
