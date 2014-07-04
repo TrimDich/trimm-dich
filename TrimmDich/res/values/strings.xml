@@ -4,7 +4,7 @@
     <string name="app_name">Trimm Dich</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    
+
     <!-- Compass Activity -->
     <string name="duration_txt">Dauer</string>
     <string name="distance_txt">Distanz (km)</string>
@@ -12,8 +12,28 @@
     <string name="speed_initial_txt">0,0</string>
     <string name="direction_to_exercise_txt">Richtung zur nächsten Übung</string>
     <string name="direction_img_content_description">Richtungspfeil</string>
-	<string name="arrive_at_exercise_btn">An Übung angekommen</string>
-	
-	<!-- Main Activity  -->
-	<string name="start_training">Starte Training</string>
+    <string name="arrive_at_exercise_btn">An Übung angekommen</string>
+
+    <!-- Main Activity -->
+    <string name="start_training_btn_txt">Starte Training</string>
+    <string name="config_training_txt">Konfigurieren Sie Ihr Training</string>
+    <string name="distance_in_km_txt">Strecke in KM</string>
+    <string name="exercise_count_txt">Anzahl Übungen</string>
+    <string name="exercise_type_txt">Übungen</string>
+    <string name="placeholder_txt">-</string>
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_cancel">Abbrechen</string>
+    <string name="km">KM</string>
+
+    <!-- util -->
+    <string name="boder_img">Border</string>
+    <string name="generate_route">Generiere Strecke</string>
+    
+    <!-- Exercises -->
+    <string name="squats">Kniebeugen</string>
+    <string name="pullUps">Klimmzüge</string>
+    <string name="pushUps">Liegestütze</string>
+    <string name="dips">Dips</string>
+    
+
 </resources>

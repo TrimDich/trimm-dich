@@ -10,6 +10,7 @@ public class Exercise {
 	public enum EXERCISE_TYPE {
 	    PULL_UP,
 	    PUSH_UP,
-	    DIPS
+	    DIPS,
+	    SQUATS
 	}
 }
