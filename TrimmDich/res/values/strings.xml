@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <string name="app_name">Trimm Dich</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="statistics_run_speed">Geschwindigkeit</string>
+    <string name="statistics_squat_reps">Anzahl Kniebeugen</string>
+    <string name="statistics_run_distance">Distanz</string>
+    <string name="statistics_headline">Dein Workout in Zahlen</string>
+    <string name="statistics_back_button">Zurück zum Hauptmenü</string>
 
     <!-- Compass Activity -->
     <string name="duration_txt">Dauer</string>
@@ -28,12 +33,11 @@
     <!-- util -->
     <string name="boder_img">Border</string>
     <string name="generate_route">Generiere Strecke</string>
-    
+
     <!-- Exercises -->
     <string name="squats">Kniebeugen</string>
     <string name="pullUps">Klimmzüge</string>
     <string name="pushUps">Liegestütze</string>
     <string name="dips">Dips</string>
-    
 
 </resources>
