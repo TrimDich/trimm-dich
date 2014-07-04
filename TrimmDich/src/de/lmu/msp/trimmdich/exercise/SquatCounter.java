@@ -6,7 +6,6 @@ import java.io.IOException;
 
 import android.os.Environment;
 import android.util.Log;
-import de.lmu.msp.trimmdich.exercise.GolayFilter;
 
 public class SquatCounter{
 	public static final String TAG = "SquatCounter";
@@ -74,7 +73,7 @@ public class SquatCounter{
 				logTime+";"+x+";"+y+";"+z+";"+
 				bufferVal.getLatestElement()+";"+
 				(faktor*(Double)bufferVal.getLatestElement())+";"+
-				((boolean)bufferSlope.getLatestElement()?"1":"-1")+";"+
+				((Boolean)bufferSlope.getLatestElement()?"1":"-1")+";"+
 				((boolean)checkForSquat()?"1":"-1")+";"
 				+"\n";
 		string = string.replace('.', ',');
@@ -105,8 +104,8 @@ public class SquatCounter{
 			//ruleOne.checkVal(workingVal);
 			//ruleTwo.checkVal(workingVal);
 		}
-		int firstIntervall = ((boolean)bufferSlope.getElement(0)?1:-1)+((boolean)bufferSlope.getElement(1)?1:-1)+((boolean)bufferSlope.getElement(2)?1:-1);
-		int secIntervall = ((boolean)bufferSlope.getElement(3)?1:-1)+((boolean)bufferSlope.getElement(4)?1:-1)+((boolean)bufferSlope.getElement(5)?1:-1);
+		int firstIntervall = ((Boolean)bufferSlope.getElement(0)?1:-1)+((Boolean)bufferSlope.getElement(1)?1:-1)+((Boolean)bufferSlope.getElement(2)?1:-1);
+		int secIntervall = ((Boolean)bufferSlope.getElement(3)?1:-1)+((Boolean)bufferSlope.getElement(4)?1:-1)+((Boolean)bufferSlope.getElement(5)?1:-1);
 		return firstIntervall>=2 && secIntervall==-3 && rule1 && rule2;
 	}
 	
