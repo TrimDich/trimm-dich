@@ -1,25 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center" >
 
+    	
+    <TextView
+        android:id="@+id/statistics_headline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
+        android:text="@string/statistics_headline"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+    
+    <ImageView
+        android:id="@+id/muscleImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
+        android:contentDescription="You made it."
+        android:src="@drawable/muscle" />
+    
+     <TextView
+        android:id="@+id/distanceText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
+        android:text="@string/statistics_run_distance"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/distanceMetric"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+    
+   
     <TextView
         android:id="@+id/speedText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="190dp"
+        android:layout_marginTop="23dp"
         android:text="@string/statistics_run_speed"
-        android:layout_below="@+id/muscleImage" 
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <Button
+   
+    <TextView
+        android:id="@+id/speedMetric"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
+        android:textAppearance="?android:attr/textAppearanceLarge" />   
+
+    
+
+   
+   
+
+    <TextView
+        android:id="@+id/squatText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
+        android:text="@string/statistics_squat_reps"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
+    
+     <TextView
+        android:id="@+id/squatMetric"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"     
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+    
+     <Button
         android:id="@+id/statistics_button"
         android:layout_width="270dp"
         android:layout_height="60dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
         android:layout_marginBottom="16dp"
         android:shadowColor="#A8A8A8"
         android:shadowDx="0"
@@ -28,70 +86,6 @@
         android:text="@string/statistics_back_button"
         android:textColor="#FFFFFF"
         android:textSize="20sp" />
+    
 
-    <TextView
-        android:id="@+id/speedMetric"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/speedText" 
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
-        android:id="@+id/statistics_headline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:text="@string/statistics_headline"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <ImageView
-        android:id="@+id/muscleImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/statistics_headline"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="34dp"
-        android:contentDescription="You made it."
-        android:src="@drawable/muscle" />
-
-    <TextView
-        android:id="@+id/distanceText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/speedMetric"
-        android:layout_marginTop="23dp"
-        android:text="@string/statistics_run_distance"
-        android:layout_centerHorizontal="true"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <TextView
-        android:id="@+id/distanceMetric"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/distanceText"  
-        android:layout_centerHorizontal="true"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
-        android:id="@+id/squatMetric"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="21dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/squatText"   
-        android:layout_above="@+id/statistics_button"     
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
-        android:id="@+id/squatText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="51dp"
-        android:text="@string/statistics_squat_reps"
-        android:layout_below="@+id/distanceMetric"  
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-</RelativeLayout>
+</LinearLayout>
