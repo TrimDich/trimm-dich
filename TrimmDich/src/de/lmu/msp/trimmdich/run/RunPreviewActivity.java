@@ -69,6 +69,7 @@ public class RunPreviewActivity extends Activity implements LocationListener {
 
 	public void startRun(View view) {
 		Intent newIntent = new Intent(this, CompassActivity.class);
+		workoutTracker.setActiveRoute(route);
 		// TODO pass active route to next screen
 		startActivity(newIntent);
 	}
