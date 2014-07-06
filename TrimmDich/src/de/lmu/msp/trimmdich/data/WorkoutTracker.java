@@ -3,6 +3,7 @@ package de.lmu.msp.trimmdich.data;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Date;
+import java.util.List;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -306,7 +307,7 @@ public class WorkoutTracker implements
 						ExerciseActivity.class);
 				intent.putExtra("next_location", nextLocation);
 				currentActivity.startActivity(intent);
-				nextLocation++;
+				
 			}
 
 		}
@@ -333,6 +334,10 @@ public class WorkoutTracker implements
 
 	public void setNextLocation(int nextLocation) {
 		this.nextLocation = nextLocation;
+	}
+
+	public List<Exercise> getCurrentLocationExcercices() {
+		return activeRoute.locations.get(nextLocation).selectedExercises;
 	}
 
 }
