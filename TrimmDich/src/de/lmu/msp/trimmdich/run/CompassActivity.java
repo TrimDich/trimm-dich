@@ -2,7 +2,6 @@ package de.lmu.msp.trimmdich.run;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.text.SimpleDateFormat;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -18,20 +17,18 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.location.Criteria;
 import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Bundle;
-import android.os.SystemClock;
-import android.text.format.DateFormat;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.Chronometer;
-import android.widget.Toast;
-import android.widget.Chronometer.OnChronometerTickListener;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.location.LocationListener;
+
 import de.lmu.msp.trimmdich.R;
 import de.lmu.msp.trimmdich.data.WorkoutTracker;
 import de.lmu.msp.trimmdich.exercise.ExerciseActivity;
@@ -41,9 +38,7 @@ public class CompassActivity extends Activity implements LocationListener,
 
 	private WorkoutTracker mWorkoutTracker;
 	
-	private LocationManager mLocationManager;
 	private SensorManager mSensorManager;
-	private String mProvider;
 
 	private Chronometer mChronometer;
 
@@ -53,7 +48,7 @@ public class CompassActivity extends Activity implements LocationListener,
 
 	private Location mDestinationLocation = new Location("Destination");
 
-	private ImageView mCompassIMageView;
+	private CompassView mCompassIMageView;
 
 	// Max-Weber-Platz
 	private final static double MWP_LONG = 11.598032;
@@ -71,7 +66,6 @@ public class CompassActivity extends Activity implements LocationListener,
 		ActionBar actionBar = getActionBar();
 		actionBar.setIcon(R.drawable.running_white_48);
 
-		mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 		mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
 
 		mDistanceTextView = (TextView) findViewById(R.id.distanceTextView);
@@ -98,9 +92,7 @@ public class CompassActivity extends Activity implements LocationListener,
 		mDestinationLocation.setLongitude(HKP_LONG);
 		mDestinationLocation.setLatitude(HKP_LAT);
 
-		mCompassIMageView = (ImageView) findViewById(R.id.compassImageView);
-
-		setUpCompassActivity();
+		mCompassIMageView = (CompassView) findViewById(R.id.compassImageView);
 	}
 
 	@Override
@@ -119,29 +111,10 @@ public class CompassActivity extends Activity implements LocationListener,
 	@Override
 	protected void onPause() {
 		super.onPause();
-		mLocationManager.removeUpdates(this);
 		mSensorManager.unregisterListener(this);
 		// mChronometer.stop();
 	}
-
-	private void setUpCompassActivity() {
-
-		Criteria criteria = new Criteria();
-
-		mProvider = mLocationManager.getBestProvider(criteria, true);
-
-		Location currentLocation = mLocationManager
-				.getLastKnownLocation(mProvider);
-
-		float distance = currentLocation.distanceTo(mDestinationLocation);
-		float bearing = currentLocation.bearingTo(mDestinationLocation);
-
-		double distanceInKM = round(distance / 1000, 1);
-		mDistanceTextView.setText("" + distanceInKM);
-		mBearingTextView.setText("" + bearing);
-
-	}
-
+	
 	public void arriveAtExercise(View view) {
 		Intent newIntent = new Intent(this, ExerciseActivity.class);
 		startActivity(newIntent);
@@ -170,26 +143,7 @@ public class CompassActivity extends Activity implements LocationListener,
 		}
 
 	}
-
-	@Override
-	public void onProviderDisabled(String provider) {
-		Log.d(this.getClass().getSimpleName(), "Provider disabeld " + provider);
-
-	}
-
-	@Override
-	public void onProviderEnabled(String provider) {
-		Log.d(this.getClass().getSimpleName(), "New Provider enabled "
-				+ provider);
-
-	}
-
-	@Override
-	public void onStatusChanged(String provider, int status, Bundle extras) {
-		// TODO Auto-generated method stub
-
-	}
-
+	
 	@Override
 	public void onAccuracyChanged(Sensor sensor, int accuracy) {
 		// TODO Auto-generated method stub
@@ -200,10 +154,8 @@ public class CompassActivity extends Activity implements LocationListener,
 	public void onSensorChanged(SensorEvent event) {
 
 		Criteria criteria = new Criteria();
-		mProvider = mLocationManager.getBestProvider(criteria, true);
-		Location currentLocation = mLocationManager
-				.getLastKnownLocation(mProvider);
-
+		Location currentLocation = mWorkoutTracker.getLastLocation();
+		
 		// azimuth Richtungwinkel
 		float azimuth = event.values[0];
 
@@ -234,9 +186,15 @@ public class CompassActivity extends Activity implements LocationListener,
 		if (direction < 0) {
 			direction = direction + 360;
 		}
-
-		rotateImageView(mCompassIMageView, R.drawable.navigation_thin,
-				direction);
+//
+//		rotateImageView(mCompassIMageView, R.drawable.navigation_thin,
+//				direction);
+		
+		mCompassIMageView.setRotation(direction);
+		
+//		mCompassIMageView.setr
+		
+		
 
 		mBearingTextView.setText("" + bearTo);
 
@@ -244,33 +202,7 @@ public class CompassActivity extends Activity implements LocationListener,
 
 	private void rotateImageView(ImageView imageView, int drawable, float rotate) {
 
-		// Decode the drawable into a bitmap
-		Bitmap bitmapOrg = BitmapFactory.decodeResource(getResources(),
-				drawable);
-
-		// Get the width/height of the drawable
-		DisplayMetrics dm = new DisplayMetrics();
-		getWindowManager().getDefaultDisplay().getMetrics(dm);
-		int width = bitmapOrg.getWidth(), height = bitmapOrg.getHeight();
-
-		// Initialize a new Matrix
-		Matrix matrix = new Matrix();
-
-		// Decide on how much to rotate
-		rotate = rotate % 360;
-
-		// Actually rotate the image
-		matrix.postRotate(rotate, width, height);
-
-		// recreate the new Bitmap via a couple conditions
-		Bitmap rotatedBitmap = Bitmap.createBitmap(bitmapOrg, 0, 0, width,
-				height, matrix, true);
-		// BitmapDrawable bmd = new BitmapDrawable( rotatedBitmap );
-
-		// imageView.setImageBitmap( rotatedBitmap );
-		imageView.setImageDrawable(new BitmapDrawable(getResources(),
-				rotatedBitmap));
-		imageView.setScaleType(ScaleType.CENTER);
+		
 	}
 
 	private static double round(double value, int places) {

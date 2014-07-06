@@ -96,12 +96,13 @@
         android:paddingBottom="0dp"
         android:paddingTop="24dp" >
 
-        <ImageView
+        <de.lmu.msp.trimmdich.run.CompassView
             android:id="@+id/compassImageView"
             android:layout_width="128dp"
             android:layout_height="128dp"
             android:contentDescription="@string/direction_img_content_description"
             android:src="@drawable/navigation_thin" />
+     
 
         <TextView
             android:id="@+id/directionTextView"
