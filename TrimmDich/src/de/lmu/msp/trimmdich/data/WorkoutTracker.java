@@ -1,6 +1,19 @@
 package de.lmu.msp.trimmdich.data;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Date;
+
+import android.app.Activity;
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.content.Intent;
+import android.content.IntentSender;
+import android.location.Location;
+import android.os.Bundle;
+import android.sax.StartElementListener;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient;
@@ -11,16 +24,7 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.maps.model.LatLng;
 
 import de.lmu.msp.trimmdich.data.Route.RouteDataPoint;
-
-import android.app.Activity;
-import android.app.Dialog;
-import android.app.DialogFragment;
-import android.content.Context;
-import android.content.IntentSender;
-import android.location.Location;
-import android.os.Bundle;
-import android.util.Log;
-import android.widget.Toast;
+import de.lmu.msp.trimmdich.exercise.ExerciseActivity;
 
 /* 
  * WorkoutTracker
@@ -239,7 +243,8 @@ public class WorkoutTracker implements
 
 	@Override
 	public void onConnected(Bundle arg0) {
-//		Toast.makeText(currentActivity, "Connected", Toast.LENGTH_SHORT).show();
+		// Toast.makeText(currentActivity, "Connected",
+		// Toast.LENGTH_SHORT).show();
 
 		this.onLocationChanged(locationClient.getLastLocation());
 		refreshLocationUpdateInterval();
@@ -267,6 +272,24 @@ public class WorkoutTracker implements
 			activeRoute.dataPoints.add(new RouteDataPoint(position, timestamp,
 					null));
 
+			de.lmu.msp.trimmdich.data.Location destinationLocation = activeRoute.locations
+					.get(nextLocation);
+			LatLng currentLocation = new LatLng(location.getLatitude(),
+					location.getLatitude());
+
+			double distance = Helpers.distance(destinationLocation.location,
+					currentLocation);
+
+			double distanceInKM = round(distance / 1000, 2);
+			if (distanceInKM <= 0.02) {
+
+				Intent intent = new Intent(currentActivity,
+						ExerciseActivity.class);
+				intent.putExtra("next_location", nextLocation);
+				currentActivity.startActivity(intent);
+				nextLocation++;
+			}
+
 		}
 
 		if (currentActivity != null
@@ -274,6 +297,15 @@ public class WorkoutTracker implements
 			LocationListener listener = (LocationListener) currentActivity;
 			listener.onLocationChanged(location);
 		}
+	}
+
+	private static double round(double value, int places) {
+		if (places < 0)
+			throw new IllegalArgumentException();
+
+		BigDecimal bd = new BigDecimal(value);
+		bd = bd.setScale(places, RoundingMode.HALF_UP);
+		return bd.doubleValue();
 	}
 
 	public int getNextLocation() {
