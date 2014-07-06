@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import android.os.Environment;
 import android.util.Log;
+import de.lmu.msp.trimmdich.data.Exercise;
 import de.lmu.msp.trimmdich.exercise.GolayFilter;
 
 public class SquatCounter{
@@ -14,26 +15,26 @@ public class SquatCounter{
 	private static int BUFFER_SIZE_VALUE = 10;
 	private static int BUFFER_SIZE_SLOPE = 6;
 
+	private Exercise exercise;
+	
 	private GolayFilter filter;
 	private Ringbuffer bufferVal;
 	private Ringbuffer bufferSlope;
-	private Rule ruleOne;
-	private Rule ruleTwo;
-	private double sumRule;
 	double workingVal;
 	long lastTime;
+	long firstTime;
 	//----------------------------------------
 	public FileOutputStream fos;
 	
-	SquatCounter(){
+	SquatCounter(Exercise exercise){
+		this.exercise = exercise;
+		
 		filter = new GolayFilter();
 		bufferVal = new Ringbuffer(BUFFER_SIZE_VALUE);
 		bufferVal.initWithObject(Double.valueOf(0));
 		bufferSlope = new Ringbuffer(BUFFER_SIZE_SLOPE);
 		bufferSlope.initWithObject(Boolean.FALSE);
 		lastTime = 0;
-		ruleOne = new Rule(1, 6., false);
-		ruleTwo = new Rule(1, -2., true);
 		
 		//---------------------------
 		if(isExternalStorageWritable()){
@@ -91,8 +92,6 @@ public class SquatCounter{
 	}
 	
 	public boolean checkForSquat(){
-		ruleOne.resetCount();
-		ruleTwo.resetCount();
 		boolean rule1 = false;
 		boolean rule2 = false;
 		for(int i=0;i<bufferVal.size();i++){
@@ -107,6 +106,8 @@ public class SquatCounter{
 		}
 		int firstIntervall = ((Boolean)bufferSlope.getElement(0)?1:-1)+((Boolean)bufferSlope.getElement(1)?1:-1)+((Boolean)bufferSlope.getElement(2)?1:-1);
 		int secIntervall = ((Boolean)bufferSlope.getElement(3)?1:-1)+((Boolean)bufferSlope.getElement(4)?1:-1)+((Boolean)bufferSlope.getElement(5)?1:-1);
+		if(firstIntervall>=2 && secIntervall==-3 && rule1 && rule2)
+			this.exercise.doRepetition();
 		return firstIntervall>=2 && secIntervall==-3 && rule1 && rule2;
 	}
 	
@@ -117,40 +118,6 @@ public class SquatCounter{
 		return ((x2-x1)/(y2-y1))>=0;
 	}
 	
-	private class Rule{
-		private int minCount;
-		private double limit;
-		private int count;
-		private boolean smallerAs = false;
-		
-		
-		Rule(int minCount, double limit, boolean smallerAs){
-			this.minCount = minCount;
-			this.limit = limit;
-			this.smallerAs = smallerAs;
-			this.resetCount();
-		}
-		
-		private void resetCount(){
-			this.count = 0;
-		}
-		
-		private void checkVal(double val){
-			if(smallerAs){
-				if(val<this.limit)
-					this.count++;
-			}else{
-				if(val>this.limit)
-					this.count++;
-			}
-		}
-		
-		private boolean val(){
-			return this.count>=this.minCount;
-		}
-	}
-	
-	
 	
 	/* Checks if external storage is available for read and write */
 	public boolean isExternalStorageWritable() {
@@ -159,5 +126,9 @@ public class SquatCounter{
 	        return true;
 	    }
 	    return false;
+	}
+	
+	public Exercise getExercise(){
+		return this.exercise;
 	}
 }

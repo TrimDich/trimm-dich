@@ -19,7 +19,7 @@ public class Exercise {
 	 * @param type
 	 * @param repetitionGoal
 	 */
-	Exercise(EXERCISE_TYPE type, int repetitionGoal){
+	public Exercise(EXERCISE_TYPE type, int repetitionGoal){
 		this.repetitionGoal = repetitionGoal;
 		this.type = type;
 		this.repetitionActual = 0;

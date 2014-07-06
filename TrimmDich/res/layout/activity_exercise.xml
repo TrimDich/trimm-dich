@@ -40,11 +40,26 @@
         android:id="@+id/exercise_exercise_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
         android:layout_below="@+id/exercise_countView"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="18dp"
         android:paddingTop="8dp"
+        android:gravity="center"
         android:text="@string/exercise_pushup"
+        android:textColor="@color/subtitle_text_color"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/exercise_repetition_goal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/exercise_bt_next"
+        android:layout_alignLeft="@+id/exercise_exercise_name"
+        android:layout_alignParentRight="true"
+        android:paddingTop="8dp"
+        android:gravity="center"
+        android:text="@string/exercise_zero"
         android:textColor="@color/subtitle_text_color"
         android:textSize="20sp" />
 

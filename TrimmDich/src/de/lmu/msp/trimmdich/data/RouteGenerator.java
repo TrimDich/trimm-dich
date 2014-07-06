@@ -3,6 +3,7 @@ package de.lmu.msp.trimmdich.data;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -85,10 +86,19 @@ public class RouteGenerator {
 		// Get locations within half the distance of desired distance
 //		ArrayList<Location> availableLocations = RouteGenerator.locationsAround(routeProperties.startPosition, routeProperties.desiredLengthInKm);
 		newRoute.locations = selectedLocations;
+		newRoute.dataPoints = new ArrayList<Route.RouteDataPoint>();
 		
 		// Distribute the exercises across the location nodes
-		// TODO
-		
+		for(int i = 0; i < routeProperties.desiredExercises; i++) {
+			int locationIndex = new Random().nextInt(newRoute.locations.size());
+			Location location = newRoute.locations.get(locationIndex);
+			
+			int exerciseIndex = new Random().nextInt(location.possibleExercises.size());
+			EXERCISE_TYPE type = location.possibleExercises.get(exerciseIndex);
+			
+			Exercise newExercise = new Exercise(type, 10);
+			location.selectedExercises.add(newExercise);
+		}
 		
 		return newRoute;
 	}
