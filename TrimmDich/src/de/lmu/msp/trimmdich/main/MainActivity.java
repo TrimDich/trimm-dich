@@ -179,9 +179,9 @@ public class MainActivity extends Activity implements LocationListener {
 		mExerciseTypesTextView.setText(exercises);
 
 		routeProperties.desiredExercises = mSPrefs.getInt(
-				Constants.DISTANCE_SPREF, 1);
-		routeProperties.desiredLengthInKm = (double) mSPrefs.getInt(
 				Constants.EXERCISE_COUNT_SPREF, 1);
+		routeProperties.desiredLengthInKm = (double) mSPrefs.getInt(
+				Constants.DISTANCE_SPREF, 1);
 
 	}
 

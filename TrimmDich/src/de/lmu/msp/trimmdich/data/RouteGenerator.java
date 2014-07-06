@@ -100,7 +100,7 @@ public class RouteGenerator {
 		
 		// Distribute the exercises across the location nodes
 		for(int i = 0; i < routeProperties.desiredExercises; i++) {
-			int locationIndex = new Random().nextInt(newRoute.locations.size());
+			int locationIndex = 1 + new Random().nextInt(newRoute.locations.size() - 1);
 			Location location = newRoute.locations.get(locationIndex);
 			
 			int exerciseIndex = new Random().nextInt(location.possibleExercises.size());
@@ -120,7 +120,7 @@ public class RouteGenerator {
 		public RouteProperties() { }
 		public RouteProperties(Intent intent) { 
 			startPosition = new LatLng(intent.getDoubleExtra("startPositionLat", 0), intent.getDoubleExtra("startPositionLon", 0));
-			desiredLengthInKm = intent.getFloatExtra("desiredLengthInKm", 5);
+			desiredLengthInKm = intent.getDoubleExtra("desiredLengthInKm", 5);
 			desiredExercises = intent.getIntExtra("desiredExercises", 5);
 		}
 		public void saveToIntent(Intent intent) {
