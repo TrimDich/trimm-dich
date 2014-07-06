@@ -37,6 +37,7 @@ public class WorkoutTracker implements
 		GooglePlayServicesClient.OnConnectionFailedListener, LocationListener {
 	// Tracks the progress in the exercise
 	// Tracks location
+	private int nextLocation;
 
 	// Global constants
 	// Singelton
@@ -47,27 +48,15 @@ public class WorkoutTracker implements
 		private static final WorkoutTracker DAD = new WorkoutTracker();
 	}
 
+	// Static
 	public static WorkoutTracker getInstance() {
 		return Holder.DAD;
 	}
 
-	// Static
-	private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000; // Define
-																			// a
-																			// request
-																			// code
-																			// to
-																			// send
-																			// to
-																			// Google
-																			// Play
-																			// services.
-																			// This
-																			// code
-																			// is
-																			// returned
-																			// in
-																			// Activity.onActivityResult
+	// Define a request code to send to Google Play services.This code is
+	// returned in
+	// Activity.onActivityResult
+	private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
 	// Request code to use when launching the resolution activity
 	private static final int REQUEST_RESOLVE_ERROR = 1001;
 	// Unique tag for the error dialog fragment
@@ -254,7 +243,7 @@ public class WorkoutTracker implements
 
 		this.onLocationChanged(locationClient.getLastLocation());
 		refreshLocationUpdateInterval();
-		
+
 	}
 
 	@Override
@@ -285,5 +274,13 @@ public class WorkoutTracker implements
 			LocationListener listener = (LocationListener) currentActivity;
 			listener.onLocationChanged(location);
 		}
+	}
+
+	public int getNextLocation() {
+		return nextLocation;
+	}
+
+	public void setNextLocation(int nextLocation) {
+		this.nextLocation = nextLocation;
 	}
 }
