@@ -1,6 +1,6 @@
 package de.lmu.msp.trimmdich.summary;
 
-
+import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -11,11 +11,13 @@ public class StatisticsActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_statistics);
-		
+		ActionBar actionbar = getActionBar();
+		actionbar.setIcon(R.drawable.running_white_48);
+
 		TextView distanceMetric = (TextView) findViewById(R.id.distanceMetric);
 		TextView squatMetric = (TextView) findViewById(R.id.squatMetric);
 		TextView speedMetric = (TextView) findViewById(R.id.speedMetric);
-		//Dummy values
+		// Dummy values
 		double distanceRun = 5.0;
 		double timeTaken = 20.0;
 		double speed = distanceRun / timeTaken;
@@ -23,10 +25,10 @@ public class StatisticsActivity extends Activity {
 		String distanceText = String.valueOf(distanceRun) + " m";
 		String squatText = String.valueOf(squatReps);
 		String speedText = String.valueOf(speed) + " km/h";
-		//Set text inside view
+		// Set text inside view
 		distanceMetric.setText(distanceText);
 		speedMetric.setText(speedText);
 		squatMetric.setText(squatText);
-		
+
 	}
 }

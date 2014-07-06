@@ -1,5 +1,6 @@
 package de.lmu.msp.trimmdich.main;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -43,7 +44,8 @@ public class MainActivity extends Activity implements LocationListener {
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_main);
-
+		ActionBar actionbar = getActionBar();
+		actionbar.setIcon(R.drawable.running_white_48);
 		mDistanceLinearLayout = (LinearLayout) findViewById(R.id.distanceLinearLayout);
 		mExerciseCountLinearLayout = (LinearLayout) findViewById(R.id.excerciseCountLinearLayout);
 		mExerciseTypesLinearLayout = (LinearLayout) findViewById(R.id.excerciseTypesLinearLayout);
@@ -111,25 +113,25 @@ public class MainActivity extends Activity implements LocationListener {
 		}
 	};
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
+	// @Override
+	// public boolean onCreateOptionsMenu(Menu menu) {
+	//
+	// // Inflate the menu; this adds items to the action bar if it is present.
+	// getMenuInflater().inflate(R.menu.main, menu);
+	// return true;
+	// }
+	//
+	// @Override
+	// public boolean onOptionsItemSelected(MenuItem item) {
+	// // Handle action bar item clicks here. The action bar will
+	// // automatically handle clicks on the Home/Up button, so long
+	// // as you specify a parent activity in AndroidManifest.xml.
+	// int id = item.getItemId();
+	// if (id == R.id.action_settings) {
+	// return true;
+	// }
+	// return super.onOptionsItemSelected(item);
+	// }
 
 	public void startNewRun(View view) {
 		Intent newIntent = new Intent(this, RunPreviewActivity.class);
@@ -151,13 +153,13 @@ public class MainActivity extends Activity implements LocationListener {
 
 		String exercises = "";
 
-		boolean dips = mSPrefs.getBoolean(Constants.DIPS_EXERCISE_SPREF, false);
+		boolean dips = mSPrefs.getBoolean(Constants.DIPS_EXERCISE_SPREF, true);
 		boolean pullup = mSPrefs.getBoolean(Constants.PULLUP_EXERCISE_SPREF,
-				false);
+				true);
 		boolean pushup = mSPrefs.getBoolean(Constants.PUSHUP_EXERCISE_SPREF,
-				false);
+				true);
 		boolean squats = mSPrefs.getBoolean(Constants.SQUATS_EXERCISE_SPREF,
-				false);
+				true);
 		if (dips) {
 			exercises = getResources().getString(R.string.dips) + ", ";
 		}

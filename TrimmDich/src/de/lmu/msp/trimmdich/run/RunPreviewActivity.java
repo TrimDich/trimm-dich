@@ -2,6 +2,7 @@ package de.lmu.msp.trimmdich.run;
 
 //import com.google.android.gms.maps.MapView;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,45 +25,48 @@ import de.lmu.msp.trimmdich.data.RouteGenerator.RouteProperties;
 import de.lmu.msp.trimmdich.data.WorkoutTracker;
 
 public class RunPreviewActivity extends Activity implements LocationListener {
-	
+
 	GoogleMap map;
 	RouteProperties routeProperties;
 	Route route;
 	WorkoutTracker workoutTracker;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_run_preview);
-		
+
+		ActionBar actionbar = getActionBar();
+		actionbar.setIcon(R.drawable.running_white_48);
 		//
 		// Google Map
 		//
 		map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
-		        .getMap();
-		
+				.getMap();
+
 		// configure map
 		map.setMyLocationEnabled(true);
-		
+
 		// load route properties
 		routeProperties = new RouteProperties(getIntent());
 		route = RouteGenerator.generateRoute(routeProperties);
-		
+
 		// add route to map
 		PolylineOptions line = new PolylineOptions();
-		
+
 		for (Location location : route.locations) {
 			line.add(location.location);
-			map.addMarker(new MarkerOptions().position(location.location).title("location"));
+			map.addMarker(new MarkerOptions().position(location.location)
+					.title("location"));
 		}
-		map.addPolyline(line);	
-		
+		map.addPolyline(line);
+
 		//
 		// Workout Tracker
 		//
 		workoutTracker = WorkoutTracker.getInstance();
 		workoutTracker.setCurrentActivity(this);
-		
+
 	}
 
 	public void startRun(View view) {
@@ -74,9 +78,11 @@ public class RunPreviewActivity extends Activity implements LocationListener {
 
 	@Override
 	public void onLocationChanged(android.location.Location location) {
-//		android.location.Location lastLocation = workoutTracker.locationClient().getLastLocation();
-		LatLng lastLatLng = new LatLng(location.getLatitude(), location.getLongitude());
-		CameraUpdate update =  CameraUpdateFactory.newLatLngZoom(lastLatLng, 13);
+		// android.location.Location lastLocation =
+		// workoutTracker.locationClient().getLastLocation();
+		LatLng lastLatLng = new LatLng(location.getLatitude(),
+				location.getLongitude());
+		CameraUpdate update = CameraUpdateFactory.newLatLngZoom(lastLatLng, 13);
 		map.animateCamera(update);
 	}
 }

@@ -45,13 +45,13 @@ public class ExerciseDialogFragement extends DialogFragment {
 		alertBuilder.setView(v);
 		alertBuilder.setTitle("†bungen");
 
-		boolean dips = mSPrefs.getBoolean(Constants.DIPS_EXERCISE_SPREF, false);
+		boolean dips = mSPrefs.getBoolean(Constants.DIPS_EXERCISE_SPREF, true);
 		boolean pullup = mSPrefs.getBoolean(Constants.PULLUP_EXERCISE_SPREF,
-				false);
+				true);
 		boolean pushup = mSPrefs.getBoolean(Constants.PUSHUP_EXERCISE_SPREF,
-				false);
+				true);
 		boolean squats = mSPrefs.getBoolean(Constants.SQUATS_EXERCISE_SPREF,
-				false);
+				true);
 
 		mDipsCheckBox.setChecked(dips);
 		mPullUpCheckBox.setChecked(pullup);
