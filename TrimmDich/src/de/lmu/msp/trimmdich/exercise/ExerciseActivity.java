@@ -1,19 +1,16 @@
 package de.lmu.msp.trimmdich.exercise;
 
-import java.io.IOException;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Locale;
 import java.util.NoSuchElementException;
 
 import de.lmu.msp.trimmdich.R;
 import de.lmu.msp.trimmdich.data.Exercise;
-import de.lmu.msp.trimmdich.data.Exercise.EXERCISE_TYPE;
 import de.lmu.msp.trimmdich.data.WorkoutTracker;
 import de.lmu.msp.trimmdich.main.MainActivity;
+import de.lmu.msp.trimmdich.summary.MapResultActivity;
 import android.app.Activity;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -56,11 +53,17 @@ public class ExerciseActivity extends Activity implements SensorEventListener,
 		super.onStart();
 		tts = new TextToSpeech(this, this);
 		currentExercises = WorkoutTracker.getInstance().getCurrentLocationExcercices().iterator();
+		prepairNextExercise();
 		if(WorkoutTracker.getInstance().getCurrentLocationExcercices().size() > 0){
 			overviewView.setText(getResources().getString(R.string.exercise_overview, 1,WorkoutTracker.getInstance().getCurrentLocationExcercices().size()));
 			countView.setText(""+0);
-			prepairNextExercise();
 		}
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		WorkoutTracker.getInstance().setCurrentActivity(this);
 	}
 
 	@Override
@@ -71,7 +74,7 @@ public class ExerciseActivity extends Activity implements SensorEventListener,
 			tts.stop();
 			tts.shutdown();
 		}
-//		//TODO: Das Logging komplet entfernen
+//		//TODO: Das Logging komplett entfernen
 //		try {
 //			exerciseCounter.fos.close();
 //		} catch (IOException e) {
@@ -102,8 +105,10 @@ public class ExerciseActivity extends Activity implements SensorEventListener,
 			return true;
 		} catch (NoSuchElementException e) {
 			WorkoutTracker.getInstance().moveToNextLocation();
-			Intent newIntent = new Intent(this, MainActivity.class);
-			startActivity(newIntent);
+			if(WorkoutTracker.getInstance().isLastLocation())
+				startActivity(new Intent(this, MapResultActivity.class));
+			else
+				this.finish();
 			return false;
 		}
 	}
@@ -119,37 +124,28 @@ public class ExerciseActivity extends Activity implements SensorEventListener,
 			int result = tts.setLanguage(Locale.GERMAN);
 			if (result == TextToSpeech.LANG_MISSING_DATA
 					|| result == TextToSpeech.LANG_NOT_SUPPORTED) {
-				Log.e("TTS", "This Language is not supported");
+				Log.e(TAG, "This Language is not supported");
 			}
-			tts.speak(getString(R.string.exercise_start),
-					TextToSpeech.QUEUE_FLUSH, null);
 		} else {
-			Log.e("TTS", "Initilization Failed!");
+			Log.e(TAG, "Initilization Failed!");
 		}
 	}
 
 	public void onBtNextClick(View view) {
-		WorkoutTracker.getInstance().moveToNextLocation();
-		Intent newIntent = new Intent(this, MainActivity.class);
-		startActivity(newIntent);
+		prepairNextExercise();
 	}
 
 	@Override
 	public void onExerciseIterationDetected() {
 		countView.setText("" + exerciseCounter.getExercise().getRepetitionsActual());
 		if (exerciseCounter.getExercise().getRepetitionsActual() == 1)
-			tts.speak("Eine Kniebeuge", TextToSpeech.QUEUE_FLUSH, null);
+			tts.speak("Eine Kniebeuge", TextToSpeech.QUEUE_FLUSH, null); 
 		else
-			tts.speak(exerciseCounter.getExercise().getRepetitionsActual() + " Kniebeugen", TextToSpeech.QUEUE_FLUSH,
-					null);
-
+			tts.speak(exerciseCounter.getExercise().getRepetitionsActual() + " Kniebeugen", TextToSpeech.QUEUE_FLUSH,null);
 		if (exerciseCounter.getExercise().getRepetitionsActual() == 5)
-			tts.speak(getString(R.string.exercise_end),
-					TextToSpeech.QUEUE_FLUSH, null);
-		if(exerciseCounter.getExercise().isRepetitionsReached()){
-			
-		}
-			
+			tts.speak(getString(R.string.exercise_end),	TextToSpeech.QUEUE_FLUSH, null);
+		if(exerciseCounter.getExercise().isRepetitionsReached())
+			prepairNextExercise();
 	}
 
 }
