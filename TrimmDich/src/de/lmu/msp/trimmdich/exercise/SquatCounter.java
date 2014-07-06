@@ -15,6 +15,9 @@ public class SquatCounter implements ExerciseCounter{
 	private static double BIAS = 9.49;
 	private static int BUFFER_SIZE_VALUE = 10;
 	private static int BUFFER_SIZE_SLOPE = 6;
+	
+	private static int ABUFFER_SIZE_VALUE = 2;
+	private static int ABUFFER_SIZE_SLOPE = -3;
 
 	private Exercise exercise;
 	private ExerciseEventListener display;

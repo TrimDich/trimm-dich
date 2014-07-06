@@ -15,25 +15,6 @@ public class ExerciseActivityChooser extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.exercise_done_layout);
 		setTitle(R.string.exercise_title);
-		Log.d(TAG, "ExerciseActivityChooser::onCreate()");
-	}
-
-	@Override
-	protected void onStart() {
-		super.onStart();
-		Log.d(TAG, "ExerciseActivityChooser::onStart()");
-	}
-
-	@Override
-	protected void onStop() {
-		Log.d(TAG, "ExerciseActivityChooser::onStop()");
-		super.onStop();
-	}
-
-	@Override
-	protected void onDestroy() {
-		Log.d(TAG, "ExerciseActivityChooser::onDestroy()");
-		super.onDestroy();
 	}
 
 	public void onClickSuccess(View view) {

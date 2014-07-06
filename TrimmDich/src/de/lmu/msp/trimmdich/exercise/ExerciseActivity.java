@@ -38,7 +38,7 @@ public class ExerciseActivity extends Activity implements SensorEventListener,
 	private Exercise currentExercise;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState) { 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_exercise);
 		setTitle(R.string.exercise_title);
@@ -46,12 +46,20 @@ public class ExerciseActivity extends Activity implements SensorEventListener,
 		countView = (TextView) findViewById(R.id.exercise_countView);
 		infoView = (TextView) findViewById(R.id.exercise_exercise_name);
 		overviewView = (TextView) findViewById(R.id.exercise_overview_default);
+		
+		WorkoutTracker.getInstance().setCurrentActivity(this);
+		//do stuff from onStart()
+		currentExercises = WorkoutTracker.getInstance().getCurrentLocationExcercices().iterator();
+		prepairNextExercise();
+		if(WorkoutTracker.getInstance().getCurrentLocationExcercices().size() > 0){
+			overviewView.setText(getResources().getString(R.string.exercise_overview, 1,WorkoutTracker.getInstance().getCurrentLocationExcercices().size()));
+			countView.setText(""+0);
+		}
 	}
 
 	@Override
 	protected void onStart() {
 		super.onStart();
-		WorkoutTracker.getInstance().setCurrentActivity(this);
 		tts = new TextToSpeech(this, this);
 	}
 	@Override
@@ -137,13 +145,6 @@ public class ExerciseActivity extends Activity implements SensorEventListener,
 			if (result == TextToSpeech.LANG_MISSING_DATA
 					|| result == TextToSpeech.LANG_NOT_SUPPORTED) {
 				Log.e(TAG, "This Language is not supported");
-			}
-			//do stuff from onStart()
-			currentExercises = WorkoutTracker.getInstance().getCurrentLocationExcercices().iterator();
-			prepairNextExercise();
-			if(WorkoutTracker.getInstance().getCurrentLocationExcercices().size() > 0){
-				overviewView.setText(getResources().getString(R.string.exercise_overview, 1,WorkoutTracker.getInstance().getCurrentLocationExcercices().size()));
-				countView.setText(""+0);
 			}
 		} else {
 			Log.e(TAG, "Initilization Failed!");
