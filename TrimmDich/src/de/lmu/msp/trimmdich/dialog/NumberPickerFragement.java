@@ -91,7 +91,7 @@ public class NumberPickerFragement extends DialogFragment {
 			mSPrefs = getActivity().getSharedPreferences(Constants.PREFS_NAME,
 					0);
 			SharedPreferences.Editor editor = mSPrefs.edit();
-			editor.putInt(mPickerSPref, mNumberPicker.getValue());
+			editor.putFloat(mPickerSPref, (float) mNumberPicker.getValue());
 			editor.commit();
 
 			((MainActivity) getActivity()).doPositiveClick();
