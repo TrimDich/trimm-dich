@@ -1,12 +1,9 @@
 package de.lmu.msp.trimmdich.main;
 
-import com.google.android.gms.maps.model.LatLng;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.location.Location;
-import android.location.LocationListener;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,12 +11,15 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.maps.model.LatLng;
+
 import de.lmu.msp.trimmdich.R;
-import de.lmu.msp.trimmdich.data.WorkoutTracker;
 import de.lmu.msp.trimmdich.data.RouteGenerator.RouteProperties;
+import de.lmu.msp.trimmdich.data.WorkoutTracker;
+import de.lmu.msp.trimmdich.dialog.ExerciseDialogFragement;
 import de.lmu.msp.trimmdich.dialog.NumberPickerFragement;
-import de.lmu.msp.trimmdich.exercise.ExerciseActivity;
-import de.lmu.msp.trimmdich.run.CompassActivity;
 import de.lmu.msp.trimmdich.run.RunPreviewActivity;
 import de.lmu.msp.trimmdich.util.Constants;
 
@@ -36,6 +36,7 @@ public class MainActivity extends Activity implements LocationListener {
 
 	private TextView mDistanceTextView;
 	private TextView mExerciseCountTextView;
+	private TextView mExerciseTypesTextView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,7 @@ public class MainActivity extends Activity implements LocationListener {
 
 		mDistanceTextView = (TextView) findViewById(R.id.setupDistanceTextView);
 		mExerciseCountTextView = (TextView) findViewById(R.id.setupExerciseCountTextView);
+		mExerciseTypesTextView = (TextView) findViewById(R.id.setupExerciseTypesTextView);
 
 		mDistanceLinearLayout.setTag(Constants.DISTANCE_PICKER_TYPE);
 		mDistanceLinearLayout.setOnClickListener(mOnLinearLayoutClick);
@@ -56,6 +58,8 @@ public class MainActivity extends Activity implements LocationListener {
 		mExerciseCountLinearLayout.setTag(Constants.EXERCISE_COUNT_PICKER_TYPE);
 		mExerciseCountLinearLayout.setOnClickListener(mOnLinearLayoutClick);
 
+		mExerciseTypesLinearLayout
+				.setOnClickListener(mOnExerciseTypeLinearLayoutClick);
 		mSPrefs = getSharedPreferences(Constants.PREFS_NAME, 0);
 
 		mDistanceTextView.setText(""
@@ -97,6 +101,16 @@ public class MainActivity extends Activity implements LocationListener {
 		}
 	};
 
+	private OnClickListener mOnExerciseTypeLinearLayoutClick = new OnClickListener() {
+
+		@Override
+		public void onClick(View v) {
+			ExerciseDialogFragement f = ExerciseDialogFragement.newInstance();
+			f.show(getFragmentManager(), "dialog");
+
+		}
+	};
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -135,6 +149,33 @@ public class MainActivity extends Activity implements LocationListener {
 		mExerciseCountTextView.setText(""
 				+ mSPrefs.getInt(Constants.EXERCISE_COUNT_SPREF, 1));
 
+		String exercises = "";
+
+		boolean dips = mSPrefs.getBoolean(Constants.DIPS_EXERCISE_SPREF, false);
+		boolean pullup = mSPrefs.getBoolean(Constants.PULLUP_EXERCISE_SPREF,
+				false);
+		boolean pushup = mSPrefs.getBoolean(Constants.PUSHUP_EXERCISE_SPREF,
+				false);
+		boolean squats = mSPrefs.getBoolean(Constants.SQUATS_EXERCISE_SPREF,
+				false);
+		if (dips) {
+			exercises = getResources().getString(R.string.dips) + ", ";
+		}
+		if (pullup) {
+			exercises += getResources().getString(R.string.pullUps) + ", ";
+			;
+		}
+		if (pushup) {
+			exercises += getResources().getString(R.string.pushUps) + ", ";
+			;
+		}
+		if (squats) {
+			exercises += getResources().getString(R.string.squats);
+			;
+		}
+
+		mExerciseTypesTextView.setText(exercises);
+
 		routeProperties.desiredExercises = mSPrefs.getInt(
 				Constants.DISTANCE_SPREF, 1);
 		routeProperties.desiredLengthInKm = mSPrefs.getInt(
@@ -148,24 +189,6 @@ public class MainActivity extends Activity implements LocationListener {
 		LatLng position = new LatLng(location.getLatitude(),
 				location.getLongitude());
 		routeProperties.startPosition = position;
-
-	}
-
-	@Override
-	public void onProviderDisabled(String provider) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void onProviderEnabled(String provider) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void onStatusChanged(String provider, int status, Bundle extras) {
-		// TODO Auto-generated method stub
 
 	}
 

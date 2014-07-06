@@ -2,28 +2,26 @@ package de.lmu.msp.trimmdich.run;
 
 //import com.google.android.gms.maps.MapView;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.MapView;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 
 import de.lmu.msp.trimmdich.R;
-import de.lmu.msp.trimmdich.R.layout;
 import de.lmu.msp.trimmdich.data.Location;
 import de.lmu.msp.trimmdich.data.Route;
 import de.lmu.msp.trimmdich.data.RouteGenerator;
-import de.lmu.msp.trimmdich.data.WorkoutTracker;
 import de.lmu.msp.trimmdich.data.RouteGenerator.RouteProperties;
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
+import de.lmu.msp.trimmdich.data.WorkoutTracker;
 
 public class RunPreviewActivity extends Activity implements LocationListener {
 	

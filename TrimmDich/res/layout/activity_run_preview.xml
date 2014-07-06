@@ -1,25 +1,61 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1"
     android:gravity="center_horizontal"
-    android:orientation="vertical" >    
-    
-    <!-- 
-        android:apiKey="0HD__0DaIgDb8nHjJsuggkHlW1MofMwg-xVCpA"  -->
+    android:orientation="vertical"
+    android:weightSum="1" >
 
-   <fragment
-        android:id="@+id/map"  android:layout_weight="0.15"
+    <!-- android:apiKey="0HD__0DaIgDb8nHjJsuggkHlW1MofMwg-xVCpA" -->
+
+    <fragment
+        android:id="@+id/map"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        class="com.google.android.gms.maps.MapFragment" /> 
-   
-    <Button
-        android:id="@+id/button1"
+        android:layout_height="0dp"
         android:layout_weight="0.85"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        class="com.google.android.gms.maps.MapFragment" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/excerciseCountLinearLayout"
+        android:contentDescription="@string/boder_img"
+        android:src="#ccc" />
+
+    <LinearLayout
+        android:id="@+id/excerciseTypesLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="1dp"
+        android:layout_weight="0.15"
+        android:background="@drawable/config_button"
+        android:clickable="true"
+        android:gravity="center"
         android:onClick="startRun"
-        android:text="Start Run" />
+        android:orientation="horizontal"
+        android:paddingBottom="24dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="24dp" >
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="20dp"
+            android:layout_height="35dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginTop="4dp"
+            android:cropToPadding="false"
+            android:src="@drawable/running_actionbar" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_marginTop="2dp"
+            android:gravity="center"
+            android:text="@string/start_run"
+            android:textColor="@color/subtitle_text_color"
+            android:textSize="25sp" />
+
+    </LinearLayout>
 
 </LinearLayout>

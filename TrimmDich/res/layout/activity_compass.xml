@@ -55,8 +55,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
-                 android:textColor="@color/subtitle_text_color"
                 android:text="@string/distance_txt"
+                android:textColor="@color/subtitle_text_color"
                 android:textSize="12sp" />
         </LinearLayout>
 
@@ -82,21 +82,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
-                 android:textColor="@color/subtitle_text_color"
                 android:text="@string/speed_txt"
+                android:textColor="@color/subtitle_text_color"
                 android:textSize="12sp" />
         </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="0.4"
+        android:layout_marginBottom="8dp"
         android:gravity="center_horizontal"
         android:orientation="vertical"
         android:paddingBottom="0dp"
         android:paddingTop="24dp" >
 
-        <ImageView
+        <de.lmu.msp.trimmdich.run.CompassView
             android:id="@+id/compassImageView"
             android:layout_width="128dp"
             android:layout_height="128dp"
@@ -108,8 +110,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="8dp"
-             android:textColor="@color/subtitle_text_color"
             android:text="@string/direction_to_exercise_txt"
+            android:textColor="@color/subtitle_text_color"
             android:textSize="12sp" />
 
         <TextView
@@ -117,15 +119,40 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:visibility="gone" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:longClickable="true"
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:contentDescription="@string/boder_img"
+        android:src="#ccc" />
+
+    <LinearLayout
+        android:id="@+id/excerciseCountLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_weight="0.6"
+        android:layout_height="match_parent"
+        android:background="@drawable/config_button"
+        android:clickable="true"
+        android:gravity="center"
         android:onClick="arriveAtExercise"
-        android:text="@string/arrive_at_exercise_btn" />
+        android:orientation="vertical"
+        android:paddingBottom="12dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="12dp" >
+
+        <TextView
+            android:id="@+id/setupExerciseCountTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:gravity="center"
+            android:text="@string/arrive_at_exercise_btn"
+            android:textColor="@color/subtitle_text_color"
+            android:textSize="22sp" />
+    </LinearLayout>
 
 </LinearLayout>
