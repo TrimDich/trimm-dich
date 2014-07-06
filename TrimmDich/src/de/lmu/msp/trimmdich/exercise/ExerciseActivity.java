@@ -7,7 +7,6 @@ import java.util.NoSuchElementException;
 import de.lmu.msp.trimmdich.R;
 import de.lmu.msp.trimmdich.data.Exercise;
 import de.lmu.msp.trimmdich.data.WorkoutTracker;
-import de.lmu.msp.trimmdich.main.MainActivity;
 import de.lmu.msp.trimmdich.summary.MapResultActivity;
 import android.app.Activity;
 import android.content.Intent;
@@ -21,7 +20,6 @@ import android.speech.tts.TextToSpeech.OnInitListener;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class ExerciseActivity extends Activity implements SensorEventListener,
 		OnInitListener, ExerciseEventListener {
@@ -51,19 +49,8 @@ public class ExerciseActivity extends Activity implements SensorEventListener,
 	@Override
 	protected void onStart() {
 		super.onStart();
-		tts = new TextToSpeech(this, this);
-		currentExercises = WorkoutTracker.getInstance().getCurrentLocationExcercices().iterator();
-		prepairNextExercise();
-		if(WorkoutTracker.getInstance().getCurrentLocationExcercices().size() > 0){
-			overviewView.setText(getResources().getString(R.string.exercise_overview, 1,WorkoutTracker.getInstance().getCurrentLocationExcercices().size()));
-			countView.setText(""+0);
-		}
-	}
-
-	@Override
-	protected void onResume() {
-		super.onResume();
 		WorkoutTracker.getInstance().setCurrentActivity(this);
+		tts = new TextToSpeech(this, this);
 	}
 
 	@Override
@@ -125,6 +112,13 @@ public class ExerciseActivity extends Activity implements SensorEventListener,
 			if (result == TextToSpeech.LANG_MISSING_DATA
 					|| result == TextToSpeech.LANG_NOT_SUPPORTED) {
 				Log.e(TAG, "This Language is not supported");
+			}
+			//do stuff from onStart()
+			currentExercises = WorkoutTracker.getInstance().getCurrentLocationExcercices().iterator();
+			prepairNextExercise();
+			if(WorkoutTracker.getInstance().getCurrentLocationExcercices().size() > 0){
+				overviewView.setText(getResources().getString(R.string.exercise_overview, 1,WorkoutTracker.getInstance().getCurrentLocationExcercices().size()));
+				countView.setText(""+0);
 			}
 		} else {
 			Log.e(TAG, "Initilization Failed!");
