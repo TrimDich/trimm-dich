@@ -162,7 +162,7 @@ public class CompassActivity extends Activity implements LocationListener,
 
 		// Store the bearingTo in the bearTo variable
 		float bearTo = currentLocation.bearingTo(mDestinationLocation);
-		Log.d("CompassActivity", "Bear To: " + bearTo);
+		//Log.d("CompassActivity", "Bear To: " + bearTo);
 
 		// If the bearTo is smaller than 0, add 360 to get the rotation
 		// clockwise.

@@ -64,4 +64,12 @@ public class Exercise {
 	public EXERCISE_TYPE getType(){
 		return this.type;
 	}
+	
+	public void setDone(){
+		this.repetitionActual = this.repetitionGoal;
+	}
+	
+	public void setNearlyDone(){
+		this.repetitionActual = (int) (this.repetitionGoal*0.5);
+	}
 }

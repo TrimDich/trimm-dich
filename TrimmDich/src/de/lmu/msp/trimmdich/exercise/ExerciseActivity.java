@@ -7,6 +7,7 @@ import java.util.NoSuchElementException;
 import de.lmu.msp.trimmdich.R;
 import de.lmu.msp.trimmdich.data.Exercise;
 import de.lmu.msp.trimmdich.data.WorkoutTracker;
+import de.lmu.msp.trimmdich.data.Exercise.EXERCISE_TYPE;
 import de.lmu.msp.trimmdich.summary.MapResultActivity;
 import android.app.Activity;
 import android.content.Intent;
@@ -34,6 +35,7 @@ public class ExerciseActivity extends Activity implements SensorEventListener,
 	private TextView overviewView;
 	
 	private Iterator<Exercise> currentExercises;
+	private Exercise currentExercise;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +54,12 @@ public class ExerciseActivity extends Activity implements SensorEventListener,
 		WorkoutTracker.getInstance().setCurrentActivity(this);
 		tts = new TextToSpeech(this, this);
 	}
-
+	@Override
+	protected void onResume() {
+		super.onResume();
+		Log.v(TAG,"ExerciseActivity: onResume()");
+	}
+	
 	@Override
 	protected void onStop() {
 		super.onStop();
@@ -82,13 +89,31 @@ public class ExerciseActivity extends Activity implements SensorEventListener,
 	public void onAccuracyChanged(Sensor sensor, int accuracy) {}
 
 	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		Log.v(TAG,"ExerciseActivity::onActivityResult()  "+requestCode+"|"+resultCode);
+		switch(Integer.valueOf((String)data.getExtras().get("result"))){
+		case 0:
+			currentExercise.setDone();
+			break;
+		case 1:
+			currentExercise.setNearlyDone();
+			break;
+		}
+		prepairNextExercise();
+		super.onActivityResult(requestCode, resultCode, data);
+	}
+
 	private boolean prepairNextExercise(){
 		sensorManager.unregisterListener(this);
 		try {
-			Exercise exercise = currentExercises.next();
-			infoView.setText(getResources().getString(R.string.exercise_repetition_goal_pushup, exercise.getRepetitionsGoal()));
-			exerciseCounter = new SquatCounter(exercise, this);
-			sensorManager.registerListener(this,sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),SensorManager.SENSOR_DELAY_NORMAL);
+			currentExercise = currentExercises.next();
+			if(currentExercise.getType() == EXERCISE_TYPE.PUSH_UP){
+				infoView.setText(getResources().getString(R.string.exercise_repetition_goal_pushup, currentExercise.getRepetitionsGoal()));
+				exerciseCounter = new SquatCounter(currentExercise, this);
+				sensorManager.registerListener(this,sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),SensorManager.SENSOR_DELAY_NORMAL);
+			}else 
+				startActivityForResult(new Intent(this, ExerciseActivityChooser.class),7);
 			return true;
 		} catch (NoSuchElementException e) {
 			WorkoutTracker.getInstance().moveToNextLocation();
