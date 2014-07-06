@@ -47,6 +47,15 @@ public class RouteGenerator {
 		allLocations.add(new Location( new LatLng(48.174629,11.571865), asList(EXERCISE_TYPE.DIPS, EXERCISE_TYPE.PULL_UP)));
 		allLocations.add(new Location( new LatLng(48.175201,11.567359), asList(EXERCISE_TYPE.DIPS, EXERCISE_TYPE.PULL_UP)));
 		
+		allLocations.add(new Location( new LatLng(48.147862,11.571672), asList(EXERCISE_TYPE.DIPS, EXERCISE_TYPE.PULL_UP)));
+		allLocations.add(new Location( new LatLng(48.148778,11.57032), asList(EXERCISE_TYPE.DIPS, EXERCISE_TYPE.PULL_UP)));
+		allLocations.add(new Location( new LatLng(48.153359,11.582165), asList(EXERCISE_TYPE.DIPS, EXERCISE_TYPE.PULL_UP)));
+		allLocations.add(new Location( new LatLng(48.149751,11.587658), asList(EXERCISE_TYPE.DIPS, EXERCISE_TYPE.PULL_UP)));
+		allLocations.add(new Location( new LatLng(48.148577,11.590447), asList(EXERCISE_TYPE.DIPS, EXERCISE_TYPE.PULL_UP)));
+		allLocations.add(new Location( new LatLng(48.145972,11.588044), asList(EXERCISE_TYPE.DIPS, EXERCISE_TYPE.PULL_UP)));
+		
+		allLocations.add(new Location( new LatLng(48.156508,11.580362), asList(EXERCISE_TYPE.DIPS, EXERCISE_TYPE.PULL_UP)));
+		
 		return allLocations;
 	}
 	

@@ -78,6 +78,9 @@
 	<string name="exercise_repetition_goal_pushup">von %1$d Kniebeugen</string>
 	<string name="exercise_overview">Übungen: %1$d von %2$d</string>
 	<string name="exercise_overview_default">keine Übungen</string>
+	<string name="exercise_repetition_goal">Ziel: %1$d</string>
+	<string name="start_run">Start Run</string>
+	<string name="different_route">Andere route</string>
 
 
 </resources>
