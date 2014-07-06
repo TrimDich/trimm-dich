@@ -58,8 +58,9 @@ public class RouteGenerator {
 		double routeLengthInKm = 0;
 		
 		// Set start and end points
-		selectedLocations.add(new Location(routeProperties.startPosition, null));
-		selectedLocations.add(new Location(routeProperties.startPosition, null));
+		
+		selectedLocations.add(new Location(routeProperties.startPosition, asList(Exercise.EXERCISE_TYPE.SQUATS)));
+		selectedLocations.add(new Location(routeProperties.startPosition, asList(Exercise.EXERCISE_TYPE.SQUATS)));
 		lastAddedLocation = selectedLocations.get(0);
 		
 		while (routeLengthInKm < routeProperties.desiredLengthInKm) {

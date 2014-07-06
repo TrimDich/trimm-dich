@@ -250,7 +250,7 @@ public class WorkoutTracker implements
 
 	@Override
 	public void onConnected(Bundle arg0) {
-		Toast.makeText(currentActivity, "Connected", Toast.LENGTH_SHORT).show();
+//		Toast.makeText(currentActivity, "Connected", Toast.LENGTH_SHORT).show();
 
 		this.onLocationChanged(locationClient.getLastLocation());
 		refreshLocationUpdateInterval();
