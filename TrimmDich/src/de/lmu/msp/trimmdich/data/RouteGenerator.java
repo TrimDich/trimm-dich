@@ -86,6 +86,7 @@ public class RouteGenerator {
 			// pop a random one
 			int itemToRemove = (int)(Math.random()*availableLocations.size()); 
 			lastAddedLocation = availableLocations.remove(itemToRemove);
+			lastAddedLocation.selectRandomExercise();
 			selectedLocations.add(selectedLocations.size() / 2, lastAddedLocation);
 			routeLengthInKm = Helpers.lengthOfRoute(selectedLocations);
 			Log.d("RouteGenerator", "Adding route node: " + lastAddedLocation);
@@ -99,16 +100,11 @@ public class RouteGenerator {
 		newRoute.dataPoints = new ArrayList<Route.RouteDataPoint>();
 		
 		// Distribute the exercises across the location nodes
-		for(int i = 0; i < routeProperties.desiredExercises; i++) {
-			int locationIndex = 1 + new Random().nextInt(newRoute.locations.size() - 1);
-			Location location = newRoute.locations.get(locationIndex);
-			
-			int exerciseIndex = new Random().nextInt(location.possibleExercises.size());
-			EXERCISE_TYPE type = location.possibleExercises.get(exerciseIndex);
-			
-			Exercise newExercise = new Exercise(type, 10);
-			location.selectedExercises.add(newExercise);
-		}
+//		for(int i = 0; i < routeProperties.desiredExercises - newRoute.locations.size(); i++) {
+//			int locationIndex = new Random().nextInt(newRoute.locations.size());
+//			Location location = newRoute.locations.get(locationIndex);
+//			location.selectRandomExercise();
+//		}
 		
 		return newRoute;
 	}

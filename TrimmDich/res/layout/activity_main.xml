@@ -83,7 +83,10 @@
         android:paddingBottom="24dp"
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
-        android:paddingTop="24dp" >
+        android:paddingTop="24dp" 
+        
+        android:visibility="gone"
+        >
 
         <TextView
             android:id="@+id/setupExerciseCountTextView"
@@ -109,7 +112,8 @@
         android:layout_height="1dp"
         android:layout_below="@+id/excerciseCountLinearLayout"
         android:contentDescription="@string/boder_img"
-        android:src="#ccc" />
+        android:src="#ccc" 
+        android:visibility="gone"/>
 
     <LinearLayout
         android:id="@+id/excerciseTypesLinearLayout"
@@ -124,7 +128,8 @@
         android:paddingBottom="24dp"
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
-        android:paddingTop="24dp" >
+        android:paddingTop="24dp" 
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/setupExerciseTypesTextView"
