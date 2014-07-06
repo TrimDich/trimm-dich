@@ -46,7 +46,7 @@ public class Exercise {
 	 * @return boolean 
 	 */
 	public boolean isRepetitionsReached(){
-		return repetitionActual >repetitionGoal;
+		return repetitionActual >= repetitionGoal;
 	}
 	
 	/**

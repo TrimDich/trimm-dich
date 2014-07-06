@@ -110,7 +110,7 @@ public class CompassActivity extends Activity implements LocationListener,
 
 	public void arriveAtExercise(View view) {
 		Intent newIntent = new Intent(this, ExerciseActivity.class);
-		startActivity(newIntent);
+		startActivityForResult(newIntent,0);
 	}
 
 	@Override

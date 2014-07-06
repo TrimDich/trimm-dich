@@ -27,7 +27,8 @@
         android:contentDescription="@string/boder_img"
         android:src="#ccc" />
 
-    <Button
+    <!--
+         <Button
         android:id="@+id/exercise_bt_next"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -36,6 +37,7 @@
         android:longClickable="true"
         android:onClick="onBtNextClick"
         android:text="@string/exercise_bt_next" />
+    -->
 
     <TextView
         android:id="@+id/exercise_countView"
@@ -75,9 +77,23 @@
         android:id="@+id/imageView2"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_above="@+id/exercise_bt_next"
+         android:layout_above="@+id/nextExercise"
         android:layout_alignParentLeft="true"
         android:contentDescription="@string/boder_img"
         android:src="#ccc" />
+
+    <TextView
+         android:id="@+id/nextExercise"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/config_button"
+        android:clickable="true"
+        android:onClick="onBtNextClick"
+        android:gravity="center"
+        android:text="@string/exercise_bt_next"
+        android:textColor="@color/subtitle_text_color"
+        android:textSize="25sp" />
 
 </RelativeLayout>

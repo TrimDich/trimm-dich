@@ -341,7 +341,7 @@ public class WorkoutTracker implements
 	}
 
 	public List<Exercise> getCurrentLocationExcercices() {
-		return activeRoute.locations.get(nextLocation).selectedExercises;
+		return activeRoute.locations.get(nextLocation).selectedExercises;//TODO: fix possible IndexOutOfBoundsExeception
 	}
 
 	public LatLng getDestinationLocation() {
