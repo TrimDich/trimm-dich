@@ -6,24 +6,16 @@ import java.math.RoundingMode;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
-import android.graphics.drawable.BitmapDrawable;
 import android.hardware.GeomagneticField;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.location.Criteria;
 import android.location.Location;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.Chronometer;
-import android.widget.ImageView;
-import android.widget.ImageView.ScaleType;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,7 +29,7 @@ public class CompassActivity extends Activity implements LocationListener,
 		SensorEventListener {
 
 	private WorkoutTracker mWorkoutTracker;
-	
+
 	private SensorManager mSensorManager;
 
 	private Chronometer mChronometer;
@@ -50,13 +42,13 @@ public class CompassActivity extends Activity implements LocationListener,
 
 	private CompassView mCompassIMageView;
 
-	// Max-Weber-Platz
-	private final static double MWP_LONG = 11.598032;
-	private final static double MWP_LAT = 48.136158;
-
-	// Herkomerplatz
-	private final static double HKP_LONG = 11.6094243;
-	private final static double HKP_LAT = 48.1507574;
+	// // Max-Weber-Platz
+	// private final static double MWP_LONG = 11.598032;
+	// private final static double MWP_LAT = 48.136158;
+	//
+	// // Herkomerplatz
+	// private final static double HKP_LONG = 11.6094243;
+	// private final static double HKP_LAT = 48.1507574;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -89,19 +81,21 @@ public class CompassActivity extends Activity implements LocationListener,
 				});
 		mChronometer.start();
 
-		mDestinationLocation.setLongitude(HKP_LONG);
-		mDestinationLocation.setLatitude(HKP_LAT);
-
 		mCompassIMageView = (CompassView) findViewById(R.id.compassImageView);
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
-		//mLocationManager.requestLocationUpdates(mProvider, 1000, 5, this);
+		// mLocationManager.requestLocationUpdates(mProvider, 1000, 5, this);
 		mWorkoutTracker = WorkoutTracker.getInstance();
 		mWorkoutTracker.setCurrentActivity(this);
-		
+
+		mDestinationLocation.setLongitude(mWorkoutTracker
+				.getDestinationLocation().longitude);
+		mDestinationLocation.setLatitude(mWorkoutTracker
+				.getDestinationLocation().latitude);
+
 		mSensorManager.registerListener(this,
 				mSensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION),
 				SensorManager.SENSOR_DELAY_GAME);
@@ -112,9 +106,8 @@ public class CompassActivity extends Activity implements LocationListener,
 	protected void onPause() {
 		super.onPause();
 		mSensorManager.unregisterListener(this);
-		// mChronometer.stop();
 	}
-	
+
 	public void arriveAtExercise(View view) {
 		Intent newIntent = new Intent(this, ExerciseActivity.class);
 		startActivity(newIntent);
@@ -143,7 +136,7 @@ public class CompassActivity extends Activity implements LocationListener,
 		}
 
 	}
-	
+
 	@Override
 	public void onAccuracyChanged(Sensor sensor, int accuracy) {
 		// TODO Auto-generated method stub
@@ -153,9 +146,8 @@ public class CompassActivity extends Activity implements LocationListener,
 	@Override
 	public void onSensorChanged(SensorEvent event) {
 
-		Criteria criteria = new Criteria();
 		Location currentLocation = mWorkoutTracker.getLastLocation();
-		
+
 		// azimuth Richtungwinkel
 		float azimuth = event.values[0];
 
@@ -186,23 +178,10 @@ public class CompassActivity extends Activity implements LocationListener,
 		if (direction < 0) {
 			direction = direction + 360;
 		}
-//
-//		rotateImageView(mCompassIMageView, R.drawable.navigation_thin,
-//				direction);
-		
-		mCompassIMageView.setRotation(direction);
-		
-//		mCompassIMageView.setr
-		
-		
 
+		mCompassIMageView.setRotation(direction);
 		mBearingTextView.setText("" + bearTo);
 
-	}
-
-	private void rotateImageView(ImageView imageView, int drawable, float rotate) {
-
-		
 	}
 
 	private static double round(double value, int places) {

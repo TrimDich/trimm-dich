@@ -307,7 +307,7 @@ public class WorkoutTracker implements
 						ExerciseActivity.class);
 				intent.putExtra("next_location", nextLocation);
 				currentActivity.startActivity(intent);
-				
+
 			}
 
 		}
@@ -339,9 +339,14 @@ public class WorkoutTracker implements
 	public List<Exercise> getCurrentLocationExcercices() {
 		return activeRoute.locations.get(nextLocation).selectedExercises;
 	}
-	
+
+	public LatLng getDestinationLocation() {
+		return activeRoute.locations.get(nextLocation).location;
+	}
+
 	public boolean isLastLocation() {
-		return activeRoute != null && nextLocation == activeRoute.locations.size();
+		return activeRoute != null
+				&& nextLocation == activeRoute.locations.size();
 	}
 
 }

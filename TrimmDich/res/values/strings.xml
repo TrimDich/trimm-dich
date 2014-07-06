@@ -40,21 +40,24 @@
     <string name="pushUps">Liegestütze</string>
     <string name="dips">Dips</string>
 
+    <!-- Main Activity -->
+    <string name="start_training">Starte Training</string>
 
-	
-	<!-- Main Activity  -->
-	<string name="start_training">Starte Training</string>
-	
-	<!-- Exercise Activity  -->
-	<string name="exercise_pushup">Kniebeugen</string>
-	<string name="exercise_title">Trimm Dich - Übungen</string>
-	<string name="exercise_zero">0</string>
-	<string name="exercise_img_content_description">Strichmännchen</string>
-	<string name="exercise_start">Beginne Kniebeugen zu machen</string>
-	<string name="exercise_pause">Keine Pause einlegen!</string>
-	<string name="exercise_end">Fertig. Das nächste mal etwas schneller vielleicht!</string>
-	<string name="exercise_bt_next">Übungen überspringen</string>
-	<string name="exercise_repetition_goal">Ziel: %1$d</string>
-	<string name="start_run">Start Run</string>
+    <!-- Exercise Activity -->
+    <string name="exercise_pushup">Kniebeugen</string>
+    <string name="exercise_title">Trimm Dich - Übungen</string>
+    <string name="exercise_zero">0</string>
+    <string name="exercise_img_content_description">Strichmännchen</string>
+    <string name="exercise_start">Beginne Kniebeugen zu machen</string>
+    <string name="exercise_pause">Keine Pause einlegen!</string>
+    <string name="exercise_end">Fertig. Das nächste mal etwas schneller vielleicht!</string>
+    <string name="exercise_bt_next">Übungen überspringen</string>
+    <string name="exercise_repetition_goal">Ziel: %1$d</string>
+    <string name="start_run">Start Run</string>
+
+    <!-- Excercise Done Activity -->
+    <string name="complete_exercise">Geschafft!</string>
+    <string name="almost_complete_exercise">Fast Geschafft!</string>
+    <string name="not_complete_exercise">Fast Geschafft!</string>
 
 </resources>
