@@ -1,25 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:gravity="center" >
 
-    <Button
-        android:id="@+id/button1"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/complete_exercise" />
+        android:layout_above="@+id/exerciseDoneLinearLayout"
+        android:textSize="24sp" />
 
-    <Button
-        android:id="@+id/button2"
+    <LinearLayout
+        android:id="@+id/exerciseDoneLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/almost_complete_exercise" />
+        android:layout_marginTop="1dp"
+        android:background="@drawable/exercise_completed"
+        android:clickable="true"
+        android:orientation="vertical"
+        android:paddingBottom="24dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="24dp" >
 
-    <Button
-        android:id="@+id/button3"
+        <TextView
+            android:id="@+id/exerciseDoneTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:gravity="center"
+            android:text="@string/complete_exercise"
+            android:textSize="22sp" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_above="@+id/exerciseDoneLinearLayout"
+        android:layout_marginBottom="2dp"
+        android:contentDescription="@string/boder_img"
+        android:src="#888" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/exerciseDoneLinearLayout"
+        android:contentDescription="@string/boder_img"
+        android:src="#888" />
+
+    <LinearLayout
+        android:id="@+id/exerciseAlmostDoneLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/not_complete_exercise" />
+        android:layout_below="@+id/exerciseDoneLinearLayout"
+        android:layout_marginTop="1dp"
+        android:background="@drawable/exercise_almost_completed"
+        android:clickable="true"
+        android:orientation="vertical"
+        android:paddingBottom="24dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="24dp" >
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/setupExerciseCountTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:gravity="center"
+            android:text="@string/almost_complete_exercise"
+            android:textSize="22sp" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/exerciseAlmostDoneLinearLayout"
+        android:contentDescription="@string/boder_img"
+        android:src="#888" />
+
+    <LinearLayout
+        android:id="@+id/exerciseNotCompletedLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/exerciseAlmostDoneLinearLayout"
+        android:layout_marginTop="1dp"
+        android:background="@drawable/exercise_not_completed"
+        android:clickable="true"
+        android:orientation="vertical"
+        android:paddingBottom="24dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="24dp" >
+
+        <TextView
+            android:id="@+id/exerciseNotCompletedTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:gravity="center"
+            android:text="@string/not_complete_exercise"
+            android:textSize="22sp" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/exerciseNotCompletedLinearLayout"
+        android:contentDescription="@string/boder_img"
+        android:src="#ccc" />
+
+</RelativeLayout>
