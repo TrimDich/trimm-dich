@@ -47,6 +47,15 @@ public class RouteGenerator {
 		allLocations.add(new Location( new LatLng(48.174629,11.571865), asList(EXERCISE_TYPE.DIPS, EXERCISE_TYPE.PULL_UP)));
 		allLocations.add(new Location( new LatLng(48.175201,11.567359), asList(EXERCISE_TYPE.DIPS, EXERCISE_TYPE.PULL_UP)));
 		
+		allLocations.add(new Location( new LatLng(48.147862,11.571672), asList(EXERCISE_TYPE.DIPS, EXERCISE_TYPE.PULL_UP)));
+		allLocations.add(new Location( new LatLng(48.148778,11.57032), asList(EXERCISE_TYPE.DIPS, EXERCISE_TYPE.PULL_UP)));
+		allLocations.add(new Location( new LatLng(48.153359,11.582165), asList(EXERCISE_TYPE.DIPS, EXERCISE_TYPE.PULL_UP)));
+		allLocations.add(new Location( new LatLng(48.149751,11.587658), asList(EXERCISE_TYPE.DIPS, EXERCISE_TYPE.PULL_UP)));
+		allLocations.add(new Location( new LatLng(48.148577,11.590447), asList(EXERCISE_TYPE.DIPS, EXERCISE_TYPE.PULL_UP)));
+		allLocations.add(new Location( new LatLng(48.145972,11.588044), asList(EXERCISE_TYPE.DIPS, EXERCISE_TYPE.PULL_UP)));
+		
+		allLocations.add(new Location( new LatLng(48.156508,11.580362), asList(EXERCISE_TYPE.DIPS, EXERCISE_TYPE.PULL_UP)));
+		
 		return allLocations;
 	}
 	
@@ -77,6 +86,7 @@ public class RouteGenerator {
 			// pop a random one
 			int itemToRemove = (int)(Math.random()*availableLocations.size()); 
 			lastAddedLocation = availableLocations.remove(itemToRemove);
+			lastAddedLocation.selectRandomExercise();
 			selectedLocations.add(selectedLocations.size() / 2, lastAddedLocation);
 			routeLengthInKm = Helpers.lengthOfRoute(selectedLocations);
 			Log.d("RouteGenerator", "Adding route node: " + lastAddedLocation);
@@ -90,16 +100,11 @@ public class RouteGenerator {
 		newRoute.dataPoints = new ArrayList<Route.RouteDataPoint>();
 		
 		// Distribute the exercises across the location nodes
-		for(int i = 0; i < routeProperties.desiredExercises; i++) {
-			int locationIndex = new Random().nextInt(newRoute.locations.size());
-			Location location = newRoute.locations.get(locationIndex);
-			
-			int exerciseIndex = new Random().nextInt(location.possibleExercises.size());
-			EXERCISE_TYPE type = location.possibleExercises.get(exerciseIndex);
-			
-			Exercise newExercise = new Exercise(type, 10);
-			location.selectedExercises.add(newExercise);
-		}
+//		for(int i = 0; i < routeProperties.desiredExercises - newRoute.locations.size(); i++) {
+//			int locationIndex = new Random().nextInt(newRoute.locations.size());
+//			Location location = newRoute.locations.get(locationIndex);
+//			location.selectRandomExercise();
+//		}
 		
 		return newRoute;
 	}
@@ -111,7 +116,7 @@ public class RouteGenerator {
 		public RouteProperties() { }
 		public RouteProperties(Intent intent) { 
 			startPosition = new LatLng(intent.getDoubleExtra("startPositionLat", 0), intent.getDoubleExtra("startPositionLon", 0));
-			desiredLengthInKm = intent.getFloatExtra("desiredLengthInKm", 5);
+			desiredLengthInKm = intent.getDoubleExtra("desiredLengthInKm", 5);
 			desiredExercises = intent.getIntExtra("desiredExercises", 5);
 		}
 		public void saveToIntent(Intent intent) {

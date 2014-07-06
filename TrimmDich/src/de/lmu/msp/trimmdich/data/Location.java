@@ -21,4 +21,12 @@ public class Location {
 		this.location = location;
 		this.selectedExercises = new ArrayList<Exercise>();
 	}
+	
+	public void selectRandomExercise() {
+		int exerciseIndex = new Random().nextInt(this.possibleExercises.size());
+		EXERCISE_TYPE type = this.possibleExercises.get(exerciseIndex);
+		
+		Exercise newExercise = new Exercise(type, 10);
+		this.selectedExercises.add(newExercise);
+	}
 }
