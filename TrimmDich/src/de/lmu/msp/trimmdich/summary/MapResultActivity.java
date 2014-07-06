@@ -1,15 +1,15 @@
 package de.lmu.msp.trimmdich.summary;
 
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.model.PolylineOptions;
-
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+
 import de.lmu.msp.trimmdich.R;
-import de.lmu.msp.trimmdich.data.Location;
 import de.lmu.msp.trimmdich.data.Route;
 
 public class MapResultActivity extends Activity {
@@ -30,16 +30,24 @@ public class MapResultActivity extends Activity {
 
 		route = null;
 
-		// add route to map
-		PolylineOptions line = new PolylineOptions();
-
-		for (Location location : route.locations) {
-			line.add(location.location);
-			map.addMarker(new MarkerOptions().position(location.location)
-					.title("location"));
-		}
-		map.addPolyline(line);
+		/*
+		 * route = null;
+		 * 
+		 * >>>>>>> 8720dee367b9192141a54db10a764a0bd859421d // add route to map
+		 * PolylineOptions line = new PolylineOptions();
+		 * 
+		 * for (Location location : route.locations) {
+		 * line.add(location.location); map.addMarker(new
+		 * MarkerOptions().position(location.location) .title("location")); }
+		 * <<<<<<< HEAD map.addPolyline(line);
+		 * 
+		 * } ======= map.addPolyline(line);
+		 */
 
 	}
 
+	public void showStatistics(View view) {
+		Intent newIntent = new Intent(this, StatisticsActivity.class);
+		startActivity(newIntent);
+	}
 }

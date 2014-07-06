@@ -339,5 +339,9 @@ public class WorkoutTracker implements
 	public List<Exercise> getCurrentLocationExcercices() {
 		return activeRoute.locations.get(nextLocation).selectedExercises;
 	}
+	
+	public boolean isLastLocation() {
+		return activeRoute != null && nextLocation == activeRoute.locations.size();
+	}
 
 }

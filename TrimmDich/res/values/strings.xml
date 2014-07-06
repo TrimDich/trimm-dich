@@ -55,5 +55,6 @@
 	<string name="exercise_end">Fertig. Das nächste mal etwas schneller vielleicht!</string>
 	<string name="exercise_bt_next">Übungen überspringen</string>
 	<string name="exercise_repetition_goal">Ziel: %1$d</string>
+	<string name="start_run">Start Run</string>
 
 </resources>
