@@ -335,6 +335,10 @@ public class WorkoutTracker implements
 	public void setNextLocation(int nextLocation) {
 		this.nextLocation = nextLocation;
 	}
+	
+	public void moveToNextLocation(){
+		this.nextLocation++;
+	}
 
 	public List<Exercise> getCurrentLocationExcercices() {
 		return activeRoute.locations.get(nextLocation).selectedExercises;

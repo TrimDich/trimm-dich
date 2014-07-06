@@ -41,6 +41,13 @@ public class Exercise {
 	public int getRepetitionsActual(){
 		return this.repetitionActual;
 	}
+	/**
+	 * Returns if all repetitions are done
+	 * @return boolean 
+	 */
+	public boolean isRepetitionsReached(){
+		return repetitionActual >repetitionGoal;
+	}
 	
 	/**
 	 * Returns the aimed repetition count
@@ -48,5 +55,13 @@ public class Exercise {
 	 */
 	public int getRepetitionsGoal(){
 		return this.repetitionGoal;
+	}
+	
+	/**
+	 * Returns the type of the exercise
+	 * @return EXERCISE_TYPE type
+	 */
+	public EXERCISE_TYPE getType(){
+		return this.type;
 	}
 }
