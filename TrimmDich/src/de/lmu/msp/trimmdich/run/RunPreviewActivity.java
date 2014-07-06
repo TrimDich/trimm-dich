@@ -6,6 +6,8 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.google.android.gms.location.LocationListener;
@@ -49,9 +51,21 @@ public class RunPreviewActivity extends Activity implements LocationListener {
 
 		// load route properties
 		routeProperties = new RouteProperties(getIntent());
+		
+		//
+		// Workout Tracker
+		//
+		workoutTracker = WorkoutTracker.getInstance();
+		workoutTracker.setCurrentActivity(this);
+		
+		generateRoute();
+	}
+	
+	private void generateRoute() {
 		route = RouteGenerator.generateRoute(routeProperties);
 
 		// add route to map
+		map.clear();
 		PolylineOptions line = new PolylineOptions();
 
 		for (Location location : route.locations) {
@@ -60,13 +74,6 @@ public class RunPreviewActivity extends Activity implements LocationListener {
 					.title("location"));
 		}
 		map.addPolyline(line);
-
-		//
-		// Workout Tracker
-		//
-		workoutTracker = WorkoutTracker.getInstance();
-		workoutTracker.setCurrentActivity(this);
-
 	}
 
 	public void startRun(View view) {
@@ -85,4 +92,26 @@ public class RunPreviewActivity extends Activity implements LocationListener {
 		CameraUpdate update = CameraUpdateFactory.newLatLngZoom(lastLatLng, 13);
 		map.animateCamera(update);
 	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.run_preview, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle action bar item clicks here. The action bar will
+		// automatically handle clicks on the Home/Up button, so long
+		// as you specify a parent activity in AndroidManifest.xml.
+		int id = item.getItemId();
+		if (id == R.id.differentRoute) {
+			generateRoute();
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+
 }
