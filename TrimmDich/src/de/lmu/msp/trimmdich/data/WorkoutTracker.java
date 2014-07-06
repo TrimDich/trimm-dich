@@ -17,6 +17,7 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Context;
 import android.content.IntentSender;
+import android.graphics.Canvas;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
@@ -37,7 +38,6 @@ public class WorkoutTracker implements
 		GooglePlayServicesClient.OnConnectionFailedListener, LocationListener {
 	// Tracks the progress in the exercise
 	// Tracks location
-	private int nextLocation;
 
 	// Global constants
 	// Singelton
@@ -48,15 +48,27 @@ public class WorkoutTracker implements
 		private static final WorkoutTracker DAD = new WorkoutTracker();
 	}
 
-	// Static
 	public static WorkoutTracker getInstance() {
 		return Holder.DAD;
 	}
 
-	// Define a request code to send to Google Play services.This code is
-	// returned in
-	// Activity.onActivityResult
-	private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
+	// Static
+	private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000; // Define
+																			// a
+																			// request
+																			// code
+																			// to
+																			// send
+																			// to
+																			// Google
+																			// Play
+																			// services.
+																			// This
+																			// code
+																			// is
+																			// returned
+																			// in
+																			// Activity.onActivityResult
 	// Request code to use when launching the resolution activity
 	private static final int REQUEST_RESOLVE_ERROR = 1001;
 	// Unique tag for the error dialog fragment
@@ -70,6 +82,11 @@ public class WorkoutTracker implements
 	// Bool to track whether the app is already resolving an error
 	private boolean mResolvingError = false;
 	private Route activeRoute;
+	private Location lastLocation;
+
+	public Location getLastLocation() {
+		return lastLocation;
+	}
 
 	public Route getActiveRoute() {
 		return activeRoute;
@@ -243,7 +260,7 @@ public class WorkoutTracker implements
 
 		this.onLocationChanged(locationClient.getLastLocation());
 		refreshLocationUpdateInterval();
-
+		
 	}
 
 	@Override
@@ -253,10 +270,12 @@ public class WorkoutTracker implements
 				Toast.LENGTH_SHORT).show();
 
 	}
-
+	
 	@Override
 	public void onLocationChanged(Location location) {
 
+		lastLocation = location;
+		
 		// TODO save location updates to current route if running
 		if (activeRoute != null) {
 
@@ -274,13 +293,5 @@ public class WorkoutTracker implements
 			LocationListener listener = (LocationListener) currentActivity;
 			listener.onLocationChanged(location);
 		}
-	}
-
-	public int getNextLocation() {
-		return nextLocation;
-	}
-
-	public void setNextLocation(int nextLocation) {
-		this.nextLocation = nextLocation;
 	}
 }
