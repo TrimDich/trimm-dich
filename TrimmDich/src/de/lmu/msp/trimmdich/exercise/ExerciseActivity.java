@@ -124,11 +124,12 @@ public class ExerciseActivity extends Activity implements SensorEventListener,
 				startActivityForResult(new Intent(this, ExerciseActivityChooser.class),7);
 			return true;
 		} catch (NoSuchElementException e) {
-			WorkoutTracker.getInstance().moveToNextLocation();
-			if(WorkoutTracker.getInstance().isLastLocation())
+			if(WorkoutTracker.getInstance().isLastLocation()) {
 				startActivity(new Intent(this, MapResultActivity.class));
-			else
+			} else {
+				WorkoutTracker.getInstance().moveToNextLocation();
 				this.finish();
+			}
 			return false;
 		}
 	}

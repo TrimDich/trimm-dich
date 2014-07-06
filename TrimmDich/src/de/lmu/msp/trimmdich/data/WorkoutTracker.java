@@ -332,10 +332,6 @@ public class WorkoutTracker implements
 		return nextLocation;
 	}
 
-	public void setNextLocation(int nextLocation) {
-		this.nextLocation = nextLocation;
-	}
-	
 	public void moveToNextLocation(){
 		this.nextLocation++;
 	}
@@ -350,7 +346,7 @@ public class WorkoutTracker implements
 
 	public boolean isLastLocation() {
 		return activeRoute != null
-				&& nextLocation == activeRoute.locations.size();
+				&& nextLocation == activeRoute.locations.size() - 1;
 	}
 
 }
