@@ -76,16 +76,13 @@
     <string name="back_dialog_yes">Ja</string>
     <string name="back_dialog_no">Nein</string>
 
-
     <!-- Statistics -->
     <string name="repetitions">Wiederholungen</string>
-   
-
-
+    <string name="start_new_run">Neuer Run</string>
     <string name="statistics_activity_title">Statistiken</string>
-	<string name="compass_activity_title">Navigation</string>
-	<string name="excercise_activity_title">Übung</string>
-	<string name="runpreview_activity_title">Vorschau</string>
-	<string name="main_activity_title">Hauptmenü</string>
+    <string name="compass_activity_title">Navigation</string>
+    <string name="excercise_activity_title">Übung</string>
+    <string name="runpreview_activity_title">Vorschau</string>
+    <string name="main_activity_title">Hauptmenü</string>
 
 </resources>

@@ -151,7 +151,7 @@
                 </LinearLayout>
 
                 <TextView
-                    android:layout_width="72dp"
+                    android:layout_width="76dp"
                     android:layout_height="wrap_content"
                     android:gravity="right"
                     android:text="@string/pullUps"
@@ -206,7 +206,7 @@
                 </LinearLayout>
 
                 <TextView
-                    android:layout_width="72dp"
+                    android:layout_width="76dp"
                     android:layout_height="wrap_content"
                     android:gravity="right"
                     android:text="@string/pushUps"
@@ -262,7 +262,7 @@
                 </LinearLayout>
 
                 <TextView
-                    android:layout_width="72dp"
+                    android:layout_width="76dp"
                     android:layout_height="wrap_content"
                     android:gravity="right"
                     android:text="@string/dips"
@@ -319,7 +319,7 @@
                 </LinearLayout>
 
                 <TextView
-                    android:layout_width="72dp"
+                    android:layout_width="76dp"
                     android:layout_height="wrap_content"
                     android:gravity="right"
                     android:text="@string/squats"

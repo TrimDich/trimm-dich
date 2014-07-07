@@ -60,8 +60,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="14dp"
         android:layout_marginTop="14dp"
-        android:background="@color/subtitle_text_color"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/actionbar_text" />
+        android:textColor="@color/subtitle_text_color"
+        android:textSize="14sp" />
 
 </RelativeLayout>

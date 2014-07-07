@@ -13,6 +13,8 @@ import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -189,15 +191,38 @@ public class StatisticsMapActivity extends Activity {
 							@Override
 							public void onClick(DialogInterface dialog,
 									int which) {
-								Intent newIntent = new Intent(getBaseContext(),
-										MainActivity.class);
-								newIntent
-										.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-												| Intent.FLAG_ACTIVITY_CLEAR_TASK);
-								startActivity(newIntent);
+								startNewRun();
 							}
 
 						}).setNegativeButton(R.string.back_dialog_no, null)
 				.show();
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.new_run, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle action bar item clicks here. The action bar will
+		// automatically handle clicks on the Home/Up button, so long
+		// as you specify a parent activity in AndroidManifest.xml.
+		int id = item.getItemId();
+		if (id == R.id.new_run) {
+			startNewRun();
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+
+	private void startNewRun() {
+		Intent newIntent = new Intent(this, MainActivity.class);
+		newIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+				| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+		startActivity(newIntent);
 	}
 }

@@ -50,7 +50,7 @@ public class RunPreviewActivity extends Activity implements LocationListener {
 		map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
 				.getMap();
 		distanceIndicator = (TextView) findViewById(R.id.distanceIndicator);
-		
+
 		// configure map
 		map.setMyLocationEnabled(true);
 
@@ -69,22 +69,25 @@ public class RunPreviewActivity extends Activity implements LocationListener {
 	private void generateRoute() {
 		route = RouteGenerator.generateRoute(routeProperties);
 
-		distanceIndicator.setText("aprox. " + WorkoutTracker.round(route.flightPathInKm, 2) + " Km");
-		
+		distanceIndicator.setText("ca. "
+				+ WorkoutTracker.round(route.flightPathInKm, 2) + " km");
+
 		// add route to map
 		map.clear();
 		PolylineOptions line = new PolylineOptions();
 
 		for (Location location : route.locations) {
 			line.add(location.location);
-			MarkerOptions options = new MarkerOptions().position(location.location)
-					.title("location");
-			if(location.selectedExercises.size() == 0) {
-				options.icon(BitmapDescriptorFactory.fromResource(R.drawable.flag32));
+			MarkerOptions options = new MarkerOptions().position(
+					location.location).title("location");
+			if (location.selectedExercises.size() == 0) {
+				options.icon(BitmapDescriptorFactory
+						.fromResource(R.drawable.flag32));
 			} else {
-				options.icon(BitmapDescriptorFactory.fromResource(R.drawable.empty2));
+				options.icon(BitmapDescriptorFactory
+						.fromResource(R.drawable.empty2));
 			}
-			
+
 			map.addMarker(options);
 		}
 		// map.addPolyline(line).setColor(0xFF1BA39C);
