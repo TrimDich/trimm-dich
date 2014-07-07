@@ -1,7 +1,5 @@
 package de.lmu.msp.trimmdich.summary;
 
-import java.util.ArrayList;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -15,11 +13,9 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 
 import de.lmu.msp.trimmdich.R;
-import de.lmu.msp.trimmdich.data.Location;
 import de.lmu.msp.trimmdich.data.Route;
 import de.lmu.msp.trimmdich.data.Route.RouteDataPoint;
 import de.lmu.msp.trimmdich.data.WorkoutTracker;
@@ -39,7 +35,7 @@ public class MapResultActivity extends Activity {
 		setContentView(R.layout.activity_mapresult);
 		ActionBar actionbar = getActionBar();
 		actionbar.setIcon(R.drawable.running_white_48);
-		setTitle("Zurückgelegte Strecke");
+		setTitle(R.string.map_result_activity_title);
 		map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
 				.getMap();
 		map.setMyLocationEnabled(true);
@@ -85,9 +81,9 @@ public class MapResultActivity extends Activity {
 		//Ask the user if they want to quit
         new AlertDialog.Builder(this)
         .setIcon(android.R.drawable.ic_dialog_alert)
-        .setTitle("Zurück")
-        .setMessage("Willst du zurück zum Hauptmenü?")
-        .setPositiveButton("Ja", new DialogInterface.OnClickListener() {
+        .setTitle(R.string.back_dialog_title)
+        .setMessage(R.string.back_dialog_msg)
+        .setPositiveButton(R.string.back_dialog_yes, new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -97,7 +93,7 @@ public class MapResultActivity extends Activity {
             }
 
         })
-        .setNegativeButton("Nein", null)
+        .setNegativeButton(R.string.back_dialog_no, null)
         .show();
 	}
 }
