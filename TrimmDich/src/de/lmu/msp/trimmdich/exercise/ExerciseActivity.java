@@ -116,12 +116,22 @@ public class ExerciseActivity extends Activity implements SensorEventListener,
 		sensorManager.unregisterListener(this);
 		try {
 			currentExercise = currentExercises.next();
-			if(currentExercise.getType() == EXERCISE_TYPE.PUSH_UP){
-				infoView.setText(getResources().getString(R.string.exercise_repetition_goal_pushup, currentExercise.getRepetitionsGoal()));
-				exerciseCounter = new SquatCounter(currentExercise, this);
-				sensorManager.registerListener(this,sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),SensorManager.SENSOR_DELAY_NORMAL);
-			}else 
-				startActivityForResult(new Intent(this, ExerciseActivityChooser.class),7);
+			switch(currentExercise.getType()){
+				case SQUATS:
+					infoView.setText(getResources().getString(R.string.exercise_repetition_goal_pushup, currentExercise.getRepetitionsGoal()));
+					exerciseCounter = new SquatCounter(currentExercise, this);
+					sensorManager.registerListener(this,sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),SensorManager.SENSOR_DELAY_NORMAL);
+					break;
+				case PULL_UP:
+				case PUSH_UP:
+				case DIPS:
+				default:
+					Intent intent = new Intent(this, ExerciseActivityChooser.class);
+					intent.putExtra(Exercise.INTENT_EXTRA_TYPE, currentExercise.getType());
+					intent.putExtra(Exercise.INTENT_EXTRA_COUNT_GOAL, currentExercise.getRepetitionsGoal());
+					startActivityForResult(intent,7);
+					break;
+			}
 			return true;
 		} catch (NoSuchElementException e) {
 			if(WorkoutTracker.getInstance().isLastLocation()) {
