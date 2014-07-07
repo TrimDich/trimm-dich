@@ -151,15 +151,23 @@
         android:clickable="true"
         android:gravity="center"
         android:onClick="arriveAtExercise"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:paddingBottom="24dp"
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
         android:paddingTop="24dp" >
 
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginRight="4dp"
+            android:cropToPadding="false"
+            android:src="@drawable/exercise" />
+
         <TextView
             android:id="@+id/setupExerciseCountTextView"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/arrive_at_exercise_btn"

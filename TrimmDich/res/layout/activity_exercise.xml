@@ -2,31 +2,50 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal"
-    android:orientation="vertical" >
+    android:gravity="center_horizontal" >
 
     <TextView
         android:id="@+id/exercise_overview_default"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="22dp"
-        android:layout_marginTop="22dp"
-        android:paddingBottom="12dp"
-        android:paddingTop="12dp"
+        android:gravity="center"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
         android:text="@string/exercise_overview_default"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:visibility="gone" />
 
+    <TextView
+        android:id="@+id/squatsTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        android:paddingBottom="8dp"
+        android:paddingTop="16dp"
+        android:text="@string/squats"
+        android:textSize="24sp" />
+
+    <ImageView
+        android:id="@+id/exercise_pic"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_below="@+id/squatsTxt"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:contentDescription="@string/exercise_img_content_description"
+        android:src="@drawable/squat_2" />
+    <!--
     <ImageView
         android:id="@+id/imageView1"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_below="@+id/exercise_overview_default"
+        android:layout_below="@+id/squatsTxt"
         android:contentDescription="@string/boder_img"
         android:src="#ccc" />
-
+    -->
     <!--
          <Button
         android:id="@+id/exercise_bt_next"
@@ -50,16 +69,6 @@
         android:textColor="@color/subtitle_text_color"
         android:textSize="150sp" />
 
-    <ImageView
-        android:id="@+id/exercise_pic"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_below="@+id/imageView1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
-        android:contentDescription="@string/exercise_img_content_description"
-        android:src="@drawable/squat_2" />
-
     <TextView
         android:id="@+id/exercise_exercise_name"
         android:layout_width="wrap_content"
@@ -77,23 +86,40 @@
         android:id="@+id/imageView2"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-         android:layout_above="@+id/nextExercise"
+        android:layout_above="@+id/nextExercise"
         android:layout_alignParentLeft="true"
         android:contentDescription="@string/boder_img"
         android:src="#ccc" />
 
-    <TextView
-         android:id="@+id/nextExercise"
+    <LinearLayout
+        android:id="@+id/nextExercise"
         android:layout_width="match_parent"
-        android:layout_height="75dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
         android:background="@drawable/config_button"
-        android:clickable="true"
-        android:onClick="onBtNextClick"
         android:gravity="center"
-        android:text="@string/exercise_bt_next"
-        android:textColor="@color/subtitle_text_color"
-        android:textSize="25sp" />
+        android:onClick="onBtNextClick"
+        android:paddingBottom="24dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="24dp" >
+
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginRight="4dp"
+            android:cropToPadding="false"
+            android:src="@drawable/skip" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="2dp"
+            android:gravity="center"
+            android:text="@string/exercise_bt_next"
+            android:textColor="@color/subtitle_text_color"
+            android:textSize="24sp" />
+    </LinearLayout>
 
 </RelativeLayout>

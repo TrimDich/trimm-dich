@@ -17,7 +17,7 @@
     <string name="speed_initial_txt">0,0</string>
     <string name="direction_to_exercise_txt">Richtung zur nächsten Übung</string>
     <string name="direction_img_content_description">Richtungspfeil</string>
-    <string name="arrive_at_exercise_btn">An Übung angekommen</string>
+    <string name="arrive_at_exercise_btn">Übung erreicht</string>
 
     <!-- Main Activity -->
     <string name="start_training_btn_txt">Starte Training</string>
