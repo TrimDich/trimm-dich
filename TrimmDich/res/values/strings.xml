@@ -63,5 +63,6 @@
     <string name="complete_exercise">Geschafft!</string>
     <string name="almost_complete_exercise">Fast Geschafft!</string>
     <string name="not_complete_exercise">Nicht Geschafft!</string>
+    <string name="repetitions_goal">x10</string>
 
 </resources>
