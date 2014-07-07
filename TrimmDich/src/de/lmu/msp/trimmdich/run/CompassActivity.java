@@ -167,8 +167,8 @@ public class CompassActivity extends Activity implements LocationListener,
 		LatLng lastLoc = new LatLng(location.getLatitude(), location.getLongitude());
 		LatLng destLoc = new LatLng(mDestinationLocation.getLatitude(), mDestinationLocation.getLongitude());
 		marker.setPosition(destLoc);
-		CameraUpdate update = CameraUpdateFactory.newLatLngZoom(lastLoc, 14);
-		map.animateCamera(update);
+		CameraUpdate update = CameraUpdateFactory.newLatLngZoom(lastLoc, 16);
+		map.animateCamera(update, 50, null);
 	}
 
 	@Override
