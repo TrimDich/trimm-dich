@@ -88,20 +88,24 @@
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/AbsoluteLayout1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="0.4"
-        android:layout_marginBottom="8dp"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:paddingBottom="0dp"
-        android:paddingTop="24dp" >
+        android:gravity="center_horizontal" >
+        
+        <fragment
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            class="com.google.android.gms.maps.MapFragment" />
 
         <de.lmu.msp.trimmdich.run.CompassView
             android:id="@+id/compassImageView"
-            android:layout_width="128dp"
+            android:layout_width="wrap_content"
             android:layout_height="128dp"
+            android:layout_centerInParent="true"
             android:contentDescription="@string/direction_img_content_description"
             android:src="@drawable/navigation_thin" />
 
@@ -118,10 +122,9 @@
             android:id="@+id/bearingTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
             android:textSize="12sp"
             android:visibility="gone" />
-    </LinearLayout>
+    </RelativeLayout>
 
     <ImageView
         android:layout_width="match_parent"
@@ -132,8 +135,8 @@
     <LinearLayout
         android:id="@+id/excerciseCountLinearLayout"
         android:layout_width="match_parent"
-        android:layout_weight="0.6"
         android:layout_height="match_parent"
+        android:layout_weight="0.6"
         android:background="@drawable/config_button"
         android:clickable="true"
         android:gravity="center"

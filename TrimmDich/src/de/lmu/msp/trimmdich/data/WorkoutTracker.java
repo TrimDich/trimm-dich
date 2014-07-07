@@ -299,15 +299,18 @@ public class WorkoutTracker implements
 			LatLng currentLocation = new LatLng(location.getLatitude(),
 					location.getLatitude());
 
-			double distance = Helpers.distance(destinationLocation.location,
+			double distanceInM = Helpers.distance(destinationLocation.location,
 					currentLocation);
 
-			double distanceInKM = round(distance / 1000, 2);
-			if (distanceInKM <= 0.02) {
+//			double distanceInKM = round(distance / 1000, 2);
+			if (distanceInM <= 20) {
 
 				Intent intent = new Intent(currentActivity,
 						ExerciseActivity.class);
 				intent.putExtra("next_location", nextLocation);
+				
+				Toast.makeText(currentActivity, "Arrived at location:" + nextLocation, 10000).show();
+				
 				currentActivity.startActivity(intent);
 
 			}

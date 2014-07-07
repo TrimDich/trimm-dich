@@ -20,6 +20,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.UiSettings;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import de.lmu.msp.trimmdich.R;
 import de.lmu.msp.trimmdich.data.WorkoutTracker;
@@ -41,6 +49,9 @@ public class CompassActivity extends Activity implements LocationListener,
 	private Location mDestinationLocation = new Location("Destination");
 
 	private CompassView mCompassIMageView;
+	
+	GoogleMap map;
+	Marker marker;
 
 	// // Max-Weber-Platz
 	// private final static double MWP_LONG = 11.598032;
@@ -82,6 +93,23 @@ public class CompassActivity extends Activity implements LocationListener,
 		mChronometer.start();
 
 		mCompassIMageView = (CompassView) findViewById(R.id.compassImageView);
+		
+		//
+		// Google Map
+		//
+		map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
+				.getMap();
+
+		// configure map
+		map.setMyLocationEnabled(true);
+		UiSettings settings = map.getUiSettings();
+		settings.setAllGesturesEnabled(false);
+		settings.setMyLocationButtonEnabled(false);
+		settings.setZoomControlsEnabled(false);
+		
+		LatLng lastLoc = new LatLng(0,0);
+		marker = map.addMarker(new MarkerOptions().position(lastLoc)
+				.title("Goal"));
 	}
 
 	@Override
@@ -99,6 +127,8 @@ public class CompassActivity extends Activity implements LocationListener,
 		mSensorManager.registerListener(this,
 				mSensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION),
 				SensorManager.SENSOR_DELAY_GAME);
+		
+		
 
 	}
 
@@ -118,7 +148,10 @@ public class CompassActivity extends Activity implements LocationListener,
 
 		float distance = location.distanceTo(mDestinationLocation);
 
-		double distanceInKM = round(distance / 1000, 1);
+		double distanceInKM = round(distance / 1000, 2);
+		String distanceStr = new Double(distanceInKM).toString();
+		Toast.makeText(this, "UPDATED LOCATION" + distanceStr, 3000).show();
+		
 		String speedTxt = "-";
 		if (location.hasSpeed()) {
 			double speed = location.getSpeed() * 3.6;
@@ -129,12 +162,13 @@ public class CompassActivity extends Activity implements LocationListener,
 
 		mDistanceTextView.setText("" + distanceInKM);
 		mSpeedTextView.setText(speedTxt);
-
-		if (round(distance / 1000, 2) <= 0.05) {
-			Intent newIntent = new Intent(this, ExerciseActivity.class);
-			startActivity(newIntent);
-		}
-
+		
+		// update map
+		LatLng lastLoc = new LatLng(location.getLatitude(), location.getLongitude());
+		LatLng destLoc = new LatLng(mDestinationLocation.getLatitude(), mDestinationLocation.getLongitude());
+		marker.setPosition(destLoc);
+		CameraUpdate update = CameraUpdateFactory.newLatLngZoom(lastLoc, 14);
+		map.animateCamera(update);
 	}
 
 	@Override
