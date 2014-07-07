@@ -34,6 +34,7 @@ public class MapResultActivity extends Activity {
 		setContentView(R.layout.activity_mapresult);
 		ActionBar actionbar = getActionBar();
 		actionbar.setIcon(R.drawable.running_white_48);
+		setTitle("Zurückgelegte Strecke");
 		map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
 				.getMap();
 		map.setMyLocationEnabled(true);
@@ -41,23 +42,22 @@ public class MapResultActivity extends Activity {
 
 		route = mWorkoutTracker.getActiveRoute();
 
-		
-		 
-		 PolylineOptions line = new PolylineOptions();
-		 
-		 for (RouteDataPoint rdp : route.dataPoints) {
-			 line.add(rdp.position);
-			 //map.addMarker(newMarkerOptions().position(rdp.position) .title("location"));
-			 CameraUpdate update = CameraUpdateFactory.newLatLngZoom(rdp.position, 20);
-			 map.animateCamera(update);
-			 }
-		
-		 map.addPolyline(line);
-		 
-		 
+		PolylineOptions line = new PolylineOptions();
+
+		for (RouteDataPoint rdp : route.dataPoints) {
+			line.add(rdp.position);
+			// map.addMarker(newMarkerOptions().position(rdp.position)
+			// .title("location"));
+			CameraUpdate update = CameraUpdateFactory.newLatLngZoom(
+					rdp.position, 20);
+			map.animateCamera(update);
+		}
+
+		map.addPolyline(line);
+
 	}
-	
-	public void onLocationChanged(android.location.Location location) {	
+
+	public void onLocationChanged(android.location.Location location) {
 		LatLng lastLatLng = new LatLng(location.getLatitude(),
 				location.getLongitude());
 		CameraUpdate update = CameraUpdateFactory.newLatLngZoom(lastLatLng, 17);

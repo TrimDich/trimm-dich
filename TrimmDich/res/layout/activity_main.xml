@@ -8,169 +8,197 @@
     tools:context="de.lmu.msp.trimmdich.main.MainActivity"
     tools:ignore="MergeRootFrame" >
 
-    <TextView
-        android:id="@+id/setupTitleTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="22dp"
-        android:layout_marginTop="22dp"
-        android:paddingBottom="12dp"
-        android:paddingTop="12dp"
-        android:text="@string/config_training_txt"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textSize="18sp" />
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@+id/setupTitleTextView"
-        android:contentDescription="@string/boder_img"
-        android:src="#ccc" />
-
-    <LinearLayout
-        android:id="@+id/distanceLinearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/setupTitleTextView"
-        android:layout_centerVertical="true"
-        android:layout_marginTop="1dp"
-        android:background="@drawable/config_button"
-        android:clickable="true"
-        android:orientation="vertical"
-        android:paddingBottom="24dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:paddingTop="24dp" >
-
-        <TextView
-            android:id="@+id/setupDistanceTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp"
-            android:gravity="center"
-            android:text="@string/placeholder_txt"
-            android:textSize="22sp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:gravity="center"
-            android:text="@string/distance_in_km_txt"
-            android:textColor="@color/subtitle_text_color"
-            android:textSize="14sp" />
-    </LinearLayout>
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@+id/distanceLinearLayout"
-        android:contentDescription="@string/boder_img"
-        android:src="#ccc" />
-
-    <LinearLayout
-        android:id="@+id/excerciseCountLinearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/distanceLinearLayout"
-        android:layout_centerVertical="true"
-        android:layout_marginTop="1dp"
-        android:background="@drawable/config_button"
-        android:clickable="true"
-        android:orientation="vertical"
-        android:paddingBottom="24dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:paddingTop="24dp" 
-        
-        android:visibility="gone"
-        >
-
-        <TextView
-            android:id="@+id/setupExerciseCountTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp"
-            android:gravity="center"
-            android:text="@string/placeholder_txt"
-            android:textSize="22sp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:gravity="center"
-            android:text="@string/exercise_count_txt"
-            android:textColor="@color/subtitle_text_color"
-            android:textSize="14sp" />
-    </LinearLayout>
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@+id/excerciseCountLinearLayout"
-        android:contentDescription="@string/boder_img"
-        android:src="#ccc"/>
-
-    <LinearLayout
-        android:id="@+id/excerciseTypesLinearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/excerciseCountLinearLayout"
-        android:layout_centerVertical="true"
-        android:layout_marginTop="1dp"
-        android:background="@drawable/config_button"
-        android:clickable="true"
-        android:orientation="vertical"
-        android:paddingBottom="24dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:paddingTop="24dp">
-
-        <TextView
-            android:id="@+id/setupExerciseTypesTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp"
-            android:gravity="center"
-            android:text="@string/placeholder_txt"
-            android:textSize="18sp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:gravity="center"
-            android:text="@string/exercise_type_txt"
-            android:textColor="@color/subtitle_text_color"
-            android:textSize="14sp" />
-    </LinearLayout>
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@+id/excerciseTypesLinearLayout"
-        android:contentDescription="@string/boder_img"
-        android:src="#ccc" />
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:gravity="center"
-        android:paddingBottom="12dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:paddingTop="12dp" >
+        android:layout_height="match_parent"
+        android:layout_above="@+id/main_linear_2"
+        android:background="#eee"
+        android:gravity="center" >
 
-        <Button
-            android:id="@+id/start_training_btn"
+        <TextView
+            android:id="@+id/setupTitleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="startNewRun"
-            android:text="@string/start_training_btn_txt" />
+            android:text="@string/config_training_txt"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="18sp" />
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/main_linear_2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:contentDescription="@string/boder_img"
+            android:src="#ccc" />
+
+        <LinearLayout
+            android:id="@+id/distanceLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/config_button"
+            android:clickable="true"
+            android:orientation="vertical"
+            android:paddingBottom="18dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="18dp" >
+
+            <TextView
+                android:id="@+id/setupDistanceTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:gravity="center"
+                android:text="@string/placeholder_txt"
+                android:textSize="22sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:text="@string/distance_in_km_txt"
+                android:textColor="@color/subtitle_text_color"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:contentDescription="@string/boder_img"
+            android:src="#ccc" />
+
+        <LinearLayout
+            android:id="@+id/excerciseCountLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/config_button"
+            android:clickable="true"
+            android:orientation="vertical"
+            android:paddingBottom="18dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="18dp" >
+
+            <TextView
+                android:id="@+id/setupExerciseCountTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:gravity="center"
+                android:text="@string/placeholder_txt"
+                android:textSize="22sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:text="@string/exercise_count_txt"
+                android:textColor="@color/subtitle_text_color"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:contentDescription="@string/boder_img"
+            android:src="#ccc" />
+
+        <LinearLayout
+            android:id="@+id/excerciseTypesLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/config_button"
+            android:clickable="true"
+            android:orientation="vertical"
+            android:paddingBottom="18dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="18dp" >
+
+            <TextView
+                android:id="@+id/setupExerciseTypesTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:gravity="center"
+                android:text="@string/placeholder_txt"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:text="@string/exercise_type_txt"
+                android:textColor="@color/subtitle_text_color"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/border_4"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="1.5dp"
+            android:contentDescription="@string/boder_img"
+            android:src="#999" />
+
+        <ImageView
+            android:id="@+id/border_5"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:contentDescription="@string/boder_img"
+            android:src="#999" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:background="@drawable/config_button"
+            android:gravity="center"
+            android:onClick="startNewRun"
+            android:paddingBottom="26dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="26dp" >
+
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginRight="4dp"
+                android:cropToPadding="false"
+                android:src="@drawable/route_3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:text="@string/generate_route"
+                android:textColor="@color/subtitle_text_color"
+                android:textSize="24sp" />
+        </LinearLayout>
+    </LinearLayout>
+    <!--
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/main_linear_2"
+        android:background="#eee"
+        android:gravity="center" >
+    </LinearLayout>
+    -->
 
 </RelativeLayout>

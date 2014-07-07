@@ -155,14 +155,15 @@ public class CompassActivity extends Activity implements LocationListener,
 
 		double distanceInKM = round(distance / 1000, 2);
 		String distanceStr = new Double(distanceInKM).toString();
-		Toast.makeText(this, "UPDATED LOCATION" + distanceStr, 3000).show();
+		// Toast.makeText(this, "UPDATED LOCATION" + distanceStr, 3000).show();
 
 		String speedTxt = "-";
 		if (location.hasSpeed()) {
 			double speed = location.getSpeed() * 3.6;
 			speedTxt = "" + round(speed, 1);
-			Toast.makeText(this, mSpeedTextView.getText(), Toast.LENGTH_SHORT)
-					.show();
+			// Toast.makeText(this, mSpeedTextView.getText(),
+			// Toast.LENGTH_SHORT)
+			// .show();
 		}
 
 		mDistanceTextView.setText("" + distanceInKM);
