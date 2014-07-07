@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -126,6 +127,9 @@ public class MainActivity extends Activity implements LocationListener {
 		int exerciseCount = mSPrefs.getInt(Constants.EXERCISE_COUNT_SPREF, 1);
 		if (exerciseCount < distanceLength) {
 			mExerciseCountTextView.setText("" + distanceLength);
+			SharedPreferences.Editor editor = mSPrefs.edit();
+			editor.putInt(Constants.EXERCISE_COUNT_SPREF, distanceLength);
+			editor.commit();
 			Toast.makeText(this, getString(R.string.dialog_error), Toast.LENGTH_LONG).show();
 		} else
 			mExerciseCountTextView.setText("" + exerciseCount);
