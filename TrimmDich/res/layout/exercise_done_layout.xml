@@ -11,7 +11,6 @@
         android:gravity="center"
         android:paddingBottom="8dp"
         android:paddingTop="8dp"
-        android:text="Liegestützen"
         android:textSize="24sp" />
 
     <TextView
@@ -20,15 +19,14 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/exerciseImg"
         android:gravity="center"
-        android:text="x10"
+        android:text="@string/repetitions_goal"
         android:textSize="36sp" />
 
     <ImageView
         android:id="@+id/exerciseImg"
         android:layout_width="match_parent"
         android:layout_height="128dp"
-        android:layout_above="@+id/border_1"
-        android:src="@drawable/push_up" />
+        android:layout_above="@+id/border_1" />
 
     <ImageView
         android:id="@+id/border_1"

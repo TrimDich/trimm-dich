@@ -26,9 +26,30 @@ public class ExerciseActivityChooser extends Activity {
 		ActionBar bar = getActionBar();
 		bar.setIcon(R.drawable.running_actionbar_white);
 
+		int exercise = getIntent().getExtras().getInt(
+				Exercise.INTENT_EXTRA_TYPE);
+
 		mExerciseTextView = (TextView) findViewById(R.id.currentExerciseTextView);
 		mRepetitionTextView = (TextView) findViewById(R.id.repetitionGoalTextView);
 		mExerciseImageView = (ImageView) findViewById(R.id.exerciseImg);
+
+		// (1 squat), 2 Pullup, 3 Pushup, 4 Dips, 5 Default
+		switch (exercise) {
+		case 2:
+			mExerciseImageView.setImageResource(R.drawable.pull_up);
+			mExerciseTextView.setText(R.string.pullUps);
+			break;
+		case 3:
+			mExerciseImageView.setImageResource(R.drawable.push_up);
+			mExerciseTextView.setText(R.string.pushUps);
+			break;
+		case 4:
+			// mExerciseImageView.setImageResource(R.drawable.pull_up);
+			mExerciseTextView.setText(R.string.dips);
+			break;
+		default:
+			break;
+		}
 
 	}
 

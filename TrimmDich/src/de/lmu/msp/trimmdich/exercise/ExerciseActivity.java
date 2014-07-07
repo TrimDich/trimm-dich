@@ -21,6 +21,7 @@ import android.speech.tts.TextToSpeech.OnInitListener;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ExerciseActivity extends Activity implements SensorEventListener,
 		OnInitListener, ExerciseEventListener {
@@ -116,6 +117,8 @@ public class ExerciseActivity extends Activity implements SensorEventListener,
 		sensorManager.unregisterListener(this);
 		try {
 			currentExercise = currentExercises.next();
+			Intent intent = new Intent(this, ExerciseActivityChooser.class);
+			intent.putExtra(Exercise.INTENT_EXTRA_COUNT_GOAL, currentExercise.getRepetitionsGoal());
 			switch(currentExercise.getType()){
 				case SQUATS:
 					infoView.setText(getResources().getString(R.string.exercise_repetition_goal_pushup, currentExercise.getRepetitionsGoal()));
@@ -123,12 +126,19 @@ public class ExerciseActivity extends Activity implements SensorEventListener,
 					sensorManager.registerListener(this,sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),SensorManager.SENSOR_DELAY_NORMAL);
 					break;
 				case PULL_UP:
+					intent.putExtra(Exercise.INTENT_EXTRA_TYPE,2);
+					startActivityForResult(intent,7);
+					break;
 				case PUSH_UP:
+					intent.putExtra(Exercise.INTENT_EXTRA_TYPE,3);
+					startActivityForResult(intent,7);
+					break;
 				case DIPS:
+					intent.putExtra(Exercise.INTENT_EXTRA_TYPE,4);
+					startActivityForResult(intent,7);
+					break;
 				default:
-					Intent intent = new Intent(this, ExerciseActivityChooser.class);
-					intent.putExtra(Exercise.INTENT_EXTRA_TYPE, currentExercise.getType());
-					intent.putExtra(Exercise.INTENT_EXTRA_COUNT_GOAL, currentExercise.getRepetitionsGoal());
+					intent.putExtra(Exercise.INTENT_EXTRA_TYPE,5);
 					startActivityForResult(intent,7);
 					break;
 			}
@@ -169,14 +179,12 @@ public class ExerciseActivity extends Activity implements SensorEventListener,
 	@Override
 	public void onExerciseIterationDetected() {
 		countView.setText("" + exerciseCounter.getExercise().getRepetitionsActual());
-		if (exerciseCounter.getExercise().getRepetitionsActual() == 1)
-			tts.speak("Eine Kniebeuge", TextToSpeech.QUEUE_FLUSH, null); 
-		else
-			tts.speak(exerciseCounter.getExercise().getRepetitionsActual() + " Kniebeugen", TextToSpeech.QUEUE_FLUSH,null);
-		if (exerciseCounter.getExercise().getRepetitionsActual() == 5)
+		tts.speak(exerciseCounter.getExercise().getRepetitionsActual() + "", TextToSpeech.QUEUE_FLUSH,null);
+		
+		if(exerciseCounter.getExercise().isRepetitionsReached()){
 			tts.speak(getString(R.string.exercise_end),	TextToSpeech.QUEUE_FLUSH, null);
-		if(exerciseCounter.getExercise().isRepetitionsReached())
 			prepairNextExercise();
+		}
 	}
 
 }
