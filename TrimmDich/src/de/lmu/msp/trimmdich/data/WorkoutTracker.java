@@ -139,6 +139,8 @@ public class WorkoutTracker implements
 		LocationRequest locationRequest = new LocationRequest();
 		// TODO update accuracy depending on whether exercise is active
 		locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+		locationRequest.setFastestInterval(1000);
+		locationRequest.setSmallestDisplacement(4);
 
 		locationClient.requestLocationUpdates(locationRequest, this);
 
