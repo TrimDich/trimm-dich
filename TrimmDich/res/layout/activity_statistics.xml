@@ -83,7 +83,7 @@
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:contentDescription="You made it."
-		        android:src="@drawable/push_up" />
+		        android:src="@drawable/dips" />
 	    	    <TextView
 		        android:id="@+id/dipMetric"
 		        android:layout_width="wrap_content"
