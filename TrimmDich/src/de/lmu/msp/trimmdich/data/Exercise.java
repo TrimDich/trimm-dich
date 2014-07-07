@@ -3,6 +3,8 @@ package de.lmu.msp.trimmdich.data;
 import java.util.List;
 
 public class Exercise {
+	public static String INTENT_EXTRA_TYPE = "exercise_type";
+	public static String INTENT_EXTRA_COUNT_GOAL = "exercise_count_goal";
 	
 	private int repetitionGoal;
 	private int repetitionActual;
@@ -12,7 +14,7 @@ public class Exercise {
 	    PULL_UP,
 	    PUSH_UP,
 	    DIPS,
-	    SQUATS
+	    SQUATS,
 	}
 	/**
 	 * 
@@ -30,8 +32,8 @@ public class Exercise {
 	 * @return int remaining repetitions
 	 */
 	public int doRepetition(){
-		repetitionActual++;
-		return (repetitionGoal-repetitionActual);
+		this.repetitionActual++;
+		return (this.repetitionGoal-this.repetitionActual);
 	}
 	
 	/**
@@ -70,6 +72,6 @@ public class Exercise {
 	}
 	
 	public void setNearlyDone(){
-		this.repetitionActual = (int) (this.repetitionGoal*0.5);
+		this.repetitionActual = (int) ((this.repetitionGoal+1)*0.5);
 	}
 }
