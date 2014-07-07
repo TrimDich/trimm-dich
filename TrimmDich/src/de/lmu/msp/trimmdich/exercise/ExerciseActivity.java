@@ -125,19 +125,19 @@ public class ExerciseActivity extends Activity implements SensorEventListener,
 					sensorManager.registerListener(this,sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),SensorManager.SENSOR_DELAY_NORMAL);
 					break;
 				case PULL_UP:
-					intent.putExtra(Exercise.INTENT_EXTRA_TYPE,R.string.pullUps);
+					intent.putExtra(Exercise.INTENT_EXTRA_TYPE,2);
 					startActivityForResult(intent,7);
 					break;
 				case PUSH_UP:
-					intent.putExtra(Exercise.INTENT_EXTRA_TYPE,R.string.pushUps);
+					intent.putExtra(Exercise.INTENT_EXTRA_TYPE,3);
 					startActivityForResult(intent,7);
 					break;
 				case DIPS:
-					intent.putExtra(Exercise.INTENT_EXTRA_TYPE,R.string.dips);
+					intent.putExtra(Exercise.INTENT_EXTRA_TYPE,4);
 					startActivityForResult(intent,7);
 					break;
 				default:
-					intent.putExtra(Exercise.INTENT_EXTRA_TYPE,R.string.pullUps);
+					intent.putExtra(Exercise.INTENT_EXTRA_TYPE,5);
 					startActivityForResult(intent,7);
 					break;
 			}
