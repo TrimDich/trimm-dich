@@ -90,7 +90,7 @@ public class RunPreviewActivity extends Activity implements LocationListener {
 		LatLng lastLatLng = new LatLng(location.getLatitude(),
 				location.getLongitude());
 		CameraUpdate update = CameraUpdateFactory.newLatLngZoom(lastLatLng, 13);
-		map.animateCamera(update);
+		map.animateCamera(update, 50, null);
 	}
 	
 	@Override

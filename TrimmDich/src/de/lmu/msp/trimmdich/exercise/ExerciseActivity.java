@@ -21,6 +21,7 @@ import android.speech.tts.TextToSpeech.OnInitListener;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ExerciseActivity extends Activity implements SensorEventListener,
 		OnInitListener, ExerciseEventListener {
@@ -178,14 +179,12 @@ public class ExerciseActivity extends Activity implements SensorEventListener,
 	@Override
 	public void onExerciseIterationDetected() {
 		countView.setText("" + exerciseCounter.getExercise().getRepetitionsActual());
-		if (exerciseCounter.getExercise().getRepetitionsActual() == 1)
-			tts.speak("Eine Kniebeuge", TextToSpeech.QUEUE_FLUSH, null); 
-		else
-			tts.speak(exerciseCounter.getExercise().getRepetitionsActual() + " Kniebeugen", TextToSpeech.QUEUE_FLUSH,null);
-		if (exerciseCounter.getExercise().getRepetitionsActual() == 5)
+		tts.speak(exerciseCounter.getExercise().getRepetitionsActual() + "", TextToSpeech.QUEUE_FLUSH,null);
+		
+		if(exerciseCounter.getExercise().isRepetitionsReached()){
 			tts.speak(getString(R.string.exercise_end),	TextToSpeech.QUEUE_FLUSH, null);
-		if(exerciseCounter.getExercise().isRepetitionsReached())
 			prepairNextExercise();
+		}
 	}
 
 }

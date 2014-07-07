@@ -49,7 +49,7 @@ public class MapResultActivity extends Activity {
 			 line.add(rdp.position); map.addMarker(new
 			 MarkerOptions().position(rdp.position) .title("location"));
 			 CameraUpdate update = CameraUpdateFactory.newLatLngZoom(rdp.position, 13);
-			 map.animateCamera(update);
+			 map.animateCamera(update, 50, null);
 			 }
 		 
 		 map.addPolyline(line);
