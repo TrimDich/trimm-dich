@@ -46,12 +46,12 @@ public class MapResultActivity extends Activity {
 		 PolylineOptions line = new PolylineOptions();
 		 
 		 for (RouteDataPoint rdp : route.dataPoints) {
-			 line.add(rdp.position); map.addMarker(new
-			 MarkerOptions().position(rdp.position) .title("location"));
-			 CameraUpdate update = CameraUpdateFactory.newLatLngZoom(rdp.position, 13);
+			 line.add(rdp.position);
+			 //map.addMarker(newMarkerOptions().position(rdp.position) .title("location"));
+			 CameraUpdate update = CameraUpdateFactory.newLatLngZoom(rdp.position, 20);
 			 map.animateCamera(update);
 			 }
-		 
+		
 		 map.addPolyline(line);
 		 
 		 

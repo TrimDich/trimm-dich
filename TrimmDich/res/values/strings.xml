@@ -5,7 +5,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="statistics_run_speed">Geschwindigkeit</string>
-    <string name="statistics_squat_reps">Anzahl Kniebeugen / Klimmzüge / Liegstütze / Dips</string>
+    <string name="statistics_squat_reps">Anzahl Wiederholungen</string>
     <string name="statistics_run_distance">Distanz</string>
     <string name="statistics_headline">Dein Workout in Zahlen</string>
     <string name="statistics_back_button">Zurück zum Hauptmenü</string>
