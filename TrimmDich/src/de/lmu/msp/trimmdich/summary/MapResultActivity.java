@@ -1,5 +1,8 @@
 package de.lmu.msp.trimmdich.summary;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
@@ -11,6 +14,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 
@@ -44,17 +48,23 @@ public class MapResultActivity extends Activity {
 		
 		 
 		 PolylineOptions line = new PolylineOptions();
-		 
+		 List<LatLng> latlngList = new ArrayList<LatLng>();
 		 for (RouteDataPoint rdp : route.dataPoints) {
 			 line.add(rdp.position);
-			 //map.addMarker(newMarkerOptions().position(rdp.position) .title("location"));
-			 CameraUpdate update = CameraUpdateFactory.newLatLngZoom(rdp.position, 20);
+			 latlngList.add(rdp.position);
+			 CameraUpdate update = CameraUpdateFactory.newLatLngZoom(rdp.position, 18);
 			 map.animateCamera(update);
 			 }
-		
-		 map.addPolyline(line);
-		 
-		 
+		 	
+		 /*map.addPolyline(line);
+		 LatLngBounds.Builder builder = new LatLngBounds.Builder();
+		 for (LatLng e : latlngList) {
+		     builder.include(e);
+		 }
+		 LatLngBounds bounds = builder.build();
+		 int padding = 0; // offset from edges of the map in pixels
+		 CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
+		 map.animateCamera(cu);*/
 	}
 	
 	public void onLocationChanged(android.location.Location location) {	
@@ -67,5 +77,10 @@ public class MapResultActivity extends Activity {
 	public void showStatistics(View view) {
 		Intent newIntent = new Intent(this, StatisticsActivity.class);
 		startActivity(newIntent);
+	}
+	
+	@Override
+	public void onBackPressed() {
+		//disables back button of smartphone
 	}
 }
