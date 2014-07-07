@@ -78,11 +78,13 @@ public class RunPreviewActivity extends Activity implements LocationListener {
 
 		for (Location location : route.locations) {
 			line.add(location.location);
-			MarkerOptions options = new MarkerOptions().position(
-					location.location).title("location");
-			if (location.selectedExercises.size() == 0) {
-				options.icon(BitmapDescriptorFactory
-						.fromResource(R.drawable.flag32));
+
+			MarkerOptions options = new MarkerOptions().position(location.location)
+					.title("location");
+			if(location.selectedExercises.size() == 0) {
+				options.icon(BitmapDescriptorFactory.fromResource(R.drawable.flag32));
+				options.anchor(0.5f, 0.9f);
+
 			} else {
 				options.icon(BitmapDescriptorFactory
 						.fromResource(R.drawable.empty2));
