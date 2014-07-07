@@ -16,6 +16,7 @@ import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
@@ -76,8 +77,15 @@ public class RunPreviewActivity extends Activity implements LocationListener {
 
 		for (Location location : route.locations) {
 			line.add(location.location);
-			map.addMarker(new MarkerOptions().position(location.location)
-					.title("location"));
+			MarkerOptions options = new MarkerOptions().position(location.location)
+					.title("location");
+			if(location.selectedExercises.size() == 0) {
+				options.icon(BitmapDescriptorFactory.fromResource(R.drawable.flag32));
+			} else {
+				options.icon(BitmapDescriptorFactory.fromResource(R.drawable.empty2));
+			}
+			
+			map.addMarker(options);
 		}
 		map.addPolyline(line);
 	}
