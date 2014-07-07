@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.maps.CameraUpdate;
@@ -32,6 +33,7 @@ public class RunPreviewActivity extends Activity implements LocationListener {
 	RouteProperties routeProperties;
 	Route route;
 	WorkoutTracker workoutTracker;
+	TextView distanceIndicator;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +48,8 @@ public class RunPreviewActivity extends Activity implements LocationListener {
 		//
 		map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
 				.getMap();
-
+		distanceIndicator = (TextView) findViewById(R.id.distanceIndicator);
+		
 		// configure map
 		map.setMyLocationEnabled(true);
 
@@ -65,6 +68,8 @@ public class RunPreviewActivity extends Activity implements LocationListener {
 	private void generateRoute() {
 		route = RouteGenerator.generateRoute(routeProperties);
 
+		distanceIndicator.setText("aprox. " + WorkoutTracker.round(route.flightPathInKm, 2) + " Km");
+		
 		// add route to map
 		map.clear();
 		PolylineOptions line = new PolylineOptions();
