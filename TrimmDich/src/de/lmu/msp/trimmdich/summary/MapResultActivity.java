@@ -43,27 +43,18 @@ public class MapResultActivity extends Activity {
 
 		route = mWorkoutTracker.getActiveRoute();
 
-		
-		 
-		 PolylineOptions line = new PolylineOptions();
-		 for (RouteDataPoint rdp : route.dataPoints) {
-			 line.add(rdp.position);
-			 CameraUpdate update = CameraUpdateFactory.newLatLngZoom(rdp.position, 18);
-			 map.animateCamera(update);
-			 }
-		 	
-		 /*map.addPolyline(line);
-		 LatLngBounds.Builder builder = new LatLngBounds.Builder();
-		 for (LatLng e : latlngList) {
-		     builder.include(e);
-		 }
-		 LatLngBounds bounds = builder.build();
-		 int padding = 0; // offset from edges of the map in pixels
-		 CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
-		 map.animateCamera(cu);*/
+		PolylineOptions line = new PolylineOptions();
+		for (RouteDataPoint rdp : route.dataPoints) {
+			line.add(rdp.position);
+			CameraUpdate update = CameraUpdateFactory.newLatLngZoom(
+					rdp.position, 18);
+			map.animateCamera(update);
+		}
+
+		map.addPolyline(line);
 	}
-	
-	public void onLocationChanged(android.location.Location location) {	
+
+	public void onLocationChanged(android.location.Location location) {
 		LatLng lastLatLng = new LatLng(location.getLatitude(),
 				location.getLongitude());
 		CameraUpdate update = CameraUpdateFactory.newLatLngZoom(lastLatLng, 17);
@@ -74,26 +65,30 @@ public class MapResultActivity extends Activity {
 		Intent newIntent = new Intent(this, StatisticsActivity.class);
 		startActivity(newIntent);
 	}
-	
+
 	@Override
 	public void onBackPressed() {
-		//disables back button of smartphone
-		//Ask the user if they want to quit
-        new AlertDialog.Builder(this)
-        .setIcon(android.R.drawable.ic_dialog_alert)
-        .setTitle(R.string.back_dialog_title)
-        .setMessage(R.string.back_dialog_msg)
-        .setPositiveButton(R.string.back_dialog_yes, new DialogInterface.OnClickListener() {
+		// disables back button of smartphone
+		// Ask the user if they want to quit
+		new AlertDialog.Builder(this)
+				.setIcon(android.R.drawable.ic_dialog_alert)
+				.setTitle(R.string.back_dialog_title)
+				.setMessage(R.string.back_dialog_msg)
+				.setPositiveButton(R.string.back_dialog_yes,
+						new DialogInterface.OnClickListener() {
 
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-            	Intent newIntent = new Intent(getBaseContext(), MainActivity.class);
-        		newIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        		startActivity(newIntent);  
-            }
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+								Intent newIntent = new Intent(getBaseContext(),
+										MainActivity.class);
+								newIntent
+										.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+												| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+								startActivity(newIntent);
+							}
 
-        })
-        .setNegativeButton(R.string.back_dialog_no, null)
-        .show();
+						}).setNegativeButton(R.string.back_dialog_no, null)
+				.show();
 	}
 }

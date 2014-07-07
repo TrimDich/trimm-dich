@@ -23,6 +23,7 @@ import de.lmu.msp.trimmdich.R;
 import de.lmu.msp.trimmdich.data.Exercise;
 import de.lmu.msp.trimmdich.data.WorkoutTracker;
 import de.lmu.msp.trimmdich.summary.MapResultActivity;
+import de.lmu.msp.trimmdich.summary.StatisticsMapActivity;
 
 public class ExerciseActivity extends Activity implements SensorEventListener,
 		OnInitListener, ExerciseEventListener {
@@ -162,7 +163,7 @@ public class ExerciseActivity extends Activity implements SensorEventListener,
 			return true;
 		} catch (NoSuchElementException e) {
 			if (WorkoutTracker.getInstance().isLastLocation()) {
-				startActivity(new Intent(this, MapResultActivity.class));
+				startActivity(new Intent(this, StatisticsMapActivity.class));
 
 				Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 

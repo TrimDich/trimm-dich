@@ -45,6 +45,8 @@
         </activity>
         <activity android:name="de.lmu.msp.trimmdich.summary.StatisticsActivity" >
         </activity>
+        <activity android:name="de.lmu.msp.trimmdich.summary.StatisticsMapActivity" >
+        </activity>
         <activity android:name="de.lmu.msp.trimmdich.exercise.ExerciseActivityChooser" >
         </activity>
         <activity

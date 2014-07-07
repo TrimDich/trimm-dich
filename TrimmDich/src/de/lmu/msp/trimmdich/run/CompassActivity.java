@@ -164,11 +164,12 @@ public class CompassActivity extends Activity implements LocationListener,
 		if (location.hasSpeed()) {
 			double speed = location.getSpeed() * 3.6;
 			speedTxt = "" + round(speed, 1);
-			Toast.makeText(this, mSpeedTextView.getText(), Toast.LENGTH_SHORT)
-					.show();
+			// Toast.makeText(this, mSpeedTextView.getText(),
+			// Toast.LENGTH_SHORT)
+			// .show();
 		}
 
-		mDistanceTextView.setText("" + distanceInKM);
+		mDistanceTextView.setText("" + distanceInKM + " km");
 		mSpeedTextView.setText(speedTxt);
 
 		// update map

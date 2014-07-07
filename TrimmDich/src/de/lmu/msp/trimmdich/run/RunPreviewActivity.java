@@ -51,16 +51,16 @@ public class RunPreviewActivity extends Activity implements LocationListener {
 
 		// load route properties
 		routeProperties = new RouteProperties(getIntent());
-		
+
 		//
 		// Workout Tracker
 		//
 		workoutTracker = WorkoutTracker.getInstance();
 		workoutTracker.setCurrentActivity(this);
-		
+
 		generateRoute();
 	}
-	
+
 	private void generateRoute() {
 		route = RouteGenerator.generateRoute(routeProperties);
 
@@ -73,7 +73,9 @@ public class RunPreviewActivity extends Activity implements LocationListener {
 			map.addMarker(new MarkerOptions().position(location.location)
 					.title("location"));
 		}
-		map.addPolyline(line);
+		// map.addPolyline(line).setColor(0xFF1BA39C);
+		map.addPolyline(line).setColor(0xCF2574A9);
+
 	}
 
 	public void startRun(View view) {
@@ -92,7 +94,7 @@ public class RunPreviewActivity extends Activity implements LocationListener {
 		CameraUpdate update = CameraUpdateFactory.newLatLngZoom(lastLatLng, 13);
 		map.animateCamera(update, 50, null);
 	}
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 

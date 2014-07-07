@@ -9,7 +9,7 @@
     <string name="statistics_run_distance">Distanz</string>
     <string name="statistics_headline">Dein Workout in Zahlen</string>
     <string name="statistics_back_button">Zurück zum Hauptmenü</string>
-    
+
     <!-- NumberPickerFragement Activity -->
     <string name="dialog_route">Länge der Strecke</string>
     <string name="dialog_count">Anzahl der Übungen</string>
@@ -18,7 +18,7 @@
 
     <!-- Compass Activity -->
     <string name="duration_txt">Dauer</string>
-    <string name="distance_txt">Distanz (km)</string>
+    <string name="distance_txt">zur nächsten Übung</string>
     <string name="speed_txt">Speed (km/h)</string>
     <string name="speed_initial_txt">0,0</string>
     <string name="direction_to_exercise_txt">Richtung zur nächsten Übung</string>
@@ -75,5 +75,9 @@
     <string name="back_dialog_msg">Willst du zurück zum Hauptmenü und einen neuen Run starten?</string>
     <string name="back_dialog_yes">Ja</string>
     <string name="back_dialog_no">Nein</string>
+
+    <!-- Statistics -->
+    <string name="repetitions">Wiederholungen</string>
+   
 
 </resources>
