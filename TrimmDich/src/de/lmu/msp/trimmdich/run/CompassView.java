@@ -34,19 +34,18 @@ public class CompassView extends ImageView {
 
 	@Override
 	protected void onDraw(Canvas canvas) {
-		int drawable = R.drawable.navigation_thin;
-		
+		int drawable = R.drawable.navigation_big;
+
 		// Decode the drawable into a bitmap
 		Bitmap bitmapOrg = BitmapFactory.decodeResource(getResources(),
 				drawable);
 
 		// Get the width/height of the drawable
-//		DisplayMetrics dm = new DisplayMetrics();
-//		getWindowManager().getDefaultDisplay().getMetrics(dm);
-//		
-		
-		int width = bitmapOrg.getWidth(), 
-			height = bitmapOrg.getHeight();
+		// DisplayMetrics dm = new DisplayMetrics();
+		// getWindowManager().getDefaultDisplay().getMetrics(dm);
+		//
+
+		int width = bitmapOrg.getWidth(), height = bitmapOrg.getHeight();
 
 		// Initialize a new Matrix
 		Matrix matrix = new Matrix();
@@ -60,13 +59,10 @@ public class CompassView extends ImageView {
 		// BitmapDrawable bmd = new BitmapDrawable( rotatedBitmap );
 
 		// imageView.setImageBitmap( rotatedBitmap );
-		setImageDrawable(new BitmapDrawable(getResources(),
-				rotatedBitmap));
+		setImageDrawable(new BitmapDrawable(getResources(), rotatedBitmap));
 		setScaleType(ScaleType.CENTER);
-		
+
 		super.onDraw(canvas);
 	}
-	
-	
-	
+
 }

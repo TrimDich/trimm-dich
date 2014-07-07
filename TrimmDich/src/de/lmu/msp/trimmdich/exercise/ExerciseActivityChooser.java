@@ -14,7 +14,7 @@ public class ExerciseActivityChooser extends Activity {
 	public static final String TAG = "TD-Exercise";
 
 	private TextView mExerciseTextView;
-	private TextView mRepetitionTextView;
+	// private TextView mRepetitionTextView;
 	private ImageView mExerciseImageView;
 
 	@Override
@@ -24,13 +24,14 @@ public class ExerciseActivityChooser extends Activity {
 		setTitle(R.string.exercise_title);
 
 		ActionBar bar = getActionBar();
-		bar.setIcon(R.drawable.running_actionbar_white);
+		bar.setIcon(R.drawable.running_white_48);
 
 		int exercise = getIntent().getExtras().getInt(
 				Exercise.INTENT_EXTRA_TYPE);
 
 		mExerciseTextView = (TextView) findViewById(R.id.currentExerciseTextView);
-		mRepetitionTextView = (TextView) findViewById(R.id.repetitionGoalTextView);
+		// mRepetitionTextView = (TextView)
+		// findViewById(R.id.repetitionGoalTextView);
 		mExerciseImageView = (ImageView) findViewById(R.id.exerciseImg);
 
 		// (1 squat), 2 Pullup, 3 Pushup, 4 Dips, 5 Default

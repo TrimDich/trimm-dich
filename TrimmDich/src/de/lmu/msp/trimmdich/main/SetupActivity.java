@@ -1,20 +1,19 @@
 package de.lmu.msp.trimmdich.main;
 
-import com.google.android.gms.location.LocationListener;
-import com.google.android.gms.maps.model.LatLng;
-
-import de.lmu.msp.trimmdich.R;
-import de.lmu.msp.trimmdich.R.layout;
-import de.lmu.msp.trimmdich.data.WorkoutTracker;
-import de.lmu.msp.trimmdich.data.RouteGenerator.RouteProperties;
-import de.lmu.msp.trimmdich.run.CompassActivity;
-import de.lmu.msp.trimmdich.run.RunPreviewActivity;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
+
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.maps.model.LatLng;
+
+import de.lmu.msp.trimmdich.R;
+import de.lmu.msp.trimmdich.data.RouteGenerator.RouteProperties;
+import de.lmu.msp.trimmdich.data.WorkoutTracker;
+import de.lmu.msp.trimmdich.run.CompassActivity;
 
 public class SetupActivity extends Activity implements LocationListener {
 	RouteProperties routeProperties = new RouteProperties();

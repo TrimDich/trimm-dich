@@ -157,16 +157,15 @@ public class CompassActivity extends Activity implements LocationListener,
 		float distance = location.distanceTo(mDestinationLocation);
 
 		double distanceInKM = round(distance / 1000, 2);
-		String distanceStr = new Double(distanceInKM).toString();
+		// String distanceStr = new Double(distanceInKM).toString();
 		// Toast.makeText(this, "UPDATED LOCATION" + distanceStr, 3000).show();
 
 		String speedTxt = "-";
 		if (location.hasSpeed()) {
 			double speed = location.getSpeed() * 3.6;
 			speedTxt = "" + round(speed, 1);
-			// Toast.makeText(this, mSpeedTextView.getText(),
-			// Toast.LENGTH_SHORT)
-			// .show();
+			Toast.makeText(this, mSpeedTextView.getText(), Toast.LENGTH_SHORT)
+					.show();
 		}
 
 		mDistanceTextView.setText("" + distanceInKM);
@@ -237,26 +236,30 @@ public class CompassActivity extends Activity implements LocationListener,
 		bd = bd.setScale(places, RoundingMode.HALF_UP);
 		return bd.doubleValue();
 	}
-	
+
 	@Override
 	public void onBackPressed() {
-		//disables back button of smartphone
-		//Ask the user if they want to quit
-        new AlertDialog.Builder(this)
-        .setIcon(android.R.drawable.ic_dialog_alert)
-        .setTitle(R.string.back_dialog_title)
-        .setMessage(R.string.back_dialog_msg)
-        .setPositiveButton(R.string.back_dialog_yes, new DialogInterface.OnClickListener() {
+		// disables back button of smartphone
+		// Ask the user if they want to quit
+		new AlertDialog.Builder(this)
+				.setIcon(android.R.drawable.ic_dialog_alert)
+				.setTitle(R.string.back_dialog_title)
+				.setMessage(R.string.back_dialog_msg)
+				.setPositiveButton(R.string.back_dialog_yes,
+						new DialogInterface.OnClickListener() {
 
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-            	Intent newIntent = new Intent(getBaseContext(), MainActivity.class);
-        		newIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        		startActivity(newIntent);  
-            }
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+								Intent newIntent = new Intent(getBaseContext(),
+										MainActivity.class);
+								newIntent
+										.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+												| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+								startActivity(newIntent);
+							}
 
-        })
-        .setNegativeButton(R.string.back_dialog_no, null)
-        .show();
+						}).setNegativeButton(R.string.back_dialog_no, null)
+				.show();
 	}
 }
