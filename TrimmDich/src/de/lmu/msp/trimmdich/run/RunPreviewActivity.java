@@ -22,6 +22,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 
 import de.lmu.msp.trimmdich.R;
+import de.lmu.msp.trimmdich.data.Exercise;
+import de.lmu.msp.trimmdich.data.Exercise.EXERCISE_TYPE;
 import de.lmu.msp.trimmdich.data.Location;
 import de.lmu.msp.trimmdich.data.Route;
 import de.lmu.msp.trimmdich.data.RouteGenerator;
@@ -86,14 +88,34 @@ public class RunPreviewActivity extends Activity implements LocationListener {
 				options.anchor(0.5f, 0.9f);
 
 			} else {
-				options.icon(BitmapDescriptorFactory
-						.fromResource(R.drawable.empty2));
+				Exercise exercise = (Exercise)location.selectedExercises.get(0);
+//				int resource;
+//				switch (exercise.getType()) {
+//				case DIPS:
+//					resource = R.drawable.marker_dips;
+//					break;
+//				case PULL_UP:
+//					resource = R.drawable.marker_pullup;
+//					break;
+//				case PUSH_UP:
+//					resource = R.drawable.marker_pushups;
+//					break;
+//				case SQUATS:
+//					resource = R.drawable.marker_squats;
+//					break;
+//
+//				default:
+//					resource = R.drawable.marker_squats;
+//					break;
+//				}
+				int resource = R.drawable.empty2;
+				options.icon(BitmapDescriptorFactory.fromResource(resource));
 			}
 
 			map.addMarker(options);
 		}
 		// map.addPolyline(line).setColor(0xFF1BA39C);
-		map.addPolyline(line).setColor(0xCF2574A9);
+		map.addPolyline(line).setColor(0xCF222222); //.setColor(0xCF2574A9);
 
 	}
 

@@ -26,7 +26,7 @@ public class Location {
 		int exerciseIndex = new Random().nextInt(this.possibleExercises.size());
 		EXERCISE_TYPE type = this.possibleExercises.get(exerciseIndex);
 		
-		Exercise newExercise = new Exercise(type, 10);
+		Exercise newExercise = new Exercise(type, 5);
 		this.selectedExercises.add(newExercise);
 	}
 }
