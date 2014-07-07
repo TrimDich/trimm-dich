@@ -38,12 +38,18 @@ public class StatisticsActivity extends Activity {
 		TextView distanceMetric = (TextView) findViewById(R.id.distanceMetric);
 		TextView squatMetric = (TextView) findViewById(R.id.squatMetric);
 		TextView speedMetric = (TextView) findViewById(R.id.speedMetric);
+		TextView pullupMetric = (TextView) findViewById(R.id.pullupMetric);
+		TextView dipMetric = (TextView) findViewById(R.id.dipMetric);
+		TextView pushupMetric = (TextView) findViewById(R.id.pushupMetric);
+		TextView caloriesMetric = (TextView) findViewById(R.id.caloriesMetric);
 		// Dummy values
 		//double distanceRun = 0.0;
 		//double timeTaken = 1.0;
 		//double speed = 0.0 / timeTaken;
 		int squatReps = 0;
-		
+		int dipReps = 0;
+		int pullupReps = 0;
+		int pushupReps = 0;
 		
 		
 		//The total distance that was run
@@ -84,22 +90,48 @@ public class StatisticsActivity extends Activity {
 				Log.v("Route Locations", "There is a location.");
 				for(Exercise e: l.selectedExercises)
 				{
+					switch(e.getType())
+					{
+						case SQUATS:
+							squatReps += e.getRepetitionsActual();
+							break;
+						case DIPS:
+							dipReps += e.getRepetitionsActual();
+							break;
+						case PULL_UP:
+							pullupReps += e.getRepetitionsActual();
+							break;
+						case PUSH_UP:
+							pushupReps += e.getRepetitionsActual();
+							break;	
+						default:
+							break;
+					}
+					Log.v("Actual repitions",String.valueOf(e.getType()));
 					Log.v("Actual repitions",String.valueOf(e.getRepetitionsActual()));
 					Log.v("Goal repitions",String.valueOf(e.getRepetitionsGoal()));
-					squatReps += e.getRepetitionsActual();
+					
 				}
 		    }
 		}
 		Log.v("Total Distance", String.valueOf(mWorkoutTracker.round(totalDistance, 1)));
 		Log.v("Hour Difference", String.valueOf(diffInHours));
+		//durch 1000 da distance in m angegeben
 		double speed = mWorkoutTracker.round(totalDistance / diffInHours / 1000.0, 1);
 		String distanceText = String.valueOf(mWorkoutTracker.round(totalDistance, 1)) + " m";
 		distanceMetric.setText(distanceText);
 		String squatText = String.valueOf(squatReps);
+		String pullupText = String.valueOf(pullupReps);
+		String dipText = String.valueOf(dipReps);
+		String pushupText = String.valueOf(pushupReps);
 		String speedText = String.valueOf(speed) + " km/h";
 		// Set text inside view		
 		speedMetric.setText(speedText);
 		squatMetric.setText(squatText);
+		dipMetric.setText(dipText);
+		pushupMetric.setText(pushupText);
+		pullupMetric.setText(pullupText);
+		caloriesMetric.setText(String.valueOf((int)( 0.9 * 70.0 * totalDistance)));
 
 	}
 	public void mainMenu(View view) {
