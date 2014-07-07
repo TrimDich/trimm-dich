@@ -5,7 +5,9 @@ import java.math.RoundingMode;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.hardware.GeomagneticField;
 import android.hardware.Sensor;
@@ -33,6 +35,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import de.lmu.msp.trimmdich.R;
 import de.lmu.msp.trimmdich.data.WorkoutTracker;
 import de.lmu.msp.trimmdich.exercise.ExerciseActivity;
+import de.lmu.msp.trimmdich.main.MainActivity;
 
 public class CompassActivity extends Activity implements LocationListener,
 		SensorEventListener {
@@ -233,5 +236,27 @@ public class CompassActivity extends Activity implements LocationListener,
 		BigDecimal bd = new BigDecimal(value);
 		bd = bd.setScale(places, RoundingMode.HALF_UP);
 		return bd.doubleValue();
+	}
+	
+	@Override
+	public void onBackPressed() {
+		//disables back button of smartphone
+		//Ask the user if they want to quit
+        new AlertDialog.Builder(this)
+        .setIcon(android.R.drawable.ic_dialog_alert)
+        .setTitle(R.string.back_dialog_title)
+        .setMessage(R.string.back_dialog_msg)
+        .setPositiveButton(R.string.back_dialog_yes, new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            	Intent newIntent = new Intent(getBaseContext(), MainActivity.class);
+        		newIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        		startActivity(newIntent);  
+            }
+
+        })
+        .setNegativeButton(R.string.back_dialog_no, null)
+        .show();
 	}
 }

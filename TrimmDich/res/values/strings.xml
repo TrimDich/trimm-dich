@@ -14,7 +14,7 @@
     <string name="dialog_route">Länge der Strecke</string>
     <string name="dialog_count">Anzahl der Übungen</string>
     <string name="dialog_exercise">Übung</string>
-     <string name="dialog_error">Mindestens eine Übung pro KM</string>
+    <string name="dialog_error">Mindestens eine Übung pro KM</string>
 
     <!-- Compass Activity -->
     <string name="duration_txt">Dauer</string>
@@ -70,5 +70,10 @@
 
     <!-- Map Result Activit -->
     <string name="show_stats">Statistik anzeigen</string>
+    <string name="map_result_activity_title">Zurückgelegte Strecke</string>
+    <string name="back_dialog_title">Zurück</string>
+    <string name="back_dialog_msg">Willst du zurück zum Hauptmenü und einen neuen Run starten?</string>
+    <string name="back_dialog_yes">Ja</string>
+    <string name="back_dialog_no">Nein</string>
 
 </resources>
