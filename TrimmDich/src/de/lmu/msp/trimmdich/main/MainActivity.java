@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.maps.model.LatLng;
@@ -119,11 +120,15 @@ public class MainActivity extends Activity implements LocationListener {
 
 	public void updateTextViews() {
 		mSPrefs = getSharedPreferences(Constants.PREFS_NAME, 0);
+		int distanceLength = mSPrefs.getInt(Constants.DISTANCE_SPREF, 1);
+		mDistanceTextView.setText("" + distanceLength);
 
-		mDistanceTextView.setText(""
-				+ mSPrefs.getInt(Constants.DISTANCE_SPREF, 1));
-		mExerciseCountTextView.setText(""
-				+ mSPrefs.getInt(Constants.EXERCISE_COUNT_SPREF, 1));
+		int exerciseCount = mSPrefs.getInt(Constants.EXERCISE_COUNT_SPREF, 1);
+		if (exerciseCount < distanceLength) {
+			mExerciseCountTextView.setText("" + distanceLength);
+			Toast.makeText(this, getString(R.string.dialog_error), Toast.LENGTH_LONG).show();
+		} else
+			mExerciseCountTextView.setText("" + exerciseCount);
 
 		String exercises = "";
 

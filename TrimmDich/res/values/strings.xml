@@ -13,6 +13,8 @@
     <!-- NumberPickerFragement Activity -->
     <string name="dialog_route">Länge der Strecke</string>
     <string name="dialog_count">Anzahl der Übungen</string>
+    <string name="dialog_exercise">Übung</string>
+     <string name="dialog_error">Mindestens eine Übung pro KM</string>
 
     <!-- Compass Activity -->
     <string name="duration_txt">Dauer</string>
