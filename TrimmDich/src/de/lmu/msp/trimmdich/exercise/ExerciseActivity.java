@@ -44,8 +44,7 @@ public class ExerciseActivity extends Activity implements SensorEventListener,
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_exercise);
-		setTitle(R.string.exercise_title);
-
+		setTitle(R.string.excercise_activity_title);
 		ActionBar bar = getActionBar();
 		bar.setIcon(R.drawable.running_white_48);
 

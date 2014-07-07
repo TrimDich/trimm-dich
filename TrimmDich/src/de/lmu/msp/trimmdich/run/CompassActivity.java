@@ -74,7 +74,7 @@ public class CompassActivity extends Activity implements LocationListener,
 
 		ActionBar actionBar = getActionBar();
 		actionBar.setIcon(R.drawable.running_white_48);
-
+		setTitle(R.string.compass_activity_title);
 		mVibrator = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
 
 		mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);

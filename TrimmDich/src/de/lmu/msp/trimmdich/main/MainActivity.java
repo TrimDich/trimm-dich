@@ -45,6 +45,7 @@ public class MainActivity extends Activity implements LocationListener {
 		setContentView(R.layout.activity_main);
 		ActionBar actionbar = getActionBar();
 		actionbar.setIcon(R.drawable.running_white_48);
+		setTitle(R.string.main_activity_title);
 		mDistanceLinearLayout = (LinearLayout) findViewById(R.id.distanceLinearLayout);
 		mExerciseCountLinearLayout = (LinearLayout) findViewById(R.id.excerciseCountLinearLayout);
 		mExerciseTypesLinearLayout = (LinearLayout) findViewById(R.id.excerciseTypesLinearLayout);
@@ -122,15 +123,7 @@ public class MainActivity extends Activity implements LocationListener {
 		mDistanceTextView.setText("" + distanceLength);
 
 		int exerciseCount = mSPrefs.getInt(Constants.EXERCISE_COUNT_SPREF, 1);
-		if (exerciseCount < distanceLength) {
-			mExerciseCountTextView.setText("" + distanceLength);
-			SharedPreferences.Editor editor = mSPrefs.edit();
-			editor.putInt(Constants.EXERCISE_COUNT_SPREF, distanceLength);
-			editor.commit();
-			Toast.makeText(this, getString(R.string.dialog_error),
-					Toast.LENGTH_LONG).show();
-		} else
-			mExerciseCountTextView.setText("" + exerciseCount);
+		mExerciseCountTextView.setText("" + exerciseCount);
 
 		String exercises = "";
 

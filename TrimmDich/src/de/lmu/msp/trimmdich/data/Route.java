@@ -8,6 +8,7 @@ import com.google.android.gms.maps.model.LatLng;
 public class Route {
 	public List<Location> locations;
 	public List<RouteDataPoint> dataPoints;
+	public double flightPathInKm;
 
 	public static class RouteDataPoint {
 		public LatLng position;

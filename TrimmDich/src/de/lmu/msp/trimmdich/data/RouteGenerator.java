@@ -1,6 +1,9 @@
 package de.lmu.msp.trimmdich.data;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
@@ -96,10 +99,13 @@ public class RouteGenerator {
 		return allLocations;
 	}
 
+	
+	static double idealDistance;
+	static Location lastAddedLocation;
+	
 	public static Route generateRoute(RouteProperties routeProperties) {
 		List<Location> selectedLocations = new ArrayList<Location>();
 		List<Location> availableLocations = getAllLocations();
-		Location lastAddedLocation;
 		Route newRoute = new Route();
 		double routeLengthInKm = 0;
 
@@ -111,19 +117,45 @@ public class RouteGenerator {
 				asList(Exercise.EXERCISE_TYPE.SQUATS)));
 		lastAddedLocation = selectedLocations.get(0);
 
-		while (routeLengthInKm < routeProperties.desiredLengthInKm) {
+		// itterate over desired length 
+		while (selectedLocations.size() - 2 < routeProperties.desiredExercises) {
 			// get available locations
 			availableLocations = Helpers.filterLocationsByDistance(
 					availableLocations, lastAddedLocation.location,
 					(routeProperties.desiredLengthInKm - routeLengthInKm) / 2);
+			
+			// sort by ideal distance
+			idealDistance = (routeProperties.desiredLengthInKm - routeLengthInKm) /  (routeProperties.desiredExercises - selectedLocations.size() + 2);
+			
+			ArrayList<Location> sortedLocations = new ArrayList<Location>(availableLocations);
+			
+			Comparator<Location> comparator = new Comparator<Location>() {
+				@Override
+				public int compare(Location lhs, Location rhs) {
+					double ma = Math.abs(Helpers.distance(lastAddedLocation.location, lhs.location)/1000.0 - idealDistance);
+					double mb = Math.abs(Helpers.distance(lastAddedLocation.location, rhs.location)/1000.0 - idealDistance);
+					
+					if(ma < mb) 
+						return -1;
+					else if (ma > mb) 
+						return 1;
+					else 
+						return 0;
+				}
+			};
+			
+			Collections.sort(sortedLocations, comparator);
+			
 
-			if (availableLocations.size() == 0) {
+			if (sortedLocations.size() == 0) {
 				break;
 			}
 
 			// pop a random one
-			int itemToRemove = (int) (Math.random() * availableLocations.size());
-			lastAddedLocation = availableLocations.remove(itemToRemove);
+			int itemToRemove = (int) (Math.random() * Math.min(sortedLocations.size(), 3) );
+			
+			lastAddedLocation = sortedLocations.remove(itemToRemove);
+			availableLocations = sortedLocations;
 			lastAddedLocation.selectRandomExercise();
 			selectedLocations.add(selectedLocations.size() / 2,
 					lastAddedLocation);
@@ -139,14 +171,15 @@ public class RouteGenerator {
 		// routeProperties.desiredLengthInKm);
 		newRoute.locations = selectedLocations;
 		newRoute.dataPoints = new ArrayList<Route.RouteDataPoint>();
+		newRoute.flightPathInKm = routeLengthInKm;
 
 		// Distribute the exercises across the location nodes
-		for(int i = 0; i < routeProperties.desiredExercises -
-			newRoute.locations.size(); i++) {
-			int locationIndex = new Random().nextInt(newRoute.locations.size());
-			Location location = newRoute.locations.get(locationIndex);
-			location.selectRandomExercise();
-		}
+//		for(int i = 0; i < routeProperties.desiredExercises -
+//			newRoute.locations.size(); i++) {
+//			int locationIndex = new Random().nextInt(newRoute.locations.size());
+//			Location location = newRoute.locations.get(locationIndex);
+//			location.selectRandomExercise();
+//		}
 
 		return newRoute;
 	}

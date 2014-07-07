@@ -9,12 +9,14 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
@@ -32,6 +34,7 @@ public class RunPreviewActivity extends Activity implements LocationListener {
 	RouteProperties routeProperties;
 	Route route;
 	WorkoutTracker workoutTracker;
+	TextView distanceIndicator;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,12 +43,14 @@ public class RunPreviewActivity extends Activity implements LocationListener {
 
 		ActionBar actionbar = getActionBar();
 		actionbar.setIcon(R.drawable.running_white_48);
+		setTitle(R.string.runpreview_activity_title);
 		//
 		// Google Map
 		//
 		map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
 				.getMap();
-
+		distanceIndicator = (TextView) findViewById(R.id.distanceIndicator);
+		
 		// configure map
 		map.setMyLocationEnabled(true);
 
@@ -64,14 +69,23 @@ public class RunPreviewActivity extends Activity implements LocationListener {
 	private void generateRoute() {
 		route = RouteGenerator.generateRoute(routeProperties);
 
+		distanceIndicator.setText("aprox. " + WorkoutTracker.round(route.flightPathInKm, 2) + " Km");
+		
 		// add route to map
 		map.clear();
 		PolylineOptions line = new PolylineOptions();
 
 		for (Location location : route.locations) {
 			line.add(location.location);
-			map.addMarker(new MarkerOptions().position(location.location)
-					.title("location"));
+			MarkerOptions options = new MarkerOptions().position(location.location)
+					.title("location");
+			if(location.selectedExercises.size() == 0) {
+				options.icon(BitmapDescriptorFactory.fromResource(R.drawable.flag32));
+			} else {
+				options.icon(BitmapDescriptorFactory.fromResource(R.drawable.empty2));
+			}
+			
+			map.addMarker(options);
 		}
 		// map.addPolyline(line).setColor(0xFF1BA39C);
 		map.addPolyline(line).setColor(0xCF2574A9);
