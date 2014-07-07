@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.Locale;
 import java.util.NoSuchElementException;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -43,6 +44,10 @@ public class ExerciseActivity extends Activity implements SensorEventListener,
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_exercise);
 		setTitle(R.string.exercise_title);
+
+		ActionBar bar = getActionBar();
+		bar.setIcon(R.drawable.running_white_48);
+
 		sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
 		countView = (TextView) findViewById(R.id.exercise_countView);
 		infoView = (TextView) findViewById(R.id.exercise_exercise_name);

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center_horizontal" >
+    android:layout_height="match_parent" >
 
     <TextView
         android:id="@+id/exercise_overview_default"
@@ -30,14 +29,25 @@
 
     <ImageView
         android:id="@+id/exercise_pic"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
         android:layout_below="@+id/squatsTxt"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="24dp"
         android:contentDescription="@string/exercise_img_content_description"
         android:src="@drawable/squat_2" />
-    <!--
+
+    <LinearLayout
+        android:id="@+id/ex_linear_1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/imageView2"
+        android:layout_below="@+id/exercise_pic"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <!--
     <ImageView
         android:id="@+id/imageView1"
         android:layout_width="match_parent"
@@ -45,8 +55,8 @@
         android:layout_below="@+id/squatsTxt"
         android:contentDescription="@string/boder_img"
         android:src="#ccc" />
-    -->
-    <!--
+        -->
+        <!--
          <Button
         android:id="@+id/exercise_bt_next"
         android:layout_width="match_parent"
@@ -56,31 +66,27 @@
         android:longClickable="true"
         android:onClick="onBtNextClick"
         android:text="@string/exercise_bt_next" />
-    -->
+        -->
 
-    <TextView
-        android:id="@+id/exercise_countView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/exercise_pic"
-        android:layout_centerHorizontal="true"
-        android:paddingTop="8dp"
-        android:text="@string/exercise_zero"
-        android:textColor="@color/subtitle_text_color"
-        android:textSize="150sp" />
+        <TextView
+            android:id="@+id/exercise_countView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:text="@string/exercise_zero"
+            android:textColor="@color/subtitle_text_color"
+            android:textSize="150sp" />
 
-    <TextView
-        android:id="@+id/exercise_exercise_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/exercise_countView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:gravity="center"
-        android:paddingTop="8dp"
-        android:text="@string/exercise_pushup"
-        android:textColor="@color/subtitle_text_color"
-        android:textSize="20sp" />
+        <TextView
+            android:id="@+id/exercise_exercise_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="8dp"
+            android:text="@string/exercise_pushup"
+            android:textColor="@color/subtitle_text_color"
+            android:textSize="20sp" />
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/imageView2"

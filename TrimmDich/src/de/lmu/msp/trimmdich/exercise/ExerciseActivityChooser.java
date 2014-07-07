@@ -44,7 +44,7 @@ public class ExerciseActivityChooser extends Activity {
 			mExerciseTextView.setText(R.string.pushUps);
 			break;
 		case 4:
-			// mExerciseImageView.setImageResource(R.drawable.pull_up);
+			mExerciseImageView.setImageResource(R.drawable.dips);
 			mExerciseTextView.setText(R.string.dips);
 			break;
 		default:

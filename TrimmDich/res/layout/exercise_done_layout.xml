@@ -10,7 +10,7 @@
         android:layout_alignParentTop="true"
         android:gravity="center"
         android:paddingBottom="8dp"
-        android:paddingTop="8dp"
+        android:paddingTop="16dp"
         android:textSize="24sp" />
 
     <TextView
@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/currentExerciseTextView"
         android:gravity="center"
-        android:text="@string/repetitions_goal" 
+        android:text="@string/repetitions_goal"
         android:textSize="36sp" />
 
     <ImageView
