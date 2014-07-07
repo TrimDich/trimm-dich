@@ -25,6 +25,7 @@ import com.google.android.gms.maps.model.LatLng;
 
 import de.lmu.msp.trimmdich.data.Route.RouteDataPoint;
 import de.lmu.msp.trimmdich.exercise.ExerciseActivity;
+import de.lmu.msp.trimmdich.run.CompassActivity;
 
 /* 
  * WorkoutTracker
@@ -88,6 +89,8 @@ public class WorkoutTracker implements
 	private boolean mResolvingError = false;
 	private Route activeRoute;
 	private Location lastLocation;
+	
+	private boolean launchedNewIntent = false; // private variable to prevent double launching new intents
 
 	public Location getLastLocation() {
 		return lastLocation;
@@ -112,7 +115,7 @@ public class WorkoutTracker implements
 			locationClient.disconnect();
 		}
 
-		currentActivity = activity;
+		
 
 		// If it's the first time registering check if play services are
 		// available
@@ -123,12 +126,17 @@ public class WorkoutTracker implements
 				e.printStackTrace();
 			}
 		}
+		
+		currentActivity = activity;
 
 		if (activity == null) {
 			// if activity is set to a null value disconnect?
 			// maybe not because we want to keep tracking location updates
+//			if(locationClient != null) {
+//				locationClient.disconnect();
+//			}
 		} else {
-
+			launchedNewIntent = false;
 			locationClient = new LocationClient(
 					currentActivity.getApplicationContext(), this, this);
 			locationClient.connect();
@@ -297,22 +305,25 @@ public class WorkoutTracker implements
 			de.lmu.msp.trimmdich.data.Location destinationLocation = activeRoute.locations
 					.get(nextLocation);
 			LatLng currentLocation = new LatLng(location.getLatitude(),
-					location.getLatitude());
+					location.getLongitude());
 
 			double distanceInM = Helpers.distance(destinationLocation.location,
 					currentLocation);
 
 //			double distanceInKM = round(distance / 1000, 2);
-			if (distanceInM <= 20) {
+			if (distanceInM <= 40 && currentActivity instanceof CompassActivity ) {
 
-				Intent intent = new Intent(currentActivity,
-						ExerciseActivity.class);
-				intent.putExtra("next_location", nextLocation);
+//				Intent intent = new Intent(currentActivity,
+//						ExerciseActivity.class);
+//				//intent.putExtra("next_location", nextLocation);
+//				
+//				Toast.makeText(currentActivity, "Arrived at location:" + nextLocation, 10000).show();
+//				
+//				currentActivity.startActivity(intent);
 				
-				Toast.makeText(currentActivity, "Arrived at location:" + nextLocation, 10000).show();
+				((CompassActivity)currentActivity).arriveAtExercise(null);
 				
-				currentActivity.startActivity(intent);
-
+				
 			}
 
 		}
