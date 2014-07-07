@@ -1,37 +1,35 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/LinearLayout1"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
-    android:weightSum="1" >
+    android:orientation="vertical" >
 
     <!-- android:apiKey="0HD__0DaIgDb8nHjJsuggkHlW1MofMwg-xVCpA" -->
 
     <fragment
         android:id="@+id/map"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.85"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/border_1"
+        android:layout_alignParentTop="true"
         class="com.google.android.gms.maps.MapFragment" />
 
     <ImageView
+        android:id="@+id/border_1"
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_above="@+id/start_run_linear"
         android:contentDescription="@string/boder_img"
         android:src="#999" />
 
     <LinearLayout
         android:id="@+id/start_run_linear"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="1dp"
-        android:layout_weight="0.15"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:background="@drawable/config_button"
         android:clickable="true"
         android:gravity="center"
         android:onClick="startRun"
-        android:orientation="horizontal"
         android:paddingBottom="24dp"
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
@@ -39,21 +37,19 @@
 
         <ImageView
             android:id="@+id/imageView1"
-            android:layout_width="20dp"
-            android:layout_height="35dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginTop="4dp"
+            android:layout_width="30dp"
+            android:layout_height="45dp"
             android:cropToPadding="false"
             android:src="@drawable/running_big" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="35dp"
-            android:layout_marginTop="2dp"
+            android:layout_marginLeft="4dp"
             android:gravity="center"
             android:text="@string/start_run"
             android:textColor="@color/subtitle_text_color"
             android:textSize="25sp" />
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>

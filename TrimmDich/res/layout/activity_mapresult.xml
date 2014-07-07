@@ -29,10 +29,10 @@
         android:background="@drawable/config_button"
         android:gravity="center"
         android:onClick="showStatistics"
-        android:paddingBottom="26dp"
+        android:paddingBottom="24dp"
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
-        android:paddingTop="26dp" >
+        android:paddingTop="24dp" >
 
         <ImageView
             android:id="@+id/imageView1"

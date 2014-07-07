@@ -28,7 +28,7 @@
         android:id="@+id/main_linear_2"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
         android:orientation="vertical" >
 
         <ImageView
@@ -149,49 +149,10 @@
             android:id="@+id/border_4"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginBottom="1.5dp"
             android:contentDescription="@string/boder_img"
             android:src="#999" />
-
-        <ImageView
-            android:id="@+id/border_5"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:contentDescription="@string/boder_img"
-            android:src="#999" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.25"
-            android:background="@drawable/config_button"
-            android:gravity="center"
-            android:onClick="startNewRun"
-            android:paddingBottom="26dp"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
-            android:paddingTop="26dp" >
-
-            <ImageView
-                android:id="@+id/imageView1"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_marginRight="4dp"
-                android:cropToPadding="false"
-                android:src="@drawable/route_3" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:layout_marginLeft="4dp"
-                android:layout_marginTop="2dp"
-                android:gravity="center"
-                android:text="@string/generate_route"
-                android:textColor="@color/subtitle_text_color"
-                android:textSize="24sp" />
-        </LinearLayout>
     </LinearLayout>
-    <!--
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -199,6 +160,45 @@
         android:background="#eee"
         android:gravity="center" >
     </LinearLayout>
-    -->
+
+    <ImageView
+        android:id="@+id/border_5"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_above="@+id/main_generate_linear"
+        android:contentDescription="@string/boder_img"
+        android:src="#999" />
+
+    <LinearLayout
+        android:id="@+id/main_generate_linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/config_button"
+        android:gravity="center"
+        android:onClick="startNewRun"
+        android:paddingBottom="24dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="24dp" >
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginRight="4dp"
+            android:cropToPadding="false"
+            android:src="@drawable/route_3" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="2dp"
+            android:gravity="center"
+            android:text="@string/generate_route"
+            android:textColor="@color/subtitle_text_color"
+            android:textSize="24sp" />
+    </LinearLayout>
 
 </RelativeLayout>

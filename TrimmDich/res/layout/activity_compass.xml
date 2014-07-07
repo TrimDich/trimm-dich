@@ -1,161 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center_horizontal"
-    android:orientation="vertical" >
+    android:layout_height="match_parent" >
 
     <LinearLayout
+        android:id="@+id/compass_linear_1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/border_bottom"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:paddingBottom="30dp"
-        android:paddingTop="30dp" >
-
-        <Chronometer
-            android:id="@+id/chronometer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="32sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/duration_txt"
-            android:textColor="@color/subtitle_text_color"
-            android:textSize="12sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:baselineAligned="false"
-        android:orientation="horizontal" >
+        android:layout_height="match_parent"
+        android:layout_above="@+id/border_arrive_btn"
+        android:layout_alignParentTop="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical" >
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:background="@drawable/border_bottom_right"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:paddingBottom="12dp"
-            android:paddingTop="12dp" >
-
-            <TextView
-                android:id="@+id/distanceTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="22sp" />
-
-            <TextView
-                android:id="@+id/unitTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:text="@string/distance_txt"
-                android:textColor="@color/subtitle_text_color"
-                android:textSize="12sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
             android:background="@drawable/border_bottom"
             android:gravity="center"
             android:orientation="vertical"
-            android:paddingBottom="12dp"
-            android:paddingTop="12dp" >
+            android:paddingBottom="30dp"
+            android:paddingTop="30dp" >
 
-            <TextView
-                android:id="@+id/speedTextView"
+            <Chronometer
+                android:id="@+id/chronometer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/speed_initial_txt"
-                android:textSize="22sp" />
+                android:textSize="32sp" />
 
             <TextView
-                android:id="@+id/speedAverageTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:text="@string/speed_txt"
+                android:text="@string/duration_txt"
                 android:textColor="@color/subtitle_text_color"
                 android:textSize="12sp" />
         </LinearLayout>
-    </LinearLayout>
 
-    <RelativeLayout
-        android:id="@+id/AbsoluteLayout1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="0.4"
-        android:gravity="center_horizontal" >
-        
-        <fragment
-            android:id="@+id/map"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:background="@drawable/border_bottom_right"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingBottom="12dp"
+                android:paddingTop="12dp" >
+
+                <TextView
+                    android:id="@+id/distanceTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:id="@+id/unitTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/distance_txt"
+                    android:textColor="@color/subtitle_text_color"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:background="@drawable/border_bottom"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingBottom="12dp"
+                android:paddingTop="12dp" >
+
+                <TextView
+                    android:id="@+id/speedTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/speed_initial_txt"
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:id="@+id/speedAverageTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/speed_txt"
+                    android:textColor="@color/subtitle_text_color"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/AbsoluteLayout1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            class="com.google.android.gms.maps.MapFragment" />
+            android:layout_weight="0.4"
+            android:gravity="center_horizontal" >
 
-        <de.lmu.msp.trimmdich.run.CompassView
-            android:id="@+id/compassImageView"
-            android:layout_width="wrap_content"
-            android:layout_height="128dp"
-            android:layout_centerInParent="true"
-            android:contentDescription="@string/direction_img_content_description"
-            android:src="@drawable/navigation_thin" />
+            <fragment
+                android:id="@+id/map"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                class="com.google.android.gms.maps.MapFragment" />
 
-        <TextView
-            android:id="@+id/directionTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingTop="8dp"
-            android:text="@string/direction_to_exercise_txt"
-            android:textColor="@color/subtitle_text_color"
-            android:textSize="12sp" />
+            <de.lmu.msp.trimmdich.run.CompassView
+                android:id="@+id/compassImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="128dp"
+                android:layout_centerInParent="true"
+                android:contentDescription="@string/direction_img_content_description"
+                android:src="@drawable/navigation_thin" />
 
-        <TextView
-            android:id="@+id/bearingTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:visibility="gone" />
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/directionTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="8dp"
+                android:text="@string/direction_to_exercise_txt"
+                android:textColor="@color/subtitle_text_color"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/bearingTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:visibility="gone" />
+        </RelativeLayout>
+    </LinearLayout>
 
     <ImageView
+        android:id="@+id/border_arrive_btn"
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_above="@+id/excerciseCountLinearLayout"
         android:contentDescription="@string/boder_img"
         android:src="#ccc" />
 
     <LinearLayout
         android:id="@+id/excerciseCountLinearLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="0.6"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:background="@drawable/config_button"
         android:clickable="true"
         android:gravity="center"
         android:onClick="arriveAtExercise"
         android:orientation="vertical"
-        android:paddingBottom="12dp"
+        android:paddingBottom="24dp"
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
-        android:paddingTop="12dp" >
+        android:paddingTop="24dp" >
 
         <TextView
             android:id="@+id/setupExerciseCountTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp"
             android:gravity="center"
             android:text="@string/arrive_at_exercise_btn"
             android:textColor="@color/subtitle_text_color"
-            android:textSize="22sp" />
+            android:textSize="24sp" />
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>
