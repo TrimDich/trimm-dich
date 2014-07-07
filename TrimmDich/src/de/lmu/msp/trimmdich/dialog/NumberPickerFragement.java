@@ -59,13 +59,13 @@ public class NumberPickerFragement extends DialogFragment {
 		if (pickerType.equals(Constants.DISTANCE_PICKER_TYPE)) {
 			txt.setText(R.string.km);
 			mPickerSPref = Constants.DISTANCE_SPREF;
-			title = "LŠnge der Strecke";
+			title = this.getString(R.string.dialog_route);
 			mNumberPicker.setMaxValue(DISTANCE_MAX_VALUE);
 			mNumberPicker.setMinValue(DISTANCE_MIN_VALUE);
 		} else if (pickerType.equals(Constants.EXERCISE_COUNT_PICKER_TYPE)) {
 			txt.setText(R.string.exercise_type_txt);
 			mPickerSPref = Constants.EXERCISE_COUNT_SPREF;
-			title = "Anzahl der †bungen";
+			title = this.getString(R.string.dialog_count);
 			mNumberPicker.setMaxValue(EX_COUNT_MAX_VALUE);
 			mNumberPicker.setMinValue(EX_COUNT_MIN_VALUE);
 		}

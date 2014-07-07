@@ -9,6 +9,10 @@
     <string name="statistics_run_distance">Distanz</string>
     <string name="statistics_headline">Dein Workout in Zahlen</string>
     <string name="statistics_back_button">Zurück zum Hauptmenü</string>
+    
+    <!-- NumberPickerFragement Activity -->
+    <string name="dialog_route">Länge der Strecke</string>
+    <string name="dialog_count">Anzahl der Übungen</string>
 
     <!-- Compass Activity -->
     <string name="duration_txt">Dauer</string>
