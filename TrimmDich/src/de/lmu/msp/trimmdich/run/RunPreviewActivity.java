@@ -81,6 +81,7 @@ public class RunPreviewActivity extends Activity implements LocationListener {
 					.title("location");
 			if(location.selectedExercises.size() == 0) {
 				options.icon(BitmapDescriptorFactory.fromResource(R.drawable.flag32));
+				options.anchor(0.5f, 0.9f);
 			} else {
 				options.icon(BitmapDescriptorFactory.fromResource(R.drawable.empty2));
 			}
