@@ -43,7 +43,7 @@ public class ExerciseDialogFragement extends DialogFragment {
 		mSquatsCheckBox = (CheckBox) v.findViewById(R.id.squatsCheckBox);
 
 		alertBuilder.setView(v);
-		alertBuilder.setTitle("†bungen");
+		alertBuilder.setTitle(getString(R.string.dialog_exercise));
 
 		boolean dips = mSPrefs.getBoolean(Constants.DIPS_EXERCISE_SPREF, true);
 		boolean pullup = mSPrefs.getBoolean(Constants.PULLUP_EXERCISE_SPREF,
