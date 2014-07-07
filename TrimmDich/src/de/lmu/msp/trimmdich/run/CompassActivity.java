@@ -5,6 +5,7 @@ import java.math.RoundingMode;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.hardware.GeomagneticField;
 import android.hardware.Sensor;
@@ -13,7 +14,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.location.Location;
 import android.os.Bundle;
-import android.util.Log;
+import android.os.Vibrator;
 import android.view.View;
 import android.widget.Chronometer;
 import android.widget.TextView;
@@ -49,7 +50,9 @@ public class CompassActivity extends Activity implements LocationListener,
 	private Location mDestinationLocation = new Location("Destination");
 
 	private CompassView mCompassIMageView;
-	
+
+	private Vibrator mVibrator;
+
 	GoogleMap map;
 	Marker marker;
 
@@ -68,6 +71,8 @@ public class CompassActivity extends Activity implements LocationListener,
 
 		ActionBar actionBar = getActionBar();
 		actionBar.setIcon(R.drawable.running_white_48);
+
+		mVibrator = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
 
 		mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
 
@@ -93,7 +98,7 @@ public class CompassActivity extends Activity implements LocationListener,
 		mChronometer.start();
 
 		mCompassIMageView = (CompassView) findViewById(R.id.compassImageView);
-		
+
 		//
 		// Google Map
 		//
@@ -106,10 +111,10 @@ public class CompassActivity extends Activity implements LocationListener,
 		settings.setAllGesturesEnabled(false);
 		settings.setMyLocationButtonEnabled(false);
 		settings.setZoomControlsEnabled(false);
-		
-		LatLng lastLoc = new LatLng(0,0);
-		marker = map.addMarker(new MarkerOptions().position(lastLoc)
-				.title("Goal"));
+
+		LatLng lastLoc = new LatLng(0, 0);
+		marker = map.addMarker(new MarkerOptions().position(lastLoc).title(
+				"Goal"));
 	}
 
 	@Override
@@ -127,8 +132,6 @@ public class CompassActivity extends Activity implements LocationListener,
 		mSensorManager.registerListener(this,
 				mSensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION),
 				SensorManager.SENSOR_DELAY_GAME);
-		
-		
 
 	}
 
@@ -139,8 +142,10 @@ public class CompassActivity extends Activity implements LocationListener,
 	}
 
 	public void arriveAtExercise(View view) {
+
+		mVibrator.vibrate(1000);
 		Intent newIntent = new Intent(this, ExerciseActivity.class);
-		startActivity(newIntent); 
+		startActivity(newIntent);
 	}
 
 	@Override
@@ -151,7 +156,7 @@ public class CompassActivity extends Activity implements LocationListener,
 		double distanceInKM = round(distance / 1000, 2);
 		String distanceStr = new Double(distanceInKM).toString();
 		Toast.makeText(this, "UPDATED LOCATION" + distanceStr, 3000).show();
-		
+
 		String speedTxt = "-";
 		if (location.hasSpeed()) {
 			double speed = location.getSpeed() * 3.6;
@@ -162,10 +167,12 @@ public class CompassActivity extends Activity implements LocationListener,
 
 		mDistanceTextView.setText("" + distanceInKM);
 		mSpeedTextView.setText(speedTxt);
-		
+
 		// update map
-		LatLng lastLoc = new LatLng(location.getLatitude(), location.getLongitude());
-		LatLng destLoc = new LatLng(mDestinationLocation.getLatitude(), mDestinationLocation.getLongitude());
+		LatLng lastLoc = new LatLng(location.getLatitude(),
+				location.getLongitude());
+		LatLng destLoc = new LatLng(mDestinationLocation.getLatitude(),
+				mDestinationLocation.getLongitude());
 		marker.setPosition(destLoc);
 		CameraUpdate update = CameraUpdateFactory.newLatLngZoom(lastLoc, 14);
 		map.animateCamera(update);
@@ -196,7 +203,7 @@ public class CompassActivity extends Activity implements LocationListener,
 
 		// Store the bearingTo in the bearTo variable
 		float bearTo = currentLocation.bearingTo(mDestinationLocation);
-		//Log.d("CompassActivity", "Bear To: " + bearTo);
+		// Log.d("CompassActivity", "Bear To: " + bearTo);
 
 		// If the bearTo is smaller than 0, add 360 to get the rotation
 		// clockwise.
