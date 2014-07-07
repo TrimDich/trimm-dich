@@ -116,6 +116,8 @@ public class ExerciseActivity extends Activity implements SensorEventListener,
 		sensorManager.unregisterListener(this);
 		try {
 			currentExercise = currentExercises.next();
+			Intent intent = new Intent(this, ExerciseActivityChooser.class);
+			intent.putExtra(Exercise.INTENT_EXTRA_COUNT_GOAL, currentExercise.getRepetitionsGoal());
 			switch(currentExercise.getType()){
 				case SQUATS:
 					infoView.setText(getResources().getString(R.string.exercise_repetition_goal_pushup, currentExercise.getRepetitionsGoal()));
@@ -123,12 +125,19 @@ public class ExerciseActivity extends Activity implements SensorEventListener,
 					sensorManager.registerListener(this,sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),SensorManager.SENSOR_DELAY_NORMAL);
 					break;
 				case PULL_UP:
+					intent.putExtra(Exercise.INTENT_EXTRA_TYPE,2);
+					startActivityForResult(intent,7);
+					break;
 				case PUSH_UP:
+					intent.putExtra(Exercise.INTENT_EXTRA_TYPE,3);
+					startActivityForResult(intent,7);
+					break;
 				case DIPS:
+					intent.putExtra(Exercise.INTENT_EXTRA_TYPE,4);
+					startActivityForResult(intent,7);
+					break;
 				default:
-					Intent intent = new Intent(this, ExerciseActivityChooser.class);
-					intent.putExtra(Exercise.INTENT_EXTRA_TYPE, currentExercise.getType());
-					intent.putExtra(Exercise.INTENT_EXTRA_COUNT_GOAL, currentExercise.getRepetitionsGoal());
+					intent.putExtra(Exercise.INTENT_EXTRA_TYPE,5);
 					startActivityForResult(intent,7);
 					break;
 			}

@@ -39,6 +39,7 @@
         <activity android:name="de.lmu.msp.trimmdich.run.RunPreviewActivity"></activity>
         <activity android:name="de.lmu.msp.trimmdich.summary.StatisticsActivity"></activity>
         <activity android:name="de.lmu.msp.trimmdich.exercise.ExerciseActivityChooser"></activity>
+         <activity android:name="de.lmu.msp.trimmdich.exercise.GraphTestClass" android:screenOrientation="landscape"></activity>
     
     	<!-- Google Play Maps -->
     	<meta-data 
