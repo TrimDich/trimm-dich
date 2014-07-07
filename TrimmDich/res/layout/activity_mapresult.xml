@@ -1,27 +1,56 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center" >    
-    
-    <!-- 
-        android:apiKey="0HD__0DaIgDb8nHjJsuggkHlW1MofMwg-xVCpA"  -->
+    android:orientation="vertical" >
 
-	<fragment
-        android:id="@+id/map"  android:layout_weight="0.15"
+    <!-- android:apiKey="0HD__0DaIgDb8nHjJsuggkHlW1MofMwg-xVCpA" -->
+
+    <fragment
+        android:id="@+id/map"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        class="com.google.android.gms.maps.MapFragment" /> 
-   
-    <Button
-        android:id="@+id/mapresult_button"
-        android:layout_width="wrap_content"
-        android:layout_weight="0.85"
-        android:layout_height="match_parent"
-        android:onClick="showStatistics"
-        android:text="Statistik anzeigen" />
-    
-    
-  
+        android:layout_above="@+id/border_1"
+        android:layout_alignParentTop="true"
+        class="com.google.android.gms.maps.MapFragment" />
 
-</LinearLayout>
+    <ImageView
+        android:id="@+id/border_1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_above="@+id/map_result_linear"
+        android:contentDescription="@string/boder_img"
+        android:src="#999" />
+
+    <LinearLayout
+        android:id="@+id/map_result_linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/config_button"
+        android:gravity="center"
+        android:onClick="showStatistics"
+        android:paddingBottom="26dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="26dp" >
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginRight="4dp"
+            android:cropToPadding="false"
+            android:src="@drawable/stats_1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="2dp"
+            android:gravity="center"
+            android:text="@string/show_stats"
+            android:textColor="@color/subtitle_text_color"
+            android:textSize="24sp" />
+    </LinearLayout>
+
+</RelativeLayout>

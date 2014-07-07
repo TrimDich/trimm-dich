@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/generate_button_while_focused" android:state_focused="true"/>
+    <item android:drawable="@drawable/generate_button_pressed" android:state_pressed="true"/>
+    <item android:drawable="@drawable/generate_button_not_pressed"/>
+</selector>

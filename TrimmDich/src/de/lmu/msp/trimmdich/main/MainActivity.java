@@ -42,7 +42,7 @@ public class MainActivity extends Activity implements LocationListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
 		setContentView(R.layout.activity_main);
 		ActionBar actionbar = getActionBar();
 		actionbar.setIcon(R.drawable.running_white_48);
@@ -75,12 +75,6 @@ public class MainActivity extends Activity implements LocationListener {
 				Constants.EXERCISE_COUNT_SPREF, 1);
 		routeProperties.startPosition = new LatLng(48.1735192, 11.5920656);
 
-		// setContentView(R.layout.activity_main);
-		// Intent newIntent = new Intent(this, StatisticsActivity.class);
-		// startActivity(newIntent);
-
-		// setContentView(R.layout.activity_main);
-
 	}
 
 	@Override
@@ -112,26 +106,6 @@ public class MainActivity extends Activity implements LocationListener {
 
 		}
 	};
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
 
 	public void startNewRun(View view) {
 		Intent newIntent = new Intent(this, RunPreviewActivity.class);

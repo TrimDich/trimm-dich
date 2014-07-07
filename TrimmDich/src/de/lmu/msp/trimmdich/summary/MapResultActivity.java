@@ -1,7 +1,6 @@
 package de.lmu.msp.trimmdich.summary;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -14,7 +13,6 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 
@@ -38,6 +36,7 @@ public class MapResultActivity extends Activity {
 		setContentView(R.layout.activity_mapresult);
 		ActionBar actionbar = getActionBar();
 		actionbar.setIcon(R.drawable.running_white_48);
+		setTitle("Zurückgelegte Strecke");
 		map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
 				.getMap();
 		map.setMyLocationEnabled(true);
@@ -48,10 +47,8 @@ public class MapResultActivity extends Activity {
 		
 		 
 		 PolylineOptions line = new PolylineOptions();
-		 List<LatLng> latlngList = new ArrayList<LatLng>();
 		 for (RouteDataPoint rdp : route.dataPoints) {
 			 line.add(rdp.position);
-			 latlngList.add(rdp.position);
 			 CameraUpdate update = CameraUpdateFactory.newLatLngZoom(rdp.position, 18);
 			 map.animateCamera(update);
 			 }

@@ -40,9 +40,6 @@
     <string name="pushUps">Liegestütze</string>
     <string name="dips">Dips</string>
 
-    <!-- Main Activity -->
-    <string name="start_training">Starte Training</string>
-
     <!-- Exercise Activity -->
     <string name="exercise_pushup">Kniebeugen</string>
     <string name="exercise_title">Trimm Dich - Übungen</string>
@@ -64,5 +61,8 @@
     <string name="almost_complete_exercise">Fast Geschafft!</string>
     <string name="not_complete_exercise">Nicht Geschafft!</string>
     <string name="repetitions_goal">x10</string>
+
+    <!-- Map Result Activit -->
+    <string name="show_stats">Statistik anzeigen</string>
 
 </resources>
