@@ -34,7 +34,7 @@ public class StatisticsActivity extends Activity {
 		setContentView(R.layout.activity_statistics);
 		ActionBar actionbar = getActionBar();
 		actionbar.setIcon(R.drawable.running_white_48);
-
+		setTitle(R.string.statistics_activity_title);
 		TextView distanceMetric = (TextView) findViewById(R.id.distanceMetric);
 		TextView squatMetric = (TextView) findViewById(R.id.squatMetric);
 		TextView speedMetric = (TextView) findViewById(R.id.speedMetric);

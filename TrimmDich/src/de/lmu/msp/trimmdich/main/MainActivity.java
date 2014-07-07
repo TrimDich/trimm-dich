@@ -45,6 +45,7 @@ public class MainActivity extends Activity implements LocationListener {
 		setContentView(R.layout.activity_main);
 		ActionBar actionbar = getActionBar();
 		actionbar.setIcon(R.drawable.running_white_48);
+		setTitle(R.string.main_activity_title);
 		mDistanceLinearLayout = (LinearLayout) findViewById(R.id.distanceLinearLayout);
 		mExerciseCountLinearLayout = (LinearLayout) findViewById(R.id.excerciseCountLinearLayout);
 		mExerciseTypesLinearLayout = (LinearLayout) findViewById(R.id.excerciseTypesLinearLayout);

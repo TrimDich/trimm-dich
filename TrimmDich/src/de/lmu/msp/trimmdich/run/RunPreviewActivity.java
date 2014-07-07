@@ -40,6 +40,7 @@ public class RunPreviewActivity extends Activity implements LocationListener {
 
 		ActionBar actionbar = getActionBar();
 		actionbar.setIcon(R.drawable.running_white_48);
+		setTitle(R.string.runpreview_activity_title);
 		//
 		// Google Map
 		//
