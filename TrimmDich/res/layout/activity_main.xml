@@ -112,8 +112,7 @@
         android:layout_height="1dp"
         android:layout_below="@+id/excerciseCountLinearLayout"
         android:contentDescription="@string/boder_img"
-        android:src="#ccc" 
-        android:visibility="gone"/>
+        android:src="#ccc"/>
 
     <LinearLayout
         android:id="@+id/excerciseTypesLinearLayout"
@@ -128,8 +127,7 @@
         android:paddingBottom="24dp"
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
-        android:paddingTop="24dp" 
-        android:visibility="gone">
+        android:paddingTop="24dp">
 
         <TextView
             android:id="@+id/setupExerciseTypesTextView"

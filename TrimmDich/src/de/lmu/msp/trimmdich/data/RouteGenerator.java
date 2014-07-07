@@ -141,12 +141,12 @@ public class RouteGenerator {
 		newRoute.dataPoints = new ArrayList<Route.RouteDataPoint>();
 
 		// Distribute the exercises across the location nodes
-		// for(int i = 0; i < routeProperties.desiredExercises -
-		// newRoute.locations.size(); i++) {
-		// int locationIndex = new Random().nextInt(newRoute.locations.size());
-		// Location location = newRoute.locations.get(locationIndex);
-		// location.selectRandomExercise();
-		// }
+		for(int i = 0; i < routeProperties.desiredExercises -
+			newRoute.locations.size(); i++) {
+			int locationIndex = new Random().nextInt(newRoute.locations.size());
+			Location location = newRoute.locations.get(locationIndex);
+			location.selectRandomExercise();
+		}
 
 		return newRoute;
 	}
