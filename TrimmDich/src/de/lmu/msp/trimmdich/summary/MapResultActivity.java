@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -21,6 +23,7 @@ import de.lmu.msp.trimmdich.data.Location;
 import de.lmu.msp.trimmdich.data.Route;
 import de.lmu.msp.trimmdich.data.Route.RouteDataPoint;
 import de.lmu.msp.trimmdich.data.WorkoutTracker;
+import de.lmu.msp.trimmdich.main.MainActivity;
 
 public class MapResultActivity extends Activity {
 
@@ -36,7 +39,7 @@ public class MapResultActivity extends Activity {
 		setContentView(R.layout.activity_mapresult);
 		ActionBar actionbar = getActionBar();
 		actionbar.setIcon(R.drawable.running_white_48);
-		setTitle("ZurŸckgelegte Strecke");
+		setTitle("Zurückgelegte Strecke");
 		map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
 				.getMap();
 		map.setMyLocationEnabled(true);
@@ -79,5 +82,22 @@ public class MapResultActivity extends Activity {
 	@Override
 	public void onBackPressed() {
 		//disables back button of smartphone
+		//Ask the user if they want to quit
+        new AlertDialog.Builder(this)
+        .setIcon(android.R.drawable.ic_dialog_alert)
+        .setTitle("Zurück")
+        .setMessage("Willst du zurück zum Hauptmenü?")
+        .setPositiveButton("Ja", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            	Intent newIntent = new Intent(getBaseContext(), MainActivity.class);
+        		newIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        		startActivity(newIntent);  
+            }
+
+        })
+        .setNegativeButton("Nein", null)
+        .show();
 	}
 }

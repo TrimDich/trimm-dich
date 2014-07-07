@@ -136,6 +136,7 @@ public class StatisticsActivity extends Activity {
 	}
 	public void mainMenu(View view) {
 		Intent newIntent = new Intent(this, MainActivity.class);
+		newIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 		startActivity(newIntent);
 	}
 }
