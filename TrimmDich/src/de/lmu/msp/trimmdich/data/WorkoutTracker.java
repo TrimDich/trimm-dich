@@ -89,8 +89,9 @@ public class WorkoutTracker implements
 	private boolean mResolvingError = false;
 	private Route activeRoute;
 	private Location lastLocation;
-	
-	private boolean launchedNewIntent = false; // private variable to prevent double launching new intents
+
+	private boolean launchedNewIntent = false; // private variable to prevent
+												// double launching new intents
 
 	public Location getLastLocation() {
 		return lastLocation;
@@ -115,8 +116,6 @@ public class WorkoutTracker implements
 			locationClient.disconnect();
 		}
 
-		
-
 		// If it's the first time registering check if play services are
 		// available
 		if (currentActivity == null) {
@@ -126,15 +125,15 @@ public class WorkoutTracker implements
 				e.printStackTrace();
 			}
 		}
-		
+
 		currentActivity = activity;
 
 		if (activity == null) {
 			// if activity is set to a null value disconnect?
 			// maybe not because we want to keep tracking location updates
-//			if(locationClient != null) {
-//				locationClient.disconnect();
-//			}
+			// if(locationClient != null) {
+			// locationClient.disconnect();
+			// }
 		} else {
 			launchedNewIntent = false;
 			locationClient = new LocationClient(
@@ -310,20 +309,20 @@ public class WorkoutTracker implements
 			double distanceInM = Helpers.distance(destinationLocation.location,
 					currentLocation);
 
-//			double distanceInKM = round(distance / 1000, 2);
-			if (distanceInM <= 40 && currentActivity instanceof CompassActivity ) {
+			// double distanceInKM = round(distance / 1000, 2);
+			if (distanceInM <= 40 && currentActivity instanceof CompassActivity) {
 
-//				Intent intent = new Intent(currentActivity,
-//						ExerciseActivity.class);
-//				//intent.putExtra("next_location", nextLocation);
-//				
-//				Toast.makeText(currentActivity, "Arrived at location:" + nextLocation, 10000).show();
-//				
-//				currentActivity.startActivity(intent);
-				
-				((CompassActivity)currentActivity).arriveAtExercise(null);
-				
-				
+				// Intent intent = new Intent(currentActivity,
+				// ExerciseActivity.class);
+				// //intent.putExtra("next_location", nextLocation);
+				//
+				// Toast.makeText(currentActivity, "Arrived at location:" +
+				// nextLocation, 10000).show();
+				//
+				// currentActivity.startActivity(intent);
+
+				((CompassActivity) currentActivity).arriveAtExercise(null);
+
 			}
 
 		}
@@ -348,12 +347,15 @@ public class WorkoutTracker implements
 		return nextLocation;
 	}
 
-	public void moveToNextLocation(){
+	public void moveToNextLocation() {
 		this.nextLocation++;
 	}
 
 	public List<Exercise> getCurrentLocationExcercices() {
-		return activeRoute.locations.get(nextLocation).selectedExercises;//TODO: fix possible IndexOutOfBoundsExeception
+		return activeRoute.locations.get(nextLocation).selectedExercises;// TODO:
+																			// fix
+																			// possible
+																			// IndexOutOfBoundsExeception
 	}
 
 	public LatLng getDestinationLocation() {
@@ -365,4 +367,8 @@ public class WorkoutTracker implements
 				&& nextLocation == activeRoute.locations.size() - 1;
 	}
 
+	public void resetWorkoutTracker() {
+		WorkoutTracker.getInstance().activeRoute = null;
+		WorkoutTracker.getInstance().nextLocation = 0;
+	}
 }

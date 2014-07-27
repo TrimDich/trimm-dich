@@ -220,6 +220,7 @@ public class StatisticsMapActivity extends Activity {
 	}
 
 	private void startNewRun() {
+		WorkoutTracker.getInstance().resetWorkoutTracker();
 		Intent newIntent = new Intent(this, MainActivity.class);
 		newIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
 				| Intent.FLAG_ACTIVITY_CLEAR_TASK);

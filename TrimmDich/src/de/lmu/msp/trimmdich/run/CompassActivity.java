@@ -252,6 +252,8 @@ public class CompassActivity extends Activity implements LocationListener,
 							@Override
 							public void onClick(DialogInterface dialog,
 									int which) {
+								WorkoutTracker.getInstance()
+										.resetWorkoutTracker();
 								Intent newIntent = new Intent(getBaseContext(),
 										MainActivity.class);
 								newIntent
